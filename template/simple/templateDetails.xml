@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/2.5/template-install.dtd">
+<extension version="3.1" type="template" client="site">
+	<name>simple</name>
+	<version>1.0</version>
+	<creationDate>9/01/2015</creationDate>
+	<author>Nick Blackwell</author>
+	<authorEmail>nickblackwell82@gmail.com</authorEmail>
+	<copyright>2015 Nick Blackwell</copyright>
+	<description>A simple template</description>
+	<files>
+		<filename>component.php</filename>
+		<filename>error.php</filename>
+		<filename>favicon.ico</filename>
+		<filename>index.php</filename>
+		<filename>templateDetails.xml</filename>
+		<filename>template_preview.png</filename>
+		<filename>template_thumbnail.png</filename>
+		<folder>css</folder>
+		<folder>html</folder>
+		<folder>images</folder>
+		<folder>js</folder>
+
+	</files>
+	<positions>
+		<position>banner</position>
+		<position>header</position>
+		<position>menu</position>
+		<position>footer</position>
+	</positions>
+	
+</extension>
