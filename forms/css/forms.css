@@ -1,0 +1,62 @@
+@CHARSET "UTF-8";
+
+.btn.cpanel_button {
+    height: 64px;
+    width: 64px;
+    position: relative;
+    padding: 0;
+        margin: 50px;
+    margin-left: 0;
+}
+
+span.cpanel_button_label {
+    position: absolute;
+    width: 100px;
+    text-align: center;
+    left: -18px;
+    top: calc( 100% + 5px );
+    color: teal;
+    text-shadow: none;
+}
+
+span.cpanel_button_image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    top: 0;
+    left: 0;
+}
+
+.btn.cpanel_button.pull-right {
+    margin: 5px;
+}
+
+#new-rwa-schedule-d, #list-schedule-d{
+	display:none;
+}
+
+#new-rwa-schedule-d.enabled, #list-schedule-d.enabled{
+	display: inline-block;
+    width: 100%;
+}
+#new-rwa-schedule-d input{
+	vertical-align: initial;
+}
+#new-rwa-schedule-d>form {
+    margin-top: 100px;
+}
+
+#new-rwa-schedule-d section {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+    padding: 20px;
+    margin: 5px;
+}
+
+
+#new-rwa-schedule-d .group>label, #new-rwa-schedule-d .group>label>input {
+    display: inline-block;
+    vertical-align: top;
+}
