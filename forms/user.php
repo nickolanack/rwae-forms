@@ -1,5 +1,5 @@
 <?php
-if (! defined('_JEXEC')) {
+if (!defined('_JEXEC')) {
     // make sure that core.php detects joomla environment
     define('_JEXEC', 1);
 }
@@ -17,14 +17,14 @@ Behavior('ajax');
 Scaffold('cpanel.button', 
     array(
         'title' => 'Create A New Schedule D',
-        'className' => 'btn btn-success',
+        'className' => 'btn btn-primary big',
         'icon' => Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_new.png?tint=rgb(255,255,255)',
         'script' => '
 
             var btn=this;
             window.create_new_btn=btn;
             console.log(btn);
-            btn.removeClass("btn-success");
+            btn.removeClass("btn-primary");
             btn.setAttribute("disabled", true);
             $("new-rwa-schedule-d").addClass("enabled");
             $("list-schedule-d").removeClass("enabled");
@@ -52,7 +52,7 @@ Scaffold('cpanel.button',
         'script' => '
 
             var btn=window.create_new_btn;
-            btn.addClass("btn-success");
+            btn.addClass("btn-primary");
             btn.removeAttribute("disabled");
             $("new-rwa-schedule-d").removeClass("enabled");
             $("list-schedule-d").addClass("enabled");

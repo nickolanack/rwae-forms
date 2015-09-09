@@ -2,7 +2,7 @@
 error_reporting(E_ALL ^ E_NOTICE); // report everything except notices
 ini_set('display_errors', 1);
 
-if (! defined('_JEXEC')) {
+if (!defined('_JEXEC')) {
     // make sure that core.php detects joomla environment
     define('_JEXEC', 1);
 }
@@ -19,7 +19,7 @@ Core::Parameters()->disableCompression();
 Scaffold('cpanel.button', 
     array(
         'title' => 'Show All Schedule D Forms',
-        'className' => 'btn btn-primary',
+        'className' => 'btn btn-primary big',
         'icon' => Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_table.png?tint=rgb(255,255,255)',
         'script' => '
 
@@ -31,7 +31,7 @@ Scaffold('cpanel.button',
 Scaffold('cpanel.button', 
     array(
         'title' => 'Show All Schedule D Authors',
-        'className' => 'btn btn-primary',
+        'className' => 'btn btn-primary big',
         'icon' => Core::AssetsDir() . DS . 'Tile Icons' . DS . 'profile.png?tint=rgb(255,255,255)',
         'script' => '
 
@@ -43,7 +43,7 @@ Scaffold('cpanel.button',
 Scaffold('cpanel.button', 
     array(
         'title' => 'Generate Reports',
-        'className' => 'btn btn-success',
+        'className' => 'btn btn-success big',
         'icon' => Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_clipboard.png?tint=rgb(255,255,255)',
         'script' => '
 

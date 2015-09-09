@@ -44,23 +44,14 @@ JHtml::_('bootstrap.loadCss', false, $this->direction);
 // Adjusting content width
 if ($this->countModules('position-7') && $this->countModules('position-8')) {
     $span = "span6";
-} elseif ($this->countModules('position-7') && ! $this->countModules('position-8')) {
+} elseif ($this->countModules('position-7') && !$this->countModules('position-8')) {
     $span = "span9";
-} elseif (! $this->countModules('position-7') && $this->countModules('position-8')) {
+} elseif (!$this->countModules('position-7') && $this->countModules('position-8')) {
     $span = "span9";
 } else {
     $span = "span12";
 }
 
-// Logo file or site title param
-if ($this->params->get('logoFile')) {
-    $logo = '<img src="' . JUri::root() . $this->params->get('logoFile') . '" alt="' . $sitename . '" />';
-} elseif ($this->params->get('sitetitle')) {
-    $logo = '<span class="site-title" title="' . $sitename . '">' . htmlspecialchars($this->params->get('sitetitle')) .
-         '</span>';
-} else {
-    $logo = '<span class="site-title" title="' . $sitename . '">' . $sitename . '</span>';
-}
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -68,7 +59,10 @@ if ($this->params->get('logoFile')) {
 	lang="<?php echo $this->language; ?>"
 	dir="<?php echo $this->direction; ?>">
 <head>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" type="image/x-icon"
+	href="http://readywillingable.ca/wp-content/uploads/2015/07/RWA-Favicon.png" />
 <jdoc:include type="head" />
 	<?php // Use of Google Font ?>
 	<?php if ($this->params->get('googleFont')) : ?>
@@ -77,10 +71,7 @@ if ($this->params->get('logoFile')) {
 	rel='stylesheet' type='text/css' />
 <style type="text/css">
 h1, h2, h3, h4, h5, h6, .site-title {
-	font-family: '<?php
-    
-echo str_replace(' + ', ' ', $this->params->get(' googleFontName
-		'));
+	font-family: '<? php echo str_replace(' + ', ' ',$ this- > params- > get(' googleFontName '));
     ?>',
 	sans-serif;
 }
@@ -126,6 +117,39 @@ echo $this->params->get('templateColor');
 	<!--[if lt IE 9]>
 		<script src="<?php echo JUri::root(true); ?>/media/jui/js/html5.js"></script>
 	<![endif]-->
+
+<style type="text/css">
+.btn {
+	background-image: none;
+	border: none;
+	border-radius: 0;
+	height: 39px;
+}
+
+.btn.btn-primary {
+	background-color: #01AEEF;
+}
+
+.btn.btn-success {
+	background-color: #FFF200;
+}
+
+.btn.btn-danger {
+	background-color: #EB008B;
+}
+
+.btn.btn-primary:hover {
+	background-color: #0693C7;
+}
+
+.btn.btn-success:hover {
+	background-color: #D8CD04;
+}
+
+.btn.btn-danger:hover {
+	background-color: #B70A70;
+}
+</style>
 </head>
 
 <body
@@ -141,13 +165,15 @@ echo $option . ' view-' . $view . ($layout ? ' layout-' . $layout : ' no-layout'
 		<!-- Header -->
 		<header class="header" role="banner">
 			<div class="header-inner clearfix">
-				<a class="brand" href="<?php echo $this->baseurl; ?>/">
-						<?php echo $logo; ?>
-						<?php if ($this->params->get('sitedescription')) : ?>
-							<?php echo '<div class="site-description">' . htmlspecialchars($this->params->get('sitedescription')) . '</div>'; ?>
-						<?php endif; ?>
-					</a>
+				<div style="max-width: 960px; margin: auto; text-align: left;">
+					<img
+						src="http://readywillingable.ca/wp-content/themes/RWA2015/public/images/logos/rwa-oneline-eng.png" />
+					<div class="site-tagline" style="text-transform: uppercase;">Building
+						an inclusive labour force</div>
+				</div>
+
 				<div class="header-search pull-right">
+
 					<jdoc:include type="modules" name="position-0" style="none" />
 				</div>
 			</div>
