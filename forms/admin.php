@@ -31,7 +31,7 @@ Scaffold('cpanel.button',
 Scaffold('cpanel.button', 
     array(
         'title' => 'Show All Schedule D Authors',
-        'className' => 'btn btn-primary big',
+        'className' => 'btn btn-danger big',
         'icon' => Core::AssetsDir() . DS . 'Tile Icons' . DS . 'profile.png?tint=rgb(255,255,255)',
         'script' => '
 

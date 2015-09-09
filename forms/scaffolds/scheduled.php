@@ -1,7 +1,8 @@
 <form>
 	<h2>Schedule D</h2>
+	<h3>Administrative and Baseline</h3>
 	<section class="b">
-		<h3>Administrative and Baseline</h3>
+
 		<span class="group"><label><span class="lbl">Year </span> <input
 				type="text" value="<?php echo date('Y'); ?>" name="year" /></label><label
 			class="pull-right">Quarter <input type="radio" value="1"
@@ -19,9 +20,7 @@
 				person’s email </span><input type="text" value=""
 			name="agency_contact_email" /> </label>
 
-	</section>
-
-	<section>
+		<hr />
 		<h3>Participant</h3>
 		<span class="group"> <span class="left"> <label>First name or nickname
 					<input type="text" value="" name="participant_first_name" />
@@ -72,10 +71,10 @@
 			name="participant_previous_income[]" /> Other </label>
 	</section>
 
-	<h2>Initial Activities</h2>
-
+	<h3>Initial Activities</h3>
+	<h4>Employment</h4>
 	<section class="a">
-		<h3>Employment</h3>
+
 		<h4>Was this person employed as a result of RWA for any part of this
 			quarter?</h4>
 		<span class="inline"><label><input type="radio" value="yes"
@@ -112,7 +111,8 @@
     ?>
 
 		<span class="jobs" style="display: none;">
-			<section>
+			<hr />
+			<section class="job">
 				<h4>Job One</h4>
 				<label>Start date <input type="text" value=""
 					name="job-start-date[]" />
@@ -127,7 +127,7 @@
 						type="radio" value="" name="job-type[]" /> Permanent full-time </label>
 					<label><input type="radio" value="" name="job-type[]" /> Seasonal
 						part-time </label> <label><input type="radio" value=""
-						name="job-type[]" /> Seasonal full-time </label> </span> <label>Job
+						name="job-type[]" /> Seasonal full-time </label> </span><br /> <label>Job
 					title <input type="text" value="" name="job-title[]" />
 				</label> <label>Number of work hours per week <input
 					style="width: 20px;" type="text" value="" name="job-hours-weekly[]" />
@@ -152,13 +152,13 @@
 						name="job-num-employees[]" /> 100+ </label></span>
 				<h4>Comments (if any)</h4>
 				<textarea type="text" name="job-comments[]"
-					style="resize: vertical; width: 250px;"></textarea>
+					style="resize: vertical; width: 250px; box-sizing: border-box;"></textarea>
 
 			</section>
 		<?php
 Scaffold('cpanel.button', 
     array(
-        'title' => 'Add Another Job',
+        'title' => 'Add Job',
         'className' => 'btn btn-success pull-right',
         'icon' => Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_new.png?tint=rgb(255,255,255)',
         'script' => '
@@ -170,21 +170,20 @@ Scaffold('cpanel.button',
 ?>
 
 
-            <section style="margin-top: 110px;">
-				<h3>RWA Section</h3>
-				<label>Facilitator / Coordinator <input type="text" value=""
-					name="facilitator" />
-				</label> <label>Participant’s ID <input type="text" value=""
-					name="participant-id" />
-				</label>
+                <hr style="margin-top: 110px;" />
+			<h3>RWA Section</h3> <label>Facilitator / Coordinator <input
+				type="text" value="" name="facilitator" />
+		</label> <label>Participant’s ID <input type="text" value=""
+				name="participant-id" />
+		</label>
 
-			</section>
+
 		</span> <span class="jobs" style="display: none;">
 			<h3>Supports For Employment</h3>
 			<h4>Does this person require any supports from RWA for employment?</h4>
 			<span class="inline"><label><input type="radio" value="yes"
-					name="supports" id="cbx-supports" /> Yes </label><label><input
-					type="radio" value="no" name="supports" id="cbx-no-supports"
+					name="job-supports" id="cbx-supports" /> Yes </label><label><input
+					type="radio" value="no" name="job-supports" id="cbx-no-supports"
 					checked="checked" /> No </label></span>
 
 <?php
@@ -194,7 +193,7 @@ IncludeJSBlock(
                 $("cbx-no-supports").addEvent("change",function(){
 
                     if(this.checked){
-                        $$("span.supports").forEach(function(s){
+                        $$("span.job-supports").forEach(function(s){
                             s.setStyle("display","none");
                         });
 
@@ -205,7 +204,7 @@ IncludeJSBlock(
                 $("cbx-supports").addEvent("change",function(){
 
                     if(this.checked){
-                        $$("span.supports").forEach(function(s){
+                        $$("span.job-supports").forEach(function(s){
                             s.setStyle("display",null);
                         });
                     }
@@ -217,46 +216,48 @@ IncludeJSBlock(
 ?>
 
 
-         <span class="supports" style="display: none;">
+         <span class="job-supports" style="display: none;">
 
-				<section>
+				<section class="job">
 					<h4>Job One</h4>
-					<h4>Job Coach</h4>
-					<label>Number of hours per week <input style="width: 50px;"
-						type="text" value="" name="support-coach-hours-weekly[]" />
-					</label> <label>Hourly rate <input type="text" value=""
-						name="support-coach-rate[]" />
-					</label><label>Number of weeks needed <input style="width: 20px;"
-						type="text" value="" name="support-coach-weeks[]" />
-					</label> <span class="group"><span class="left"><label>Total $
-								needed for job coach at this request <input type="text" value=""
-								name="support-coach-total[]" />
-						</label></span></span>
-					<h4>Transportation</h4>
-					<label>Number of trips <input type="text" value=""
-						name="support-trans-trips[]" />
-					</label> <label>Rate per trip <input type="text" value=""
-						name="support-trans-rate[]" />
-					</label><label>Number of weeks needed <input style="width: 20px;"
-						type="text" value="" name="support-trans-weeks[]" />
-					</label> <span class="group"><span class="left"><label>Other
-								justification if applicable<input type="text" value=""
-								name="support-trans-justification[]" />
-						</label></span></span> <span class="group"><span class="right"><label>Total
-								$ needed for transportation at this request <input type="text"
-								value="" name="support-trans-total[]" />
-						</label></span></span> <label>Provider <input type="text" value=""
-						name="support-trans-provider[]" />
-					</label>
-					<h4>Other</h4>
-					<span class="group"><span class="left"> Please describe any other
-							charge not captured above (e.g., for uniform, supplies, fees,
-							devices, ramps, etc.) <textarea type="text"
-								name="support-trans-other[]"
-								style="resize: vertical; width: 250px;"></textarea>
-					</span><span class="right"><label>Provider <input type="text"
-								value="" name="support-trans-other-provider[]" />
-						</label></span></span>
+					<span class="group"><span class="left">
+							<h4>Job Coach</h4> <label>Number of hours per week <input
+								style="width: 50px;" type="text" value=""
+								name="job-support-coach-hours-weekly[]" />
+						</label> <label>Hourly rate <input type="text" value=""
+								name="job-support-coach-rate[]" />
+						</label><label>Number of weeks needed <input style="width: 50px;"
+								type="text" value="" name="job-support-coach-weeks[]" />
+						</label> <label>Total $ needed for job coach at this request <input
+								type="text" value="" name="job-support-coach-total[]" />
+						</label>
+					</span><span class="right">
+							<h4>Transportation</h4> <label>Number of trips <input
+								style="width: 100px;" type="text" value=""
+								name="job-support-trans-trips[]" />
+						</label> <label>Rate per trip <input type="text" value=""
+								name="job-support-trans-rate[]" />
+						</label><label>Number of weeks needed <input style="width: 50px;"
+								type="text" value="" name="job-support-trans-weeks[]" />
+						</label> Other justification if applicable<textarea
+								name="job-support-trans-justification[]"
+								style="resize: vertical; width: 250px; box-sizing: border-box;"></textarea>
+
+							<label>Total $ needed for transportation at this request <input
+								type="text" value="" name="job-support-trans-total[]" />
+						</label> <label>Provider <input type="text" value=""
+								name="job-support-trans-provider[]" />
+						</label>
+					</span><span class="right">
+							<h4>Other</h4> Please describe any other charge not captured
+							above (e.g., for uniform, supplies, fees, devices, ramps, etc.) <textarea
+								type="text" name="job-support-trans-other[]"
+								style="resize: vertical; width: 250px; box-sizing: border-box;"></textarea>
+							<label>Provider <input type="text" value=""
+								name="job-support-trans-other-provider[]" />
+						</label>
+					</span></span>
+
 				</section>
 
 
@@ -268,6 +269,158 @@ IncludeJSBlock(
 
 	</section>
 
+	<h4>Post Secondary Education</h4>
+	<section class="c">
 
+
+		<h4>Was this person enrolled in post-secondary education as a result
+			of RWA for any part of this quarter ?</h4>
+		<span class="inline"><label><input type="radio" value="yes"
+				name="enrolled-quarter" id="cbx-enrolled" /> Yes </label><label><input
+				type="radio" value="no" name="enrolled-quarter" id="cbx-no-enrolled"
+				checked="checked" /> No </label></span>
+				<?php
+    IncludeJSBlock(
+        '
+           window.addEvent("load",function(){
+                $("cbx-no-enrolled").addEvent("change",function(){
+
+                    if(this.checked){
+                        $$("span.enrolled").forEach(function(s){
+                            s.setStyle("display","none");
+                        });
+
+                    }
+
+                });
+
+                $("cbx-enrolled").addEvent("change",function(){
+
+                    if(this.checked){
+                        $$("span.enrolled").forEach(function(s){
+                            s.setStyle("display",null);
+                        });
+                    }
+
+                });
+            });
+        ');
+    
+    ?>
+    <span class="enrolled" style="display: none;">
+			<hr /> <span class="group"><span class="left"><label>Start date <input
+						type="text" value="" name="enroll-start-date" /></label> <label>Expected
+						duration of program <input style="width: 150px;" type="text"
+						value="" name="enroll-duration-months" />
+				</label> <label><input type="checkbox" value="true"
+						name="enroll-less-month" /> (Check if less than 1 month)</label> </span><span
+				class="right">
+					<h4>Type of program</h4> <span class="inline"> <label><input
+							type="radio" value="" name="enroll-type" /> College, CEGEP or
+							technical institute</label> <label><input type="radio" value=""
+							name="enroll-type" /> Trades school</label> <label><input
+							type="radio" value="" name="enroll-type" /> University</label> <label><input
+							type="radio" value="" name="enroll-type" /> Other (if other,
+							please describe)</label>
+				</span> <textarea type="text" name="enroll-type-other"
+						style="resize: vertical; width: 250px; box-sizing: border-box;"></textarea>
+
+			</span><span class="left"> <label>Name of institution <input
+						type="text" value="" name="enroll-institution" /></label> <label>Name
+						of program <input type="text" value="" name="enroll-program" />
+				</label></span></span>
+		</span> <span class="enrolled" style="display: none;">
+			<h3>Supports for Post-Secondary Education</h3>
+			<h4>Does this person require any supports from RWA for post-secondary
+				education?</h4> <span class="inline"><label><input type="radio"
+					value="yes" name="enrollment-supports" id="cbx-e-supports" /> Yes </label><label><input
+					type="radio" value="no" name="enrollment-supports"
+					id="cbx-no-e-supports" checked="checked" /> No </label></span>
+
+<?php
+IncludeJSBlock(
+    '
+           window.addEvent("load",function(){
+                $("cbx-no-e-supports").addEvent("change",function(){
+
+                    if(this.checked){
+                        $$("span.enroll-supports").forEach(function(s){
+                            s.setStyle("display","none");
+                        });
+
+                    }
+
+                });
+
+                $("cbx-e-supports").addEvent("change",function(){
+
+                    if(this.checked){
+                        $$("span.enroll-supports").forEach(function(s){
+                            s.setStyle("display",null);
+                        });
+                    }
+
+                });
+            });
+        ');
+
+?>
+
+<span class="enroll-supports" style="display: none;">
+				<hr />
+				<span class="group"><span class="left">
+						<h4>Tutor (or similar)</h4> <label>Number of hours per week <input
+							style="width: 50px;" type="text" value=""
+							name="job-support-coach-hours-weekly" />
+					</label> <label>Hourly rate <input type="text" value=""
+							name="job-support-coach-rate" />
+					</label><label>Number of weeks needed <input style="width: 50px;"
+							type="text" value="" name="job-support-coach-weeks[]" />
+					</label> <label>Total $ needed for tutor (or similar) at this
+							request <input type="text" value=""
+							name="job-support-coach-total" />
+					</label><label>Provider <input type="text" value=""
+							name="job-support-trans-provider" />
+					</label>
+				</span><span class="right">
+						<h4>Transportation</h4> <label>Number of trips <input
+							style="width: 100px;" type="text" value=""
+							name="job-support-trans-trips[]" />
+					</label> <label>Rate per trip <input type="text" value=""
+							name="job-support-trans-rate[]" />
+					</label><label>Number of weeks needed <input style="width: 50px;"
+							type="text" value="" name="job-support-trans-weeks[]" />
+					</label> Other justification if applicable<textarea
+							name="job-support-trans-justification[]"
+							style="resize: vertical; width: 250px; box-sizing: border-box;"></textarea>
+
+						<label>Total $ needed for transportation at this request <input
+							type="text" value="" name="job-support-trans-total[]" />
+					</label> <label>Provider <input type="text" value=""
+							name="job-support-trans-provider[]" />
+					</label>
+				</span><span class="right">
+						<h4>Other</h4> Please describe any other charge not captured above
+						(e.g., for uniform, supplies, fees, devices, ramps, etc.) <textarea
+							name="job-support-trans-other[]"
+							style="resize: vertical; width: 250px; box-sizing: border-box;"></textarea>
+						<label>Total $ needed for this other support this request<input
+							type="text" value="" name="job-support-trans-total[]" />
+					</label><label>Provider <input type="text" value=""
+							name="job-support-trans-other-provider[]" />
+					</label>
+				</span><span class="right">
+						<h4>Comments</h4> <textarea name="job-support-trans-other[]"
+							style="resize: vertical; width: 250px; box-sizing: border-box;"></textarea>
+
+				</span></span>
+
+
+		</span>
+
+		</span>
+
+
+	</section>
 
 </form>

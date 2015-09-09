@@ -78,6 +78,7 @@ Scaffold('cpanel.button',
 
 
 <div id="list-schedule-d" class="enabled">
+	<section>
 <?php
 /* @var $db ScheduleDatabase */
 include_once __DIR__ . DS . 'database' . DS . 'ScheduleDatabase.php';
@@ -92,8 +93,8 @@ $db->iterateAllSchedules(function ($record) use(&$count) {
 
 if (count == 0) {
     ?><div class="empty info">you have not completed any schedule d
-		forms yet</div><?php
+			forms yet</div><?php
 }
 ?>
-
+</section>
 </div>

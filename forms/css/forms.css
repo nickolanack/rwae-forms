@@ -15,7 +15,7 @@ span.cpanel_button_label {
 	text-align: center;
 	left: -25%;
 	top: calc(100% + 5px);
-	color: teal;
+	color: #333;
 	text-shadow: none;
 }
 
@@ -50,7 +50,7 @@ span.cpanel_button_image {
 	margin-top: 100px;
 }
 
-#new-rwa-schedule-d section {
+#new-rwa-schedule-d section, #list-schedule-d section {
 	background-color: rgba(0, 0, 0, 0.05);
 	border-radius: 4px;
 	padding: 20px;
@@ -90,18 +90,18 @@ span.cpanel_button_image {
 
 #new-rwa-schedule-d span.group>.left, #new-rwa-schedule-d span.group>.right {
     display: inline-table;
-    width: 380px;
+    
+}
+
+#new-rwa-schedule-d .jobs span.group>.left, #new-rwa-schedule-d .jobs span.group>.right{
+	width: 250px;
 }
 
 #new-rwa-schedule-d h4 {
     margin: 9px 0;
 }
 
-#new-rwa-schedule-d span.inline>label {
-    display: inline-block;
-    width: initial;
-    margin-right: 10px;
-}
+
 
 
 #new-rwa-schedule-d label.longtext {
@@ -115,18 +115,23 @@ span.cpanel_button_image {
     margin-bottom: 20px;
 }
 
-
+#new-rwa-schedule-d .jobs .job label {
+	width: 250px;
+}
 #new-rwa-schedule-d .jobs label {
-    width: 250px;
     margin-right: 25px;
 }
 
-#new-rwa-schedule-d .jobs input[type="text"] {
+#new-rwa-schedule-d .jobs .job input[type="text"] {
     width: 150px;
 }
 
 
-
+#new-rwa-schedule-d span.inline>label, #new-rwa-schedule-d .job span.inline>label {
+    display: inline-block;
+    width: initial;
+    margin-right: 10px;
+}
 
 /*integration*/
 
