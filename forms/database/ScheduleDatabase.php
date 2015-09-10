@@ -10,6 +10,7 @@ include_once Core::DatabasesDir() . DS . 'lib' . DS . 'CoreDatabase.php';
 class ScheduleDatabase extends CoreDatabase {
 
     public function __construct($checkTables = false) {
+
         $this->subPrefix .= 'D_';
         parent::__construct();
     }
@@ -23,10 +24,11 @@ class ScheduleDatabase extends CoreDatabase {
      *            database table prefix. usually set by joomla installation.
      */
     protected function getTableNamesMap($p = null) {
-        if (! $p) {
+
+        if (!$p) {
             $p = $this->getTablePrefix();
         }
-        if (! $this->tableNames) {
+        if (!$this->tableNames) {
             $this->tableNames = array(
                 
                 'Schedule' => $p . 'Schedule',
@@ -39,9 +41,10 @@ class ScheduleDatabase extends CoreDatabase {
     }
 
     protected function getTableCreateStrings() {
+
         $names = $this->getTableNamesMap();
         
-        if (! $this->createStrings) {
+        if (!$this->createStrings) {
             
             $Schedule = $names['Schedule'];
             
@@ -49,9 +52,11 @@ class ScheduleDatabase extends CoreDatabase {
                 $Schedule => 'CREATE TABLE ' . $Schedule . '(
 				id INT(11) AUTO_INCREMENT,
                 uid INT(11)
-					COMMENT "a unique id that identifies the author",
+					COMMENT "user id of the form the author",
 				code VARCHAR(100)
-					COMMENT "a unique code generated for each schedule d identifies",
+					COMMENT "a unique id code that identifies the participant",
+                formData VARCHAR(100)
+					COMMENT "json encoded form data"
 
 				PRIMARY KEY (id)
 			)'
@@ -63,36 +68,39 @@ class ScheduleDatabase extends CoreDatabase {
     
     // Event Tables Methods
     public function getSchedule($id) {
+
         return $this->recordList('Schedule', array(
             'id' => $id
         ));
     }
 
     public function iterateAllSchedules($callback, $filter = array()) {
+
         return $this->recordIterate('Schedule', $callback, $filter);
     }
 
-    public function getScheduleByCode($code) {
-        return $this->recordList('Schedule', array(
-            'code' => $code
-        ));
-    }
-
     public function createSchedule($args) {
-        return $this->createEntry($args, 'Schedule', array(
-            'code',
-            'uid'
-        ));
+
+        return $this->createEntry($args, 'Schedule', 
+            array(
+                'code',
+                'uid',
+                'formData'
+            ));
     }
 
     public function updateSchedule($args) {
-        return $this->updateEntry($args, 'Schedule', array(
-            'code',
-            'uid'
-        ));
+
+        return $this->updateEntry($args, 'Schedule', 
+            array(
+                'code',
+                'uid',
+                'formData'
+            ));
     }
 
     public function deleteSchedule($id) {
+
         return $this->deleteEntry('Schedule', array(
             'id' => $id
         ));

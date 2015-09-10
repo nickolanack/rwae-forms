@@ -9,6 +9,8 @@ include_once 'php-core-app/core.php';
 Core::Parameters()->disableCaching();
 Core::Parameters()->disableCompression();
 
+if (UrlVar('userTask') == 'createScheduleD') {}
+
 ?><link rel="stylesheet"
 	href="<?php echo UrlFrom(__DIR__ . DS . 'css' . DS . 'forms.css');?>"
 	type="text/css"><?php
@@ -42,6 +44,8 @@ Scaffold('cpanel.button',
         'icon' => Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_new.png?tint=rgb(255,255,255)',
         'script' => '
 
+            $$("#new-rwa-schedule-d>form")[0].submit();
+
         '
     ));
 Scaffold('cpanel.button', 
@@ -69,6 +73,26 @@ Scaffold('cpanel.button',
         'icon' => Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_new.png?tint=rgb(255,255,255)',
         'script' => '
 
+            var form=$$("#new-rwa-schedule-d>form")[0];
+
+            data={};
+            Array.prototype.slice.call(form, 0).forEach(function(i){
+
+                var name=i.name;
+                var value=i.value;
+                if(name.indexOf("[]")==-1){
+                    data[name]=value;
+
+                }else{
+                    if((typeof data[name])=="undefined"){
+                        data[name]=[];
+                    }
+                    data[name].push(value);
+                }
+
+            });
+
+            console.log(data);
 
         '
     ));

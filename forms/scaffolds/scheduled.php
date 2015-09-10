@@ -1,54 +1,89 @@
 <form>
+
+	<input type="hidden" name="userTask" value="createScheduleD" />
+
 	<h2>Schedule D</h2>
 	<h3>Administrative and Baseline</h3>
-	<section class="b">
+	<section class="a">
 
 		<span class="group"><label><span class="lbl">Year </span> <input
-				type="text" value="<?php echo date('Y'); ?>" name="year" /></label><label
+				type="text" value="<?php echo date('Y'); ?>" name="admin-year" /></label><label
 			class="pull-right">Quarter <input type="radio" value="1"
-				name="quarter" /> 1st <input type="radio" value="2" name="quarter" />
-				2nd <input type="radio" value="3" name="quarter" /> 3rd <input
-				type="radio" value="4" name="quarter" /> 4th
+				name="admin-quarter"
+				<?php
+    
+    $q = ((int) ((date('n') - 1) / 3)) + 1;
+    
+    if ($q == 1) {
+        ?>
+				checked="checked" <?php
+    }
+    
+    ?> /> 1st <input type="radio" value="2" name="admin-quarter"
+				<?php
+    
+    if ($q == 2) {
+        ?> checked="checked"
+				<?php
+    }
+    
+    ?> /> 2nd <input type="radio" value="3" name="admin-quarter"
+				<?php
+    
+    if ($q == 3) {
+        ?> checked="checked"
+				<?php
+    }
+    
+    ?> /> 3rd <input type="radio" value="4" name="admin-quarter"
+				<?php
+    
+    if ($q == 4) {
+        ?> checked="checked"
+				<?php
+    }
+    
+    ?> /> 4th
 		</label></span>
 		<hr />
 		<label><span class="lbl">Agency name </span><input type="text"
-			value="" name="agency_name" /> </label><label><span class="lbl">Agency
+			value="" name="agency-name" /> </label><label><span class="lbl">Agency
 				contact person </span><input type="text" value=""
-			name="agency_contact_person" /> </label> <label><span class="lbl">Contact
+			name="agency-contact-person" /> </label> <label><span class="lbl">Contact
 				person’s phone </span><input type="text" value=""
-			name="agency_contact_phone" /> </label><label><span class="lbl">Contact
+			name="agency-contact-phone" /> </label><label><span class="lbl">Contact
 				person’s email </span><input type="text" value=""
-			name="agency_contact_email" /> </label>
+			name="agency-contact-email" /> </label>
 
 		<hr />
 		<h3>Participant</h3>
 		<span class="group"> <span class="left"> <label>First name or nickname
-					<input type="text" value="" name="participant_first_name" />
+					<input type="text" value="" name="participant-first-name" />
 			</label> <label>Province/Territory <input type="text" value=""
-					name="participant_province_territory" />
+					name="participant-province-territory" />
 			</label><label>Start date with RWA <input type="text" value=""
-					name="participant_start_date" />
+					name="participant-start-date" />
 			</label> <label>Individual's community <input type="text" value=""
-					name="participant_age" />
+					name="participant-age" />
 			</label>
 		</span><span class="right"> <!-- right -->
 				<h4>His/her gender</h4> <span class="inline"><label><input
-						type="radio" value="M" name="participant_gender" /> Male</label> <label><input
-						type="radio" value="F" name="participant_gender" /> Female</label></span>
+						type="radio" value="M" name="participant-gender" /> Male</label> <label><input
+						type="radio" value="F" name="participant-gender" /> Female</label></span>
 				<h4>Age (best estimate)</h4> <span class="inline"> <label><input
-						type="radio" value="" name="participant_age" /> 15-24</label> <label><input
-						type="radio" value="" name="participant_age" /> 25-34</label> <label><input
-						type="radio" value="" name="participant_age" /> 35-44</label> <label><input
-						type="radio" value="" name="participant_age" /> 45-54</label> <label><input
-						type="radio" value="" name="participant_age" /> 55-64</label> <label><input
-						type="radio" value="" name="participant_age" /> 65 + </label>
+						type="radio" value="" name="participant-age" /> 15-24</label> <label><input
+						type="radio" value="" name="participant-age" /> 25-34</label> <label><input
+						type="radio" value="" name="participant-age" /> 35-44</label> <label><input
+						type="radio" value="" name="participant-age" /> 45-54</label> <label><input
+						type="radio" value="" name="participant-age" /> 55-64</label> <label><input
+						type="radio" value="" name="participant-age" /> 65 + </label>
 			</span>
 		</span><span class="left">
 				<h4>His/her disability (Check any that apply.)</h4> <span
 				class="inline"><label><input type="checkbox" value=""
-						name="participant_disability[]" /> Autism Spectrum Disorder </label>
+						name="participant-disability[]" /> Autism Spectrum Disorder </label>
 					<label><input type="checkbox" value=""
-						name="participant_disability[]" /> Intellectual Disability </label></span>
+						name="participant-disability[]" /> Intellectual Disability </label></span>
 
 		</span>
 		</span>
@@ -56,24 +91,24 @@
 		<h4>His/her sources of income in the year before coming into RWA.
 			(Check any that apply.)</h4>
 		<label><input type="checkbox" value="employment-or-self-employment"
-			name="participant_previous_income[]" /> Earnings from employment or
+			name="participant-previous-income[]" /> Earnings from employment or
 			self-employment </label> <label><input type="checkbox"
-			value="employment-insurance" name="participant_previous_income[]" />
+			value="employment-insurance" name="participant-previous-income[]" />
 			Employment insurance </label> <label><input type="checkbox"
-			value="quebec-canada-pension" name="participant_previous_income[]" />
+			value="quebec-canada-pension" name="participant-previous-income[]" />
 			Canada/Quebec Pension Plan (Disability) </label> <label><input
 			type="checkbox" value="workers-compensation"
-			name="participant_previous_income[]" /> Workers’ compensation </label>
+			name="participant-previous-income[]" /> Workers’ compensation </label>
 		<label class="longtext"><input type="checkbox"
-			value="social-assistance" name="participant_previous_income[]" />
+			value="social-assistance" name="participant-previous-income[]" />
 			Social assistance, incl. provincial / territorial disability program
 		</label> <label><input type="checkbox" value="other"
-			name="participant_previous_income[]" /> Other </label>
+			name="participant-previous-income[]" /> Other </label>
 	</section>
 
 	<h3>Initial Activities</h3>
 	<h4>Employment</h4>
-	<section class="a">
+	<section class="b">
 
 		<h4>Was this person employed as a result of RWA for any part of this
 			quarter?</h4>
@@ -112,50 +147,9 @@
 
 		<span class="jobs" style="display: none;">
 			<hr />
-			<section class="job">
-				<h4>Job One</h4>
-				<label>Start date <input type="text" value=""
-					name="job-start-date[]" />
-				</label> <label>Name of firm <input type="text" value=""
-					name="job-firm[]" />
-				</label><label>Community <input type="text" value=""
-					name="job-community[]" />
-				</label>
-				<h4>Type of Job</h4>
-				<span class="inline"><label><input type="radio" value=""
-						name="job-type[]" /> Permanent part-time </label> <label><input
-						type="radio" value="" name="job-type[]" /> Permanent full-time </label>
-					<label><input type="radio" value="" name="job-type[]" /> Seasonal
-						part-time </label> <label><input type="radio" value=""
-						name="job-type[]" /> Seasonal full-time </label> </span><br /> <label>Job
-					title <input type="text" value="" name="job-title[]" />
-				</label> <label>Number of work hours per week <input
-					style="width: 20px;" type="text" value="" name="job-hours-weekly[]" />
-				</label> <label>Industry sector code <input style="width: 100px;"
-					type="text" value="" name="job-sector[]" />
-				</label> <label>Hourly wage/salary <input style="width: 100px;"
-					type="text" value="" name="job-wage[]" />
-				</label>
-				<h4>Is this self-employment?</h4>
-				<span class="inline"><label><input type="radio" value="yes"
-						name="job-self-employment[]" /> Yes </label><input type="radio"
-					value="no" name="job-self-employment[]" /> No </label> </span>
-				<h4>Number of other employees at his/her workplace</h4>
-				<span class="inline"><label><input type="radio" value="0"
-						name="job-num-employees[]" /> 0 (Self-employed, sole employee) </label>
-					<label><input type="radio" value="1-9" name="job-num-employees[]" />
-						1-9 </label> <label><input type="radio" value="10-19"
-						name="job-num-employees[]" /> 10-19 </label> <label><input
-						type="radio" value="20-49" name="job-num-employees[]" /> 20-49 </label>
-					<label><input type="radio" value="50-99" name="job-num-employees[]" />
-						50-99 </label> <label><input type="radio" value="100+"
-						name="job-num-employees[]" /> 100+ </label></span>
-				<h4>Comments (if any)</h4>
-				<textarea type="text" name="job-comments[]"
-					style="resize: vertical; width: 250px; box-sizing: border-box;"></textarea>
-
-			</section>
+			<?php Scaffold('scheduled.job');?>
 		<?php
+
 Scaffold('cpanel.button', 
     array(
         'title' => 'Add Job',
@@ -164,6 +158,26 @@ Scaffold('cpanel.button',
         'script' => '
 
 
+            button=this;
+            $$(".jobs").forEach(function(el){
+                if(!el.hasClass("two")){
+                    el.addClass("two");
+                }else{
+
+                    if(!el.hasClass("three")){
+                        el.addClass("three");
+
+                        button.removeClass("btn-success");
+                        button.setAttribute("disabled", true);
+                    }else{
+
+
+
+                    }
+
+                }
+            });
+
         '
     ));
 
@@ -171,12 +185,14 @@ Scaffold('cpanel.button',
 
 
                 <hr style="margin-top: 110px;" />
-			<h3>RWA Section</h3> <label>Facilitator / Coordinator <input
-				type="text" value="" name="facilitator" />
-		</label> <label>Participant’s ID <input type="text" value=""
-				name="participant-id" />
-		</label>
-
+			<section>
+				<h3>RWA Section</h3>
+				<label>Facilitator / Coordinator <input type="text" value=""
+					name="participant-facilitator" />
+				</label> <label>Participant’s ID <input type="text" value=""
+					name="participant-id" />
+				</label>
+			</section>
 
 		</span> <span class="jobs" style="display: none;">
 			<h3>Supports For Employment</h3>
@@ -217,48 +233,12 @@ IncludeJSBlock(
 
 
          <span class="job-supports" style="display: none;">
-
-				<section class="job">
-					<h4>Job One</h4>
-					<span class="group"><span class="left">
-							<h4>Job Coach</h4> <label>Number of hours per week <input
-								style="width: 50px;" type="text" value=""
-								name="job-support-coach-hours-weekly[]" />
-						</label> <label>Hourly rate <input type="text" value=""
-								name="job-support-coach-rate[]" />
-						</label><label>Number of weeks needed <input style="width: 50px;"
-								type="text" value="" name="job-support-coach-weeks[]" />
-						</label> <label>Total $ needed for job coach at this request <input
-								type="text" value="" name="job-support-coach-total[]" />
-						</label>
-					</span><span class="right">
-							<h4>Transportation</h4> <label>Number of trips <input
-								style="width: 100px;" type="text" value=""
-								name="job-support-trans-trips[]" />
-						</label> <label>Rate per trip <input type="text" value=""
-								name="job-support-trans-rate[]" />
-						</label><label>Number of weeks needed <input style="width: 50px;"
-								type="text" value="" name="job-support-trans-weeks[]" />
-						</label> Other justification if applicable<textarea
-								name="job-support-trans-justification[]"
-								style="resize: vertical; width: 250px; box-sizing: border-box;"></textarea>
-
-							<label>Total $ needed for transportation at this request <input
-								type="text" value="" name="job-support-trans-total[]" />
-						</label> <label>Provider <input type="text" value=""
-								name="job-support-trans-provider[]" />
-						</label>
-					</span><span class="right">
-							<h4>Other</h4> Please describe any other charge not captured
-							above (e.g., for uniform, supplies, fees, devices, ramps, etc.) <textarea
-								type="text" name="job-support-trans-other[]"
-								style="resize: vertical; width: 250px; box-sizing: border-box;"></textarea>
-							<label>Provider <input type="text" value=""
-								name="job-support-trans-other-provider[]" />
-						</label>
-					</span></span>
-
-				</section>
+				<hr />
+				<?php
+    
+    Scaffold('scheduled.job.support');
+    
+    ?>
 
 
 		</span>
@@ -323,7 +303,7 @@ IncludeJSBlock(
 							type="radio" value="" name="enroll-type" /> Other (if other,
 							please describe)</label>
 				</span> <textarea type="text" name="enroll-type-other"
-						style="resize: vertical; width: 250px; box-sizing: border-box;"></textarea>
+						style="resize: vertical; width: 380px; box-sizing: border-box;"></textarea>
 
 			</span><span class="left"> <label>Name of institution <input
 						type="text" value="" name="enroll-institution" /></label> <label>Name
@@ -367,51 +347,53 @@ IncludeJSBlock(
 ?>
 
 <span class="enroll-supports" style="display: none;">
-				<hr />
-				<span class="group"><span class="left">
+				<hr /> <span class="group"><span class="left">
 						<h4>Tutor (or similar)</h4> <label>Number of hours per week <input
-							style="width: 50px;" type="text" value=""
-							name="job-support-coach-hours-weekly" />
+							style="width: 150px;" type="text" value=""
+							name="enrollment-support-coach-hours-weekly" />
 					</label> <label>Hourly rate <input type="text" value=""
-							name="job-support-coach-rate" />
-					</label><label>Number of weeks needed <input style="width: 50px;"
-							type="text" value="" name="job-support-coach-weeks[]" />
+							name="enrollment-support-coach-rate" />
+					</label><label>Number of weeks needed <input style="width: 150px;"
+							type="text" value="" name="enrollment-support-coach-weeks" />
 					</label> <label>Total $ needed for tutor (or similar) at this
-							request <input type="text" value=""
-							name="job-support-coach-total" />
+							request <input style="width: 50px;" type="text" value=""
+							name="enrollment-support-coach-total" />
 					</label><label>Provider <input type="text" value=""
-							name="job-support-trans-provider" />
+							name="enrollment-support-trans-provider" />
 					</label>
 				</span><span class="right">
-						<h4>Transportation</h4> <label>Number of trips <input
-							style="width: 100px;" type="text" value=""
-							name="job-support-trans-trips[]" />
+						<h4>Transportation</h4> <label>Number of trips <input type="text"
+							value="" name="enrollment-support-trans-trips" />
 					</label> <label>Rate per trip <input type="text" value=""
-							name="job-support-trans-rate[]" />
-					</label><label>Number of weeks needed <input style="width: 50px;"
-							type="text" value="" name="job-support-trans-weeks[]" />
+							name="enrollment-support-trans-rate" />
+					</label><label>Number of weeks needed <input style="width: 150px;"
+							type="text" value="" name="enrollment-support-trans-weeks" />
 					</label> Other justification if applicable<textarea
-							name="job-support-trans-justification[]"
-							style="resize: vertical; width: 250px; box-sizing: border-box;"></textarea>
+							name="enrollment-support-trans-justification"
+							style="resize: vertical; width: 380px; box-sizing: border-box;"></textarea>
 
 						<label>Total $ needed for transportation at this request <input
-							type="text" value="" name="job-support-trans-total[]" />
+							style="width: 50px;" type="text" value=""
+							name="enrollment-support-trans-total" />
 					</label> <label>Provider <input type="text" value=""
-							name="job-support-trans-provider[]" />
+							name="enrollment-support-trans-provider" />
 					</label>
 				</span><span class="right">
-						<h4>Other</h4> Please describe any other charge not captured above
-						(e.g., for uniform, supplies, fees, devices, ramps, etc.) <textarea
-							name="job-support-trans-other[]"
-							style="resize: vertical; width: 250px; box-sizing: border-box;"></textarea>
+						<h4>Other</h4>
+						<div style="width: 380px;">Please describe any other charge not
+							captured above (e.g., for uniform, supplies, fees, devices,
+							ramps, etc.)</div> <textarea
+							name="enrollment-support-trans-other"
+							style="resize: vertical; width: 380px; box-sizing: border-box;"></textarea>
 						<label>Total $ needed for this other support this request<input
-							type="text" value="" name="job-support-trans-total[]" />
+							style="width: 50px;" type="text" value=""
+							name="enrollment-support-trans-total" />
 					</label><label>Provider <input type="text" value=""
-							name="job-support-trans-other-provider[]" />
+							name="enrollment-support-trans-other-provider" />
 					</label>
 				</span><span class="right">
-						<h4>Comments</h4> <textarea name="job-support-trans-other[]"
-							style="resize: vertical; width: 250px; box-sizing: border-box;"></textarea>
+						<h4>Comments</h4> <textarea name="enrollment-support-trans-other"
+							style="resize: vertical; width: 380px; box-sizing: border-box;"></textarea>
 
 				</span></span>
 
