@@ -1,13 +1,13 @@
 <form>
 
-	<input type="hidden" name="userTask" value="createScheduleD" />
+	<input type="hidden" name="id" value="-1" />
 
 	<h2>Schedule D</h2>
 	<h3>Administrative and Baseline</h3>
 	<section class="a">
 
 		<span class="group"><label><span class="lbl">Year </span> <input
-				type="text" value="<?php echo date('Y'); ?>" name="admin-year" /></label><label
+				type="number" value="<?php echo date('Y'); ?>" name="admin-year" /></label><label
 			class="pull-right">Quarter <input type="radio" value="1"
 				name="admin-quarter"
 				<?php
@@ -50,9 +50,9 @@
 			value="" name="agency-name" /> </label><label><span class="lbl">Agency
 				contact person </span><input type="text" value=""
 			name="agency-contact-person" /> </label> <label><span class="lbl">Contact
-				person’s phone </span><input type="text" value=""
+				person’s phone </span><input type="tel" value=""
 			name="agency-contact-phone" /> </label><label><span class="lbl">Contact
-				person’s email </span><input type="text" value=""
+				person’s email </span><input type="email" value=""
 			name="agency-contact-email" /> </label>
 
 		<hr />
@@ -61,7 +61,7 @@
 					<input type="text" value="" name="participant-first-name" />
 			</label> <label>Province/Territory <input type="text" value=""
 					name="participant-province-territory" />
-			</label><label>Start date with RWA <input type="text" value=""
+			</label><label>Start date with RWA <input type="date" value=""
 					name="participant-start-date" />
 			</label> <label>Individual's community <input type="text" value=""
 					name="participant-age" />
@@ -81,9 +81,9 @@
 		</span><span class="left">
 				<h4>His/her disability (Check any that apply.)</h4> <span
 				class="inline"><label><input type="checkbox" value=""
-						name="participant-disability[]" /> Autism Spectrum Disorder </label>
+						name="participant-disabilities" /> Autism Spectrum Disorder </label>
 					<label><input type="checkbox" value=""
-						name="participant-disability[]" /> Intellectual Disability </label></span>
+						name="participant-disabilities" /> Intellectual Disability </label></span>
 
 		</span>
 		</span>
@@ -91,19 +91,19 @@
 		<h4>His/her sources of income in the year before coming into RWA.
 			(Check any that apply.)</h4>
 		<label><input type="checkbox" value="employment-or-self-employment"
-			name="participant-previous-income[]" /> Earnings from employment or
+			name="participant-previous-income" /> Earnings from employment or
 			self-employment </label> <label><input type="checkbox"
-			value="employment-insurance" name="participant-previous-income[]" />
+			value="employment-insurance" name="participant-previous-income" />
 			Employment insurance </label> <label><input type="checkbox"
-			value="quebec-canada-pension" name="participant-previous-income[]" />
+			value="quebec-canada-pension" name="participant-previous-income" />
 			Canada/Quebec Pension Plan (Disability) </label> <label><input
 			type="checkbox" value="workers-compensation"
-			name="participant-previous-income[]" /> Workers’ compensation </label>
+			name="participant-previous-income" /> Workers’ compensation </label>
 		<label class="longtext"><input type="checkbox"
-			value="social-assistance" name="participant-previous-income[]" />
+			value="social-assistance" name="participant-previous-income" />
 			Social assistance, incl. provincial / territorial disability program
 		</label> <label><input type="checkbox" value="other"
-			name="participant-previous-income[]" /> Other </label>
+			name="participant-previous-income" /> Other </label>
 	</section>
 
 	<h3>Initial Activities</h3>
@@ -137,7 +137,10 @@
                         $$("span.jobs").forEach(function(s){
                             s.setStyle("display",null);
                         });
+
                     }
+
+
 
                 });
             });
@@ -162,10 +165,15 @@ Scaffold('cpanel.button',
             $$(".jobs").forEach(function(el){
                 if(!el.hasClass("two")){
                     el.addClass("two");
+
+                    $("job-2-isactive").value="yes";
+
                 }else{
 
                     if(!el.hasClass("three")){
                         el.addClass("three");
+
+                         $("job-3-isactive").value="yes";
 
                         button.removeClass("btn-success");
                         button.setAttribute("disabled", true);
@@ -289,8 +297,8 @@ IncludeJSBlock(
     ?>
     <span class="enrolled" style="display: none;">
 			<hr /> <span class="group"><span class="left"><label>Start date <input
-						type="text" value="" name="enroll-start-date" /></label> <label>Expected
-						duration of program <input style="width: 150px;" type="text"
+						type="date" value="" name="enroll-start-date" /></label> <label>Expected
+						duration of program <input style="width: 150px;" type="number"
 						value="" name="enroll-duration-months" />
 				</label> <label><input type="checkbox" value="true"
 						name="enroll-less-month" /> (Check if less than 1 month)</label> </span><span
@@ -302,7 +310,7 @@ IncludeJSBlock(
 							type="radio" value="" name="enroll-type" /> University</label> <label><input
 							type="radio" value="" name="enroll-type" /> Other (if other,
 							please describe)</label>
-				</span> <textarea type="text" name="enroll-type-other"
+				</span> <textarea name="enroll-type-other"
 						style="resize: vertical; width: 380px; box-sizing: border-box;"></textarea>
 
 			</span><span class="left"> <label>Name of institution <input
@@ -349,31 +357,31 @@ IncludeJSBlock(
 <span class="enroll-supports" style="display: none;">
 				<hr /> <span class="group"><span class="left">
 						<h4>Tutor (or similar)</h4> <label>Number of hours per week <input
-							style="width: 150px;" type="text" value=""
+							style="width: 150px;" type="number" value=""
 							name="enrollment-support-coach-hours-weekly" />
-					</label> <label>Hourly rate <input type="text" value=""
+					</label> <label>Hourly rate <input type="number" value=""
 							name="enrollment-support-coach-rate" />
 					</label><label>Number of weeks needed <input style="width: 150px;"
-							type="text" value="" name="enrollment-support-coach-weeks" />
+							type="number" value="" name="enrollment-support-coach-weeks" />
 					</label> <label>Total $ needed for tutor (or similar) at this
-							request <input style="width: 50px;" type="text" value=""
+							request <input style="width: 50px;" type="number" value=""
 							name="enrollment-support-coach-total" />
 					</label><label>Provider <input type="text" value=""
 							name="enrollment-support-trans-provider" />
 					</label>
 				</span><span class="right">
-						<h4>Transportation</h4> <label>Number of trips <input type="text"
-							value="" name="enrollment-support-trans-trips" />
-					</label> <label>Rate per trip <input type="text" value=""
+						<h4>Transportation</h4> <label>Number of trips <input
+							type="number" value="" name="enrollment-support-trans-trips" />
+					</label> <label>Rate per trip <input type="number" value=""
 							name="enrollment-support-trans-rate" />
 					</label><label>Number of weeks needed <input style="width: 150px;"
-							type="text" value="" name="enrollment-support-trans-weeks" />
+							type="number" value="" name="enrollment-support-trans-weeks" />
 					</label> Other justification if applicable<textarea
 							name="enrollment-support-trans-justification"
 							style="resize: vertical; width: 380px; box-sizing: border-box;"></textarea>
 
 						<label>Total $ needed for transportation at this request <input
-							style="width: 50px;" type="text" value=""
+							style="width: 50px;" type="number" value=""
 							name="enrollment-support-trans-total" />
 					</label> <label>Provider <input type="text" value=""
 							name="enrollment-support-trans-provider" />
@@ -386,7 +394,7 @@ IncludeJSBlock(
 							name="enrollment-support-trans-other"
 							style="resize: vertical; width: 380px; box-sizing: border-box;"></textarea>
 						<label>Total $ needed for this other support this request<input
-							style="width: 50px;" type="text" value=""
+							style="width: 50px;" type="number" value=""
 							name="enrollment-support-trans-total" />
 					</label><label>Provider <input type="text" value=""
 							name="enrollment-support-trans-other-provider" />

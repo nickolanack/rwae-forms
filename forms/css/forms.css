@@ -58,16 +58,15 @@ span.cpanel_button_image {
 	position: relative;
 }
 
-#new-rwa-schedule-d input[type="text"] {
+#new-rwa-schedule-d input[type="text"], #new-rwa-schedule-d input[type="date"],
+	#new-rwa-schedule-d input[type="number"], #new-rwa-schedule-d input[type="email"],
+	#new-rwa-schedule-d input[type="tel"] {
 	margin: 0;
+	float: right;
 }
 
 #new-rwa-schedule-d span.lbl {
 	float: left;
-}
-
-#new-rwa-schedule-d input[type="text"] {
-	float: right;
 }
 
 #new-rwa-schedule-d label {
@@ -129,7 +128,8 @@ section.job:before, section.job:after {
 	box-sizing: border-box;
 }
 
-section>section.job:before, section>section.job:after, .two>section.job:before, .three>section.job:after {
+section>section.job:before, section>section.job:after, .two>section.job:before,
+	.three>section.job:after {
 	display: none;
 }
 
@@ -139,7 +139,6 @@ section.job:after {
 
 section.job.two {
 	display: none;
-	
 }
 
 #new-rwa-schedule-d .two section.job.two {
@@ -151,7 +150,6 @@ section.job.two {
 
 section.job.three {
 	display: none;
-	
 }
 
 #new-rwa-schedule-d .three section.job.three {
@@ -169,7 +167,8 @@ section.job.three {
 	margin-right: 25px;
 }
 
-#new-rwa-schedule-d .jobs .job input[type="text"] {
+#new-rwa-schedule-d .jobs .job input[type="text"], #new-rwa-schedule-d .jobs .job input[type="date"],
+	#new-rwa-schedule-d .jobs .job input[type="number"] {
 	width: 150px;
 }
 
@@ -244,4 +243,68 @@ section.b hr {
 
 section.c hr {
 	border-bottom: 1px solid #01AEEF;
+}
+
+
+
+/*list*/
+
+.timeago {
+    font-size: 10px;
+    color: cadetblue;
+}
+
+span.form-value-empty {
+    color: slategrey;
+}
+
+.scheduled-item>span {
+    padding-right: 5px;
+}
+
+span.data-agency-name, span.data-participant-first-name {
+    display: inline-block;
+    width: 100px;
+    overflow: hidden;
+    vertical-align: text-bottom;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.scheduled-item {
+    padding: 5px;
+}
+
+.scheduled-item:hover {
+    background-color: rgba(0,0,0,0.02);
+}
+
+.scheduled-item>.btn {
+    width: 3px;
+    height: 12px;
+    margin: 0 5px;
+    float: right;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.scheduled-item>.btn-primary {
+    float: left;
+}
+
+
+.popover>.tip, .bubble {
+    background-color: white;
+    color: #01AEEF;
+    text-shadow: none;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+    border-radius: 0;
+    border: 1px solid #01AEEF;
+}
+.popover.arrow_bottom .tip:before{
+	
+    bottom: 11px;
+
+    z-index: -1;
+	
 }

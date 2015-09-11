@@ -13,8 +13,10 @@ $num = [
 
 ?><section class="job <?php echo $config['class'];?>" style="<?php echo $config['style'];?>">
 	<h4>Job <?php echo $num[$config['n']-1];?></h4>
-	<label>Start date <input type="text" value=""
-		name="job-<?php echo $config['n'];?>-start-date" />
+	<input type="hidden" name="job-<?php echo $config['n'];?>-isactive"
+		value="<?php echo $config['n']==1?"yes":"no"?>"
+		id="job-<?php echo $config['n'];?>-isactive" /> <label>Start date <input
+		type="date" value="" name="job-<?php echo $config['n'];?>-start-date" />
 	</label> <label>Name of firm <input type="text" value=""
 		name="job-<?php
 
@@ -41,8 +43,8 @@ echo $config['n'];
 
 echo $config['n'];
 ?>-title" />
-	</label> <label>Number of work hours per week <input
-		style="width: 20px;" type="text" value=""
+	</label> <label>Number of hours per week <input style="width: 50px;"
+		type="number" value=""
 		name="job-<?php echo $config['n'];?>-hours-weekly" />
 	</label> <label>Industry sector code <input style="width: 100px;"
 		type="text" value="" name="job-<?php
@@ -50,7 +52,7 @@ echo $config['n'];
 echo $config['n'];
 ?>-sector" />
 	</label> <label>Hourly wage/salary <input style="width: 100px;"
-		type="text" value="" name="job-<?php echo $config['n'];?>-wage" />
+		type="number" value="" name="job-<?php echo $config['n'];?>-wage" />
 	</label>
 	<h4>Is this self-employment?</h4>
 	<span class="inline"><label><input type="radio" value="yes"

@@ -47,9 +47,9 @@ JHtml::_('bootstrap.loadCss', false, $this->direction);
 // Adjusting content width
 if ($this->countModules('position-7') && $this->countModules('position-8')) {
     $span = "span6";
-} elseif ($this->countModules('position-7') && !$this->countModules('position-8')) {
+} elseif ($this->countModules('position-7') && ! $this->countModules('position-8')) {
     $span = "span9";
-} elseif (!$this->countModules('position-7') && $this->countModules('position-8')) {
+} elseif (! $this->countModules('position-7') && $this->countModules('position-8')) {
     $span = "span9";
 } else {
     $span = "span12";
@@ -151,7 +151,7 @@ echo $option . ' view-' . $view . ($layout ? ' layout-' . $layout : ' no-layout'
 			<hr />
 			<jdoc:include type="modules" name="footer" style="none" />
 			<p>
-				&copy; <?php echo date('Y'); ?> <?php echo $sitename; ?>
+				&copy; <?php echo date('Y'); ?> <?php echo $sitename; ?> | Designed by the Spice Lab at the University of British Columbia
 			</p>
 		</div>
 	</footer>
