@@ -128,8 +128,8 @@ section.job:before, section.job:after {
 	box-sizing: border-box;
 }
 
-section>section.job:before, section>section.job:after, .two>section.job:before,
-	.three>section.job:after {
+section>section.job:before, section>section.job:after, .two section.job:before,
+	.three section.job:after {
 	display: none;
 }
 
@@ -293,6 +293,27 @@ section.min>* {
 }
 
 
+section.h4-bar>h4:first-child {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 0;
+    margin-top: 0;
+    background-color: #01AEEF;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 4px 4px 0 0;
+    color: white;
+    font-weight: 400;
+}
+section.h4-bar>h4:first-child + h4 {
+    margin-top: 0;
+}
+
+.form-container section.h4-bar {
+    padding-top: 55px;
+}
+
 /*list*/
 
 .timeago {
@@ -332,6 +353,9 @@ span.data-agency-name, span.data-participant-first-name {
     float: right;
     background-position: center;
     background-repeat: no-repeat;
+}
+.scheduled-item>.btn:hover, .scheduled-item>.btn:focus{
+	background-position: center;
 }
 
 .scheduled-item>.btn-primary {

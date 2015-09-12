@@ -11,7 +11,7 @@ $num = [
     'Three'
 ];
 
-?><section class="job <?php echo $config['class'];?>">
+?><section class="job <?php echo $config['class'];?> h4-bar">
 	<h4>Support Details For Job <?php echo $num[$config['n']-1];?></h4>
 	<span class="group"><span class="left">
 			<h4>Job Coach</h4> <label>Number of hours per week <input

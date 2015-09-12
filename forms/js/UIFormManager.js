@@ -133,8 +133,8 @@ var UIFormManager=(function(){
 
 
 						new UIPopover(edit, {description:"Edit Schedule D",anchor:UIPopover.AnchorTo('top')});
-						new UIPopover(addendum, {description:"Ammend Schedule D",anchor:UIPopover.AnchorTo('top')});
-						new UIPopover(quarterly, {description:"Schedule D Quarterly",anchor:UIPopover.AnchorTo('top')});
+						new UIPopover(addendum, {description:"Add Addendum",anchor:UIPopover.AnchorTo('top')});
+						new UIPopover(quarterly, {description:"Complete Quarterly",anchor:UIPopover.AnchorTo('top')});
 
 						edit.addEvent('click',function(){
 							

@@ -9,6 +9,15 @@ Scaffold('quarterly.workspace');
 
 Scaffold('list.scheduled');
 
+$quarter = ((int) ((date('n') - 1) / 3));
+$quarters = array(
+    '1st',
+    '2nd',
+    '3rd',
+    '4th'
+);
+$quarter = $quarters[$quarter];
+
 IncludeJSBlock(
     '
 
@@ -31,9 +40,9 @@ IncludeJSBlock(
             defaultFormData:' . json_encode(
         array(
             // the default values when creating a schedule d
-            'id' => -1,
+            'id' => - 1,
             'admin-year' => date('Y'),
-            'admin-quarter' => ((int) ((date('n') - 1) / 3)) + 1,
+            'admin-quarter' => $quarter,
             'employed-quarter' => 'no',
             'job-supports' => 'no',
             'enrolled-quarter' => 'no',
@@ -56,9 +65,9 @@ IncludeJSBlock(
             defaultFormData:' . json_encode(
         array(
             // the default values when creating a schedule d
-            'id' => -1,
+            'id' => - 1,
             'admin-year' => date('Y'),
-            'admin-quarter' => ((int) ((date('n') - 1) / 3)) + 1,
+            'admin-quarter' => $quarter,
             'employed-quarter' => 'no',
             'job-supports' => 'no',
             'enrolled-quarter' => 'no',
@@ -80,9 +89,9 @@ IncludeJSBlock(
             defaultFormData:' . json_encode(
         array(
             // the default values when creating a schedule d
-            'id' => -1,
+            'id' => - 1,
             'admin-year' => date('Y'),
-            'admin-quarter' => ((int) ((date('n') - 1) / 3)) + 1,
+            'admin-quarter' => $quarter,
             'employed-quarter' => 'no',
             'job-supports' => 'no',
             'enrolled-quarter' => 'no',
@@ -100,6 +109,31 @@ IncludeJSBlock(
 ');
 
 IncludeCSS(dirname(__DIR__) . DS . 'css' . DS . 'forms.css');
+
+IncludeCSSBlock(
+    '
+
+section h6 {
+    background-color: #F8EAF2;
+    line-height: 20px;
+    padding: 5px;
+    width: 50%;
+    border-radius: 4px;
+    margin: 5px;
+    color: rgb(235, 0, 139);
+    border: 1px solid rgba(235, 0, 139, 0.2);
+    position: relative;
+    left: -100px;
+}
+
+section h6:before {
+    content: "Temporary Note: ";
+}
+
+    ');
+
+Scaffold('qunit.test');
+
 
 
 
