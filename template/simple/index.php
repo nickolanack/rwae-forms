@@ -36,7 +36,6 @@ if ($task == "edit" || $layout == "form") {
 
 // Add JavaScript Frameworks
 JHtml::_('bootstrap.framework');
-$doc->addScript($this->baseurl . '/templates/' . $this->template . '/js/template.js');
 
 // Add Stylesheets
 $doc->addStyleSheet($this->baseurl . '/templates/' . $this->template . '/css/template.css');
@@ -47,9 +46,9 @@ JHtml::_('bootstrap.loadCss', false, $this->direction);
 // Adjusting content width
 if ($this->countModules('position-7') && $this->countModules('position-8')) {
     $span = "span6";
-} elseif ($this->countModules('position-7') && ! $this->countModules('position-8')) {
+} elseif ($this->countModules('position-7') && !$this->countModules('position-8')) {
     $span = "span9";
-} elseif (! $this->countModules('position-7') && $this->countModules('position-8')) {
+} elseif (!$this->countModules('position-7') && $this->countModules('position-8')) {
     $span = "span9";
 } else {
     $span = "span12";

@@ -1,49 +1,18 @@
 <form>
 
-	<input type="hidden" name="id" value="-1" />
+	<input type="hidden" name="id" value="-1" id="scheduled-id" />
 
 	<h2>Schedule D</h2>
 	<h3>Administrative and Baseline</h3>
-	<section class="a">
+	<section class="c">
 
 		<span class="group"><label><span class="lbl">Year </span> <input
-				type="number" value="<?php echo date('Y'); ?>" name="admin-year" /></label><label
+				type="number" value="" name="admin-year" /></label><label
 			class="pull-right">Quarter <input type="radio" value="1"
-				name="admin-quarter"
-				<?php
-    
-    $q = ((int) ((date('n') - 1) / 3)) + 1;
-    
-    if ($q == 1) {
-        ?>
-				checked="checked" <?php
-    }
-    
-    ?> /> 1st <input type="radio" value="2" name="admin-quarter"
-				<?php
-    
-    if ($q == 2) {
-        ?> checked="checked"
-				<?php
-    }
-    
-    ?> /> 2nd <input type="radio" value="3" name="admin-quarter"
-				<?php
-    
-    if ($q == 3) {
-        ?> checked="checked"
-				<?php
-    }
-    
-    ?> /> 3rd <input type="radio" value="4" name="admin-quarter"
-				<?php
-    
-    if ($q == 4) {
-        ?> checked="checked"
-				<?php
-    }
-    
-    ?> /> 4th
+				name="admin-quarter" /> 1st <input type="radio" value="2"
+				name="admin-quarter" /> 2nd <input type="radio" value="3"
+				name="admin-quarter" /> 3rd <input type="radio" value="4"
+				name="admin-quarter" /> 4th
 		</label></span>
 		<hr />
 		<label><span class="lbl">Agency name </span><input type="text"
@@ -81,9 +50,9 @@
 		</span><span class="left">
 				<h4>His/her disability (Check any that apply.)</h4> <span
 				class="inline"><label><input type="checkbox" value=""
-						name="participant-disabilities" /> Autism Spectrum Disorder </label>
+						name="participant-disabilities[]" /> Autism Spectrum Disorder </label>
 					<label><input type="checkbox" value=""
-						name="participant-disabilities" /> Intellectual Disability </label></span>
+						name="participant-disabilities[]" /> Intellectual Disability </label></span>
 
 		</span>
 		</span>
@@ -108,88 +77,34 @@
 
 	<h3>Initial Activities</h3>
 	<h4>Employment</h4>
-	<section class="b">
+	<section class="a">
 
 		<h4>Was this person employed as a result of RWA for any part of this
 			quarter?</h4>
 		<span class="inline"><label><input type="radio" value="yes"
-				name="employed-quarter" id="cbx-employ" /> Yes </label><label><input
-				type="radio" value="no" name="employed-quarter" id="cbx-no-employ"
-				checked="checked" /> No </label></span>
+				name="employed-quarter" id="sch-cbx-employ" /> Yes </label><label><input
+				type="radio" value="no" name="employed-quarter"
+				id="sch-cbx-no-employ" checked="checked" /> No </label></span>
 				<?php
-    IncludeJSBlock(
-        '
-           window.addEvent("load",function(){
-                $("cbx-no-employ").addEvent("change",function(){
-
-                    if(this.checked){
-                        $$("span.jobs").forEach(function(s){
-                            s.setStyle("display","none");
-                        });
-
-                    }
-
-                });
-
-                $("cbx-employ").addEvent("change",function(){
-
-                    if(this.checked){
-                        $$("span.jobs").forEach(function(s){
-                            s.setStyle("display",null);
-                        });
-
-                    }
-
-
-
-                });
-            });
-        ');
+    Scaffold('script.radiobutton.display.toggle', 
+        array(
+            'elementArray' => '$$("span.sch-jobs")',
+            'enabler' => '$("sch-cbx-employ")',
+            'disabler' => '$("sch-cbx-no-employ")'
+        ));
     
     ?>
 
-		<span class="jobs" style="display: none;">
+		<span class="sch-jobs jobs" style="display: none;">
 			<hr />
-			<?php Scaffold('scheduled.job');?>
-		<?php
+			<?php
 
-Scaffold('cpanel.button', 
-    array(
-        'title' => 'Add Job',
-        'className' => 'btn btn-success pull-right',
-        'icon' => Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_new.png?tint=rgb(255,255,255)',
-        'script' => '
-
-
-            button=this;
-            $$(".jobs").forEach(function(el){
-                if(!el.hasClass("two")){
-                    el.addClass("two");
-
-                    $("job-2-isactive").value="yes";
-
-                }else{
-
-                    if(!el.hasClass("three")){
-                        el.addClass("three");
-
-                         $("job-3-isactive").value="yes";
-
-                        button.removeClass("btn-success");
-                        button.setAttribute("disabled", true);
-                    }else{
-
-
-
-                    }
-
-                }
-            });
-
-        '
-    ));
-
+Scaffold('form.scheduled.job');
+Scaffold('form.button.addjob', array(
+    'elementsArray' => '$$(".sch-jobs")'
+));
 ?>
+
 
 
                 <hr style="margin-top: 110px;" />
@@ -202,49 +117,33 @@ Scaffold('cpanel.button',
 				</label>
 			</section>
 
-		</span> <span class="jobs" style="display: none;">
+		</span> <span class="sch-jobs jobs" style="display: none;">
 			<h3>Supports For Employment</h3>
 			<h4>Does this person require any supports from RWA for employment?</h4>
 			<span class="inline"><label><input type="radio" value="yes"
-					name="job-supports" id="cbx-supports" /> Yes </label><label><input
-					type="radio" value="no" name="job-supports" id="cbx-no-supports"
-					checked="checked" /> No </label></span>
+					name="job-supports" id="sch-cbx-supports" /> Yes </label><label><input
+					type="radio" value="no" name="job-supports"
+					id="sch-cbx-no-supports" checked="checked" /> No </label></span>
 
 <?php
-IncludeJSBlock(
-    '
-           window.addEvent("load",function(){
-                $("cbx-no-supports").addEvent("change",function(){
 
-                    if(this.checked){
-                        $$("span.job-supports").forEach(function(s){
-                            s.setStyle("display","none");
-                        });
-
-                    }
-
-                });
-
-                $("cbx-supports").addEvent("change",function(){
-
-                    if(this.checked){
-                        $$("span.job-supports").forEach(function(s){
-                            s.setStyle("display",null);
-                        });
-                    }
-
-                });
-            });
-        ');
-
+Scaffold('script.radiobutton.display.toggle', 
+    array(
+        
+        'elementArray' => '$$("span.sch-job-supports")',
+        'enabler' => '$("sch-cbx-supports")',
+        'disabler' => '$("sch-cbx-no-supports")'
+    ));
 ?>
 
 
-         <span class="job-supports" style="display: none;">
+         <span class="sch-job-supports" style="display: none;">
 				<hr />
 				<?php
     
-    Scaffold('scheduled.job.support');
+    Scaffold('form.scheduled.job.support', array(
+        'class' => 'sch-job'
+    ));
     
     ?>
 
@@ -258,44 +157,27 @@ IncludeJSBlock(
 	</section>
 
 	<h4>Post Secondary Education</h4>
-	<section class="c">
+	<section class="b">
 
 
 		<h4>Was this person enrolled in post-secondary education as a result
 			of RWA for any part of this quarter ?</h4>
 		<span class="inline"><label><input type="radio" value="yes"
-				name="enrolled-quarter" id="cbx-enrolled" /> Yes </label><label><input
-				type="radio" value="no" name="enrolled-quarter" id="cbx-no-enrolled"
-				checked="checked" /> No </label></span>
+				name="enrolled-quarter" id="sch-cbx-enrolled" /> Yes </label><label><input
+				type="radio" value="no" name="enrolled-quarter"
+				id="sch-cbx-no-enrolled" checked="checked" /> No </label></span>
 				<?php
-    IncludeJSBlock(
-        '
-           window.addEvent("load",function(){
-                $("cbx-no-enrolled").addEvent("change",function(){
-
-                    if(this.checked){
-                        $$("span.enrolled").forEach(function(s){
-                            s.setStyle("display","none");
-                        });
-
-                    }
-
-                });
-
-                $("cbx-enrolled").addEvent("change",function(){
-
-                    if(this.checked){
-                        $$("span.enrolled").forEach(function(s){
-                            s.setStyle("display",null);
-                        });
-                    }
-
-                });
-            });
-        ');
+    
+    Scaffold('script.radiobutton.display.toggle', 
+        array(
+            
+            'elementArray' => '$$("span.sch-enrolled")',
+            'enabler' => '$("sch-cbx-enrolled")',
+            'disabler' => '$("sch-cbx-no-enrolled")'
+        ));
     
     ?>
-    <span class="enrolled" style="display: none;">
+    <span class="sch-enrolled" style="display: none;">
 			<hr /> <span class="group"><span class="left"><label>Start date <input
 						type="date" value="" name="enroll-start-date" /></label> <label>Expected
 						duration of program <input style="width: 150px;" type="number"
@@ -317,44 +199,27 @@ IncludeJSBlock(
 						type="text" value="" name="enroll-institution" /></label> <label>Name
 						of program <input type="text" value="" name="enroll-program" />
 				</label></span></span>
-		</span> <span class="enrolled" style="display: none;">
+		</span> <span class="sch-enrolled" style="display: none;">
 			<h3>Supports for Post-Secondary Education</h3>
 			<h4>Does this person require any supports from RWA for post-secondary
 				education?</h4> <span class="inline"><label><input type="radio"
-					value="yes" name="enrollment-supports" id="cbx-e-supports" /> Yes </label><label><input
-					type="radio" value="no" name="enrollment-supports"
-					id="cbx-no-e-supports" checked="checked" /> No </label></span>
+					value="yes" name="enrollment-supports" id="sch-cbx-e-supports" />
+					Yes </label><label><input type="radio" value="no"
+					name="enrollment-supports" id="sch-cbx-no-e-supports"
+					checked="checked" /> No </label></span>
 
 <?php
-IncludeJSBlock(
-    '
-           window.addEvent("load",function(){
-                $("cbx-no-e-supports").addEvent("change",function(){
-
-                    if(this.checked){
-                        $$("span.enroll-supports").forEach(function(s){
-                            s.setStyle("display","none");
-                        });
-
-                    }
-
-                });
-
-                $("cbx-e-supports").addEvent("change",function(){
-
-                    if(this.checked){
-                        $$("span.enroll-supports").forEach(function(s){
-                            s.setStyle("display",null);
-                        });
-                    }
-
-                });
-            });
-        ');
+Scaffold('script.radiobutton.display.toggle', 
+    array(
+        
+        'elementArray' => '$$("span.sch-enroll-supports")',
+        'enabler' => '$("sch-cbx-e-supports")',
+        'disabler' => '$("sch-cbx-no-e-supports")'
+    ));
 
 ?>
 
-<span class="enroll-supports" style="display: none;">
+<span class="sch-enroll-supports" style="display: none;">
 				<hr /> <span class="group"><span class="left">
 						<h4>Tutor (or similar)</h4> <label>Number of hours per week <input
 							style="width: 150px;" type="number" value=""

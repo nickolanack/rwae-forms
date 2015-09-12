@@ -60,11 +60,11 @@ $num = [
 
 if ($config['n'] == 1) {
     
-    Scaffold('scheduled.job.support', array(
+    Scaffold('form.scheduled.job.support', array(
         'n' => 2,
         'class' => 'two'
     ));
-    Scaffold('scheduled.job.support', array(
+    Scaffold('form.scheduled.job.support', array(
         'n' => 3,
         'class' => 'three'
     ));

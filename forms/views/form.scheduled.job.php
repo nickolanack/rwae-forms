@@ -11,12 +11,12 @@ $num = [
     'Three'
 ];
 
+$idsuffix = "-" . rand(0000, 9999);
+
 ?><section class="job <?php echo $config['class'];?>" style="<?php echo $config['style'];?>">
 	<h4>Job <?php echo $num[$config['n']-1];?></h4>
-	<input type="hidden" name="job-<?php echo $config['n'];?>-isactive"
-		value="<?php echo $config['n']==1?"yes":"no"?>"
-		id="job-<?php echo $config['n'];?>-isactive" /> <label>Start date <input
-		type="date" value="" name="job-<?php echo $config['n'];?>-start-date" />
+	<label>Start date <input type="date" value=""
+		name="job-<?php echo $config['n'];?>-start-date" />
 	</label> <label>Name of firm <input type="text" value=""
 		name="job-<?php
 
@@ -93,11 +93,11 @@ echo $config['n'];
     
     if ($config['n'] == 1) {
         
-        Scaffold('scheduled.job', array(
+        Scaffold('form.scheduled.job', array(
             'n' => 2,
             'class' => 'two'
         ));
-        Scaffold('scheduled.job', array(
+        Scaffold('form.scheduled.job', array(
             'n' => 3,
             'class' => 'three'
         ));
