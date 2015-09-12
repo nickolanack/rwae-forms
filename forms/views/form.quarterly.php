@@ -15,7 +15,7 @@
 	<section class="c">
 		<h4>Any changes in this person’s employment through RWA since their
 			Schedule D or last Quarterly Update (or Addendum)?</h4>
-		<span class="inline"><label><input type="radio" value="yes"
+		<!-- <span class="inline"><label><input type="radio" value="yes"
 				name="employed-quarter" id="qtr-cbx-employ" /> Yes </label><label><input
 				type="radio" value="no" name="employed-quarter"
 				id="qtr-cbx-no-employ" checked="checked" /> No </label></span>
@@ -26,38 +26,32 @@
             'enabler' => '$("qtr-cbx-employ")',
             'disabler' => '$("qtr-cbx-no-employ")'
         ));
-    
-    Scaffold('form.switch', 
-        array(
-            'name' => 'employed-quarter',
-            'className' => 'jobs',
-            'callback' => function () {
-                ?><?php
-            }
-        ))?>
+    ?>-->
+		<?php
+Scaffold('form.switch', 
+    array(
+        'name' => 'employed-quarter',
+        'className' => 'jobs',
+        'callback' => function () {
+            
+            Scaffold('form.scheduled.job');
+            Scaffold('form.button.addjob', array(
+                'elementsArray' => '$$(".qtr-jobs")'
+            ));
+            ?>
+        <hr style="margin-top: 110px;" />
+		<section>
+			<h3>RWA Section</h3>
+			<label>Facilitator / Coordinator <input type="text" value=""
+				name="participant-facilitator" />
+			</label>
+		</section><?php
+        }
+    ))?>
 
 
 
-		<span class="qtr-jobs jobs" style="display: none;">
 
-			<?php
-
-Scaffold('form.scheduled.job');
-Scaffold('form.button.addjob', array(
-    'elementsArray' => '$$(".qtr-jobs")'
-));
-?>
-
-
-                <hr style="margin-top: 110px;" />
-			<section>
-				<h3>RWA Section</h3>
-				<label>Facilitator / Coordinator <input type="text" value=""
-					name="participant-facilitator" />
-				</label>
-			</section>
-
-		</span>
 
 
 		<hr />
