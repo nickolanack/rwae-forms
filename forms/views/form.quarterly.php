@@ -3,38 +3,13 @@
 	<input type="hidden" name="id" value="-1" id="scheduled-id" />
 
 	<h2>Schedule D Quarterly</h2>
-	<h3>To be completed ONLY if the participant has a new employer, is
-		newly self-employed or is newly enrolled in post-secondary education</h3>
 	<section class="b">
-
-		<span class="group"><label><span class="lbl">Year </span> <input
-				type="number" value="" name="admin-year" /></label><label
-			class="pull-right">Quarter <input type="radio" value="1"
-				name="admin-quarter" /> 1st <input type="radio" value="2"
-				name="admin-quarter" /> 2nd <input type="radio" value="3"
-				name="admin-quarter" /> 3rd <input type="radio" value="4"
-				name="admin-quarter" /> 4th
-		</label></span>
+		<?php Scaffold('form.section.admin');?>
 		<hr />
-		<label><span class="lbl">Agency name </span><input type="text"
-			value="" name="agency-name" /> </label><label><span class="lbl">Agency
-				contact person </span><input type="text" value=""
-			name="agency-contact-person" /> </label> <label><span class="lbl">Contact
-				person’s phone </span><input type="tel" value=""
-			name="agency-contact-phone" /> </label><label><span class="lbl">Contact
-				person’s email </span><input type="email" value=""
-			name="agency-contact-email" /> </label>
-
+		<?php Scaffold('form.section.agency');?>
 		<hr />
-		<h3>Participant</h3>
-		<label>First name or nickname <input type="text" value=""
-			name="participant-first-name" />
-		</label><label>Participant’s ID <input type="text" value=""
-			name="participant-id" />
-		</label>
-
+        <?php Scaffold('form.section.participant.b');?>
 	</section>
-
 
 	<h4>Employment</h4>
 	<section class="c">
@@ -51,7 +26,16 @@
             'enabler' => '$("qtr-cbx-employ")',
             'disabler' => '$("qtr-cbx-no-employ")'
         ));
-    ?>
+    
+    Scaffold('form.switch', 
+        array(
+            'name' => 'employed-quarter',
+            'className' => 'jobs',
+            'callback' => function () {
+                ?><?php
+            }
+        ))?>
+
 
 
 		<span class="qtr-jobs jobs" style="display: none;">
@@ -108,7 +92,7 @@ Scaffold('script.radiobutton.display.toggle',
 ?>
 
 
-         <span class="qtr-job-supports" style="display: none;">
+         <span class="qtr-job-supports jobs" style="display: none;">
 				<hr />
 				<?php
     
@@ -132,23 +116,23 @@ Scaffold('script.radiobutton.display.toggle',
 	<section class="a">
 
 
-		<h4>Any changes in this person’s employment through RWA since their
-			Schedule D or last Quarterly Update (or Addendum)?</h4>
+		<h4>Was this person enrolled in post-secondary education as a result
+			of RWA for any part of this quarter?</h4>
 		<span class="inline"><label><input type="radio" value="yes"
-				name="enrolled-quarter" id="cbx-enrolled" /> Yes </label><label><input
-				type="radio" value="no" name="enrolled-quarter" id="cbx-no-enrolled"
-				checked="checked" /> No </label></span>
+				name="enrolled-quarter" id="qtr-cbx-enrolled" /> Yes </label><label><input
+				type="radio" value="no" name="enrolled-quarter"
+				id="qtr-cbx-no-enrolled" checked="checked" /> No </label></span>
 				<?php
     
     Scaffold('script.radiobutton.display.toggle', 
         array(
-            'elementArray' => '$$("span.enrolled")',
-            'enabler' => '$("cbx-enrolled")',
-            'disabler' => '$("cbx-no-enrolled")'
+            'elementArray' => '$$("span.qtr-enrolled")',
+            'enabler' => '$("qtr-cbx-enrolled")',
+            'disabler' => '$("qtr-cbx-no-enrolled")'
         ));
     
     ?>
-    <span class="enrolled" style="display: none;">
+    <span class="qtr-enrolled" style="display: none;">
 			<hr /> <span class="group"><span class="left"><label>Start date <input
 						type="date" value="" name="enroll-start-date" /></label> <label>Expected
 						duration of program <input style="width: 150px;" type="number"
@@ -170,6 +154,80 @@ Scaffold('script.radiobutton.display.toggle',
 						type="text" value="" name="enroll-institution" /></label> <label>Name
 						of program <input type="text" value="" name="enroll-program" />
 				</label></span></span>
+		</span> <span class="qtr-enrolled" style="display: none;">
+			<h3>Supports for Post-Secondary Education</h3>
+			<h4>Any changes in this person’s need for or use of supports from RWA
+				for post-secondary education since their last Schedule D or last
+				Quarterly Update (or Addendum)?</h4> <span class="inline"><label><input
+					type="radio" value="yes" name="enrollment-supports"
+					id="qtr-cbx-e-supports" /> Yes </label><label><input type="radio"
+					value="no" name="enrollment-supports" id="qtr-cbx-no-e-supports"
+					checked="checked" /> No </label></span>
+
+<?php
+Scaffold('script.radiobutton.display.toggle', 
+    array(
+        
+        'elementArray' => '$$("span.qtr-enroll-supports")',
+        'enabler' => '$("qtr-cbx-e-supports")',
+        'disabler' => '$("qtr-cbx-no-e-supports")'
+    ));
+
+?>
+
+<span class="qtr-enroll-supports" style="display: none;">
+				<hr /> <span class="group"><span class="left">
+						<h4>Tutor (or similar)</h4> <label>Number of hours per week <input
+							style="width: 150px;" type="number" value=""
+							name="enrollment-support-coach-hours-weekly" />
+					</label> <label>Hourly rate <input type="number" value=""
+							name="enrollment-support-coach-rate" />
+					</label><label>Number of weeks needed <input style="width: 150px;"
+							type="number" value="" name="enrollment-support-coach-weeks" />
+					</label> <label>Total $ needed for tutor (or similar) at this
+							request <input style="width: 50px;" type="number" value=""
+							name="enrollment-support-coach-total" />
+					</label><label>Provider <input type="text" value=""
+							name="enrollment-support-trans-provider" />
+					</label>
+				</span><span class="right">
+						<h4>Transportation</h4> <label>Number of trips <input
+							type="number" value="" name="enrollment-support-trans-trips" />
+					</label> <label>Rate per trip <input type="number" value=""
+							name="enrollment-support-trans-rate" />
+					</label><label>Number of weeks needed <input style="width: 150px;"
+							type="number" value="" name="enrollment-support-trans-weeks" />
+					</label> Other justification if applicable<textarea
+							name="enrollment-support-trans-justification"
+							style="resize: vertical; width: 380px; box-sizing: border-box;"></textarea>
+
+						<label>Total $ needed for transportation at this request <input
+							style="width: 50px;" type="number" value=""
+							name="enrollment-support-trans-total" />
+					</label> <label>Provider <input type="text" value=""
+							name="enrollment-support-trans-provider" />
+					</label>
+				</span><span class="right">
+						<h4>Other</h4>
+						<div style="width: 380px;">Please describe any other charge not
+							captured above (e.g., for uniform, supplies, fees, devices,
+							ramps, etc.)</div> <textarea
+							name="enrollment-support-trans-other"
+							style="resize: vertical; width: 380px; box-sizing: border-box;"></textarea>
+						<label>Total $ needed for this other support this request<input
+							style="width: 50px;" type="number" value=""
+							name="enrollment-support-trans-total" />
+					</label><label>Provider <input type="text" value=""
+							name="enrollment-support-trans-other-provider" />
+					</label>
+				</span><span class="right">
+						<h4>Comments</h4> <textarea name="enrollment-support-trans-other"
+							style="resize: vertical; width: 380px; box-sizing: border-box;"></textarea>
+
+				</span></span>
+
+
+		</span>
 		</span>
 	</section>
 

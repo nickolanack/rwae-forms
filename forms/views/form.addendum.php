@@ -7,35 +7,13 @@
 		newly self-employed or is newly enrolled in post-secondary education</h3>
 	<section class="a">
 
-		<span class="group"><label><span class="lbl">Year </span> <input
-				type="number" value="" name="admin-year" /></label><label
-			class="pull-right">Quarter <input type="radio" value="1"
-				name="admin-quarter" /> 1st <input type="radio" value="2"
-				name="admin-quarter" /> 2nd <input type="radio" value="3"
-				name="admin-quarter" /> 3rd <input type="radio" value="4"
-				name="admin-quarter" /> 4th
-		</label></span>
+		<?php Scaffold('form.section.admin');?>
 		<hr />
-		<label><span class="lbl">Agency name </span><input type="text"
-			value="" name="agency-name" /> </label><label><span class="lbl">Agency
-				contact person </span><input type="text" value=""
-			name="agency-contact-person" /> </label> <label><span class="lbl">Contact
-				person’s phone </span><input type="tel" value=""
-			name="agency-contact-phone" /> </label><label><span class="lbl">Contact
-				person’s email </span><input type="email" value=""
-			name="agency-contact-email" /> </label>
-
+		<?php Scaffold('form.section.agency');?>
 		<hr />
-		<h3>Participant</h3>
-		<label>First name or nickname <input type="text" value=""
-			name="participant-first-name" />
-		</label><label>Participant’s ID <input type="text" value=""
-			name="participant-id" />
-		</label>
-
+		<?php Scaffold('form.section.participant.b');?>
 	</section>
 
-	<h3>Initial Activities</h3>
 	<h4>Employment</h4>
 	<section class="b">
 		<h4>did employment change?</h4>

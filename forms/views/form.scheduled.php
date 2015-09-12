@@ -6,73 +6,11 @@
 	<h3>Administrative and Baseline</h3>
 	<section class="c">
 
-		<span class="group"><label><span class="lbl">Year </span> <input
-				type="number" value="" name="admin-year" /></label><label
-			class="pull-right">Quarter <input type="radio" value="1"
-				name="admin-quarter" /> 1st <input type="radio" value="2"
-				name="admin-quarter" /> 2nd <input type="radio" value="3"
-				name="admin-quarter" /> 3rd <input type="radio" value="4"
-				name="admin-quarter" /> 4th
-		</label></span>
+		<?php Scaffold('form.section.admin');?>
 		<hr />
-		<label><span class="lbl">Agency name </span><input type="text"
-			value="" name="agency-name" /> </label><label><span class="lbl">Agency
-				contact person </span><input type="text" value=""
-			name="agency-contact-person" /> </label> <label><span class="lbl">Contact
-				person’s phone </span><input type="tel" value=""
-			name="agency-contact-phone" /> </label><label><span class="lbl">Contact
-				person’s email </span><input type="email" value=""
-			name="agency-contact-email" /> </label>
-
+		<?php Scaffold('form.section.agency');?>
 		<hr />
-		<h3>Participant</h3>
-		<span class="group"> <span class="left"> <label>First name or nickname
-					<input type="text" value="" name="participant-first-name" />
-			</label> <label>Province/Territory <input type="text" value=""
-					name="participant-province-territory" />
-			</label><label>Start date with RWA <input type="date" value=""
-					name="participant-start-date" />
-			</label> <label>Individual's community <input type="text" value=""
-					name="participant-age" />
-			</label>
-		</span><span class="right"> <!-- right -->
-				<h4>His/her gender</h4> <span class="inline"><label><input
-						type="radio" value="M" name="participant-gender" /> Male</label> <label><input
-						type="radio" value="F" name="participant-gender" /> Female</label></span>
-				<h4>Age (best estimate)</h4> <span class="inline"> <label><input
-						type="radio" value="" name="participant-age" /> 15-24</label> <label><input
-						type="radio" value="" name="participant-age" /> 25-34</label> <label><input
-						type="radio" value="" name="participant-age" /> 35-44</label> <label><input
-						type="radio" value="" name="participant-age" /> 45-54</label> <label><input
-						type="radio" value="" name="participant-age" /> 55-64</label> <label><input
-						type="radio" value="" name="participant-age" /> 65 + </label>
-			</span>
-		</span><span class="left">
-				<h4>His/her disability (Check any that apply.)</h4> <span
-				class="inline"><label><input type="checkbox" value=""
-						name="participant-disabilities[]" /> Autism Spectrum Disorder </label>
-					<label><input type="checkbox" value=""
-						name="participant-disabilities[]" /> Intellectual Disability </label></span>
-
-		</span>
-		</span>
-		<hr />
-		<h4>His/her sources of income in the year before coming into RWA.
-			(Check any that apply.)</h4>
-		<label><input type="checkbox" value="employment-or-self-employment"
-			name="participant-previous-income" /> Earnings from employment or
-			self-employment </label> <label><input type="checkbox"
-			value="employment-insurance" name="participant-previous-income" />
-			Employment insurance </label> <label><input type="checkbox"
-			value="quebec-canada-pension" name="participant-previous-income" />
-			Canada/Quebec Pension Plan (Disability) </label> <label><input
-			type="checkbox" value="workers-compensation"
-			name="participant-previous-income" /> Workers’ compensation </label>
-		<label class="longtext"><input type="checkbox"
-			value="social-assistance" name="participant-previous-income" />
-			Social assistance, incl. provincial / territorial disability program
-		</label> <label><input type="checkbox" value="other"
-			name="participant-previous-income" /> Other </label>
+		<?php Scaffold('form.section.participant');?>
 	</section>
 
 	<h3>Initial Activities</h3>
