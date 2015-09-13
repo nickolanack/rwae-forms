@@ -1,3 +1,7 @@
+
+before_install
+- git clone https://github.com/nickolanack/Scaffolds.git
+
 script: 
 - phpunit test/PageTest
 - phantomjs test/testrunner.js
