@@ -5,11 +5,11 @@ $config = array_merge(array(
     'style' => ''
 ), $params);
 
-$num = [
+$num = array(
     'One',
     'Two',
     'Three'
-];
+);
 
 $idsuffix = "-" . rand(0000, 9999);
 
