@@ -18,6 +18,9 @@ class PageTest extends PHPUnit_Framework_TestCase {
 
         $this->_includeScaffolds();
         
+        $this->assertTrue(file_exists(dirname(__DIR__) . '/forms/views'), 
+            'scaffolds directory: ' . dirname(__DIR__) . '/forms/views');
+        
         ob_start();
         
         HTML('document', 
