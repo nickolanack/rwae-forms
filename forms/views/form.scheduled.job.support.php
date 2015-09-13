@@ -5,11 +5,11 @@ $config = array_merge(array(
     'style' => ''
 ), $params);
 
-$num = [
+$num = array(
     'One',
     'Two',
     'Three'
-];
+);
 
 ?><section class="job <?php echo $config['class'];?> h4-bar">
 	<h4>Support Details For Job <?php echo $num[$config['n']-1];?></h4>
