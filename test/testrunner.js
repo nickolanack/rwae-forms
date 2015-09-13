@@ -4,7 +4,7 @@
 var page = require('webpage').create();
 var fs=require('fs');
 
-page.open('file://' + fs.absolute('page.html'), function(status) {
+page.open('file://' + fs.absolute('test/page.html'), function(status) {
   console.log("Status: " + status);
   if(status === "success") {
  
