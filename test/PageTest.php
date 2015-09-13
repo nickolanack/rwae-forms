@@ -180,7 +180,7 @@ class PageTest extends PHPUnit_Framework_TestCase {
         ob_end_clean();
         
         file_put_contents(__DIR__ . '/page.html', $page);
-        echo $page;
+        // echo $page;
         $this->assertTrue(file_exists(__DIR__ . '/page.html'));
     }
 }
