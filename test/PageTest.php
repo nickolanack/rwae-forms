@@ -88,7 +88,7 @@ class PageTest extends PHPUnit_Framework_TestCase {
 <script type="text/javascript">
 <?php
                     global $_html;
-                    echo $_html['js'];
+                    echo implode("\n\n", $_html['js']);
                     ?>
                     </script>
 <?php
@@ -113,7 +113,7 @@ class PageTest extends PHPUnit_Framework_TestCase {
 function IncludeJSBlock($js) {
 
     global $_html;
-    $_html['js'] .= "\n" . $js;
+    $_html['js'][] = $js;
     // echo 'block:' . $js;
 }
 
