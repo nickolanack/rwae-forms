@@ -75,12 +75,7 @@ class PageTest extends PHPUnit_Framework_TestCase {
 	type="text/javascript"></script>
 <script src="http://code.jquery.com/qunit/qunit-1.19.0.js"
 	type="text/javascript"></script>
-<script src="/media/jui/js/jquery.min.js" type="text/javascript"></script>
-<script src="/media/jui/js/jquery-noconflict.js" type="text/javascript"></script>
-<script src="/media/jui/js/jquery-migrate.min.js" type="text/javascript"></script>
-<script src="/media/system/js/caption.js" type="text/javascript"></script>
-<script src="/media/jui/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="/media/system/js/frontediting.js" type="text/javascript"></script>
+
 <?php
                 },
                 'body' => function () {
