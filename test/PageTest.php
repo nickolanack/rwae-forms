@@ -4,7 +4,7 @@
  * @author nblackwe
  *
  */
-class FormTest extends PHPUnit_Framework_TestCase {
+class PageTest extends PHPUnit_Framework_TestCase {
 
     protected function _includeScaffolds() {
 }
