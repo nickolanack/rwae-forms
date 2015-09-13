@@ -1,8 +1,14 @@
 <?php
+global $html;
+$html = array(
+    'js' => array(),
+    'css' => array()
+);
 
 /**
- * @author nblackwe
  *
+ * @author nblackwe
+ *        
  */
 class PageTest extends PHPUnit_Framework_TestCase {
 
@@ -25,6 +31,7 @@ class PageTest extends PHPUnit_Framework_TestCase {
         
         HTML('document', 
             array(
+                'buffered' => true,
                 'header' => function () {
                     
                     // need a bunch of resources.
@@ -96,6 +103,26 @@ class PageTest extends PHPUnit_Framework_TestCase {
         echo $page;
         $this->assertTrue(file_exists(__DIR__ . '/page.html'));
     }
+}
+
+function IncludeJSBlock($js) {
+
+    echo 'block:' . $js;
+}
+
+function IncludeJS($js) {
+
+    echo 'scr:' . $js;
+}
+
+function IncludeCSS($css) {
+
+    echo 'scr:' . $css;
+}
+
+function IncludeCSSBlock($css) {
+
+    echo 'block:' . $css;
 }
 
 function Scaffold($name, $params = array(), $dir = null) {
