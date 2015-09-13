@@ -96,8 +96,8 @@ class PageTest extends PHPUnit_Framework_TestCase {
                 'body' => function () {
                     
                     ?><section id="schedule-d-area"><?php Scaffold('form.scheduled', array(), dirname(__DIR__) . '/forms/views');?></section>
-<section id="quarterly-area"><?phpScaffold('form.quarterly', array(), dirname(__DIR__) . '/forms/views');?></section>
-<section id="addendum-area"><?phpScaffold('form.addendum', array(), dirname(__DIR__) . '/forms/views');?></section><?php
+<section id="quarterly-area"><?php Scaffold('form.quarterly', array(), dirname(__DIR__) . '/forms/views');?></section>
+<section id="addendum-area"><?php Scaffold('form.addendum', array(), dirname(__DIR__) . '/forms/views');?></section><?php
                     
                     IncludeJSBlock(
                         '
@@ -172,6 +172,8 @@ class PageTest extends PHPUnit_Framework_TestCase {
     });
 
 ');
+                    
+                    Scaffold('qunit.test', array(), dirname(__DIR__) . '/forms/views');
                 }
             ));
         
