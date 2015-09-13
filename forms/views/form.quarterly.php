@@ -110,18 +110,16 @@ Scaffold('form.switch',
 		<span class="group"><span class="left">
 				<h4>Enrollment Status</h4> <span class="inline"> <label><input
 						type="radio" value="still-in-same-program-as-last-quarter"
-						name="<?php echo $prefix; ?>-enrolled-quarter-status" /> Still in
-						same program as last quarter</label> <label><input type="radio"
-						value="finished-graduated"
-						name="<?php echo $prefix; ?>-enrolled-quarter-status" /> Finished:
-						Graduated</label> <label><input type="radio"
-						value="finished-did-not-graduate"
-						name="<?php echo $prefix; ?>-enrolled-quarter-status" /> Finished:
-						Did not graduate</label> <label><input type="radio" value=""
-						name="<?php echo $prefix; ?>-enrolled-quarter-status" /> Withdrew
-						– Illness or disability</label> <label><input type="radio"
-						value="" name="<?php echo $prefix; ?>-enrolled-quarter-status" />
-						Withdrew – Other reason</label>
+						name="enrolled-quarter-status" /> Still in same program as last
+						quarter</label> <label><input type="radio"
+						value="finished-graduated" name="enrolled-quarter-status" />
+						Finished: Graduated</label> <label><input type="radio"
+						value="finished-did-not-graduate" name="enrolled-quarter-status" />
+						Finished: Did not graduate</label> <label><input type="radio"
+						value="withdrew-illness-or-disability"
+						name="enrolled-quarter-status" /> Withdrew – Illness or disability</label>
+					<label><input type="radio" value="withdrew-other-reason"
+						name="enrolled-quarter-status" /> Withdrew – Other reason</label>
 			</span>
 		</span><span class="right">
 

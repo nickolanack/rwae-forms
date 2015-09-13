@@ -30,7 +30,7 @@ window.addEvent("load",function(){
 				    if(e.nodeName=="INPUT"){
 
 				        if(e.type=="radio"||e.type=="checkbox"){
-				        	 var expected=e.nextSibling.textContent.trim().toLowerCase().replace(/[\s:'"`’,.]/g, "-").replace(/\([^)]+\)/g, "-").replace(/[/]/g, '-or-').replace('+','-plus-');
+				        	 var expected=e.nextSibling.textContent.trim().toLowerCase().replace(/[\s:'"`’,.–]/g, "-").replace(/\([^)]+\)/g, "-").replace(/[/]/g, '-or-').replace('+','-plus-');
 				        	 while(expected.indexOf('--')>=0){
 				        		    expected=expected.replace('--','-');
 					         }
