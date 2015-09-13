@@ -95,9 +95,83 @@ class PageTest extends PHPUnit_Framework_TestCase {
                 },
                 'body' => function () {
                     
-                    Scaffold('form.scheduled', array(), dirname(__DIR__) . '/forms/views');
-                    Scaffold('form.quarterly', array(), dirname(__DIR__) . '/forms/views');
-                    Scaffold('form.addendum', array(), dirname(__DIR__) . '/forms/views');
+                    ?><section id="schedule-d-area"><?php Scaffold('form.scheduled', array(), dirname(__DIR__) . '/forms/views');?></section>
+<section id="quarterly-area"><?phpScaffold('form.quarterly', array(), dirname(__DIR__) . '/forms/views');?></section>
+<section id="addendum-area"><?phpScaffold('form.addendum', array(), dirname(__DIR__) . '/forms/views');?></section><?php
+                    
+                    IncludeJSBlock(
+                        '
+
+    window.addEvent("load",function(){
+
+        UIFormManager.setAjaxUrl(' . json_encode($params['url']) . ');
+
+
+
+        UIFormManager.addForm({
+            name:"scheduled",
+            container:$("schedule-d-area"),
+            form:$$("#schedule-d-area>form")[0],
+            defaultFormData:' . json_encode(
+                            array(
+                                // the default values when creating a schedule d
+                                'id' => -1,
+                                'admin-year' => 2015,
+                                'admin-quarter' => '1st',
+                                'employed-quarter' => 'no',
+                                'job-supports' => 'no',
+                                'enrolled-quarter' => 'no',
+                                'enrollment-supports' => 'no'
+                            )) . '
+
+        });
+
+
+        UIFormManager.addForm({
+            name:"addendum",
+            container:$("addendum-area"),
+            form:$$("#addendum-area>form")[0],
+
+            defaultFormData:' . json_encode(
+                            array(
+                                // the default values when creating a schedule d
+                                'id' => -1,
+                                'admin-year' => 2015,
+                                'admin-quarter' => '1st',
+                                'employed-quarter' => 'no',
+                                'job-supports' => 'no',
+                                'enrolled-quarter' => 'no',
+                                'enrollment-supports' => 'no'
+                            )) . '
+
+        });
+
+        UIFormManager.addForm({
+            name:"quarterly",
+            container:$("quarterly-area"),
+            form:$$("#quarterly-area>form")[0],
+
+            defaultFormData:' . json_encode(
+                            array(
+                                // the default values when creating a schedule d
+                                'id' => -1,
+                                'admin-year' => 2015,
+                                'admin-quarter' => '1st',
+                                'employed-quarter' => 'no',
+                                'job-supports' => 'no',
+                                'enrolled-quarter' => 'no',
+                                'enrollment-supports' => 'no'
+                            )) . '
+
+        });
+
+
+        UIFormManager.displayList();
+
+
+    });
+
+');
                 }
             ));
         
