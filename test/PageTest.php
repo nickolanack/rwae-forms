@@ -98,8 +98,8 @@ class PageTest extends PHPUnit_Framework_TestCase {
     }
 }
 
-function Scaffold($name, $params = array()) {
+function Scaffold($name, $params = array(), $dir = null) {
 
     global $scaffold;
-    return $scaffold->build($name, $params);
+    return $scaffold->build($name, $params, $dir = null);
 }
