@@ -7,7 +7,7 @@ var fs=require('fs');
 page.onError(function(msg, trace){
 	
 	console.log('error: '+ msg);
-	console.log(trace);
+	//console.log(trace);
 	phantom.exit(1);
 	
 });
