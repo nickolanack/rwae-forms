@@ -94,3 +94,9 @@ class PageTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue(true);
     }
 }
+
+function Scaffold($name, $params = array()) {
+
+    global $scaffold;
+    return $scaffold->build($name, $params);
+}
