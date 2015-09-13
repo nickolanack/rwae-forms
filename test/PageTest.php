@@ -91,7 +91,7 @@ class PageTest extends PHPUnit_Framework_TestCase {
         
         file_put_contents('page.html', $page);
         
-        $this->assertTrue(true);
+        $this->assertTrue(file_exists(__DIR__ . '/page.html'));
     }
 }
 
