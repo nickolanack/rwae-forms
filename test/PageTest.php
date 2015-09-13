@@ -1,6 +1,6 @@
 <?php
-global $html;
-$html = array(
+global $_html;
+$_html = array(
     'js' => array(),
     'css' => array()
 );
@@ -85,7 +85,12 @@ class PageTest extends PHPUnit_Framework_TestCase {
 	type="text/javascript"></script>
 <script src="http://code.jquery.com/qunit/qunit-1.19.0.js"
 	type="text/javascript"></script>
-
+<script type="text/javascript">
+<?php
+                    global $_html;
+                    echo $_html['js'];
+                    ?>
+                    </script>
 <?php
                 },
                 'body' => function () {
@@ -107,22 +112,24 @@ class PageTest extends PHPUnit_Framework_TestCase {
 
 function IncludeJSBlock($js) {
 
-    echo 'block:' . $js;
+    global $_html;
+    $_html['js'] .= "\n" . $js;
+    // echo 'block:' . $js;
 }
 
 function IncludeJS($js) {
-
-    echo 'scr:' . $js;
+    
+    // echo 'scr:' . $js;
 }
 
 function IncludeCSS($css) {
-
-    echo 'scr:' . $css;
+    
+    // echo 'scr:' . $css;
 }
 
 function IncludeCSSBlock($css) {
-
-    echo 'block:' . $css;
+    
+    // echo 'block:' . $css;
 }
 
 function Scaffold($name, $params = array(), $dir = null) {
