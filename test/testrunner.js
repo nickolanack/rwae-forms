@@ -16,8 +16,16 @@ page.open('file://' + fs.absolute('test/page.html'), function(status) {
   console.log("Status: " + status);
   if(status === "success") {
  
-	 
-    phantom.exit();
+	setTimeout(function(){
+		
+		var content = page.content;
+		console.log('Content: ' + content);
+		
+		phantom.exit();
+	}, 10000);
+	  
+	  
+   
 	  
   }else{
   	phantom.exit(1);
