@@ -104,7 +104,6 @@ class PageTest extends PHPUnit_Framework_TestCase {
 
     window.addEvent("load",function(){
 
-        UIFormManager.setAjaxUrl(' . json_encode($params['url']) . ');
 
 
 
