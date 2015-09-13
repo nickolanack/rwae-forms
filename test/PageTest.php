@@ -80,9 +80,9 @@ class PageTest extends PHPUnit_Framework_TestCase {
                 },
                 'body' => function () {
                     
-                    Scaffold('form.scheduled');
-                    Scaffold('form.quarterly');
-                    Scaffold('form.addendum');
+                    Scaffold('form.scheduled', array(), dirname(__DIR__) . '/forms/views');
+                    Scaffold('form.quarterly', array(), dirname(__DIR__) . '/forms/views');
+                    Scaffold('form.addendum', array(), dirname(__DIR__) . '/forms/views');
                 }
             ));
         
