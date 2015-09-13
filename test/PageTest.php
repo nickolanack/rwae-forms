@@ -101,5 +101,5 @@ class PageTest extends PHPUnit_Framework_TestCase {
 function Scaffold($name, $params = array(), $dir = null) {
 
     global $scaffold;
-    return $scaffold->build($name, $params, $dir = null);
+    return $scaffold->build($name, $params, $dir);
 }
