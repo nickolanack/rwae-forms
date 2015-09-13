@@ -124,18 +124,11 @@ Scaffold('form.switch',
 		</span><span class="right">
 
 				<h4>If withdrew or did not graduate, please briefly explain</h4> <textarea
-					type="text"
-					name="<?php
-                
-                echo $prefix;
-                ?>-enrolled-quarter-did-not-graduate-reason"
+					type="text" name="enrolled-quarter-did-not-graduate-reason"
 					style="resize: vertical; width: 380px; box-sizing: border-box;">
 	</textarea>
 				<h4>Comments</h4> <textarea type="text"
-					name="<?php
-                
-                echo $prefix;
-                ?>-enrolled-quarter-comments"
+					name="enrolled-quarter-comments"
 					style="resize: vertical; width: 380px; box-sizing: border-box;">
 	</textarea>
 		</span></span>
