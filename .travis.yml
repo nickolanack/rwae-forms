@@ -1,1 +1,3 @@
-script: phantomjs test/testrunner.js
+script: 
+- phpunit test/PageTest
+- phantomjs test/testrunner.js
