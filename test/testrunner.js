@@ -18,6 +18,7 @@ page.open('file://' + fs.absolute('test/page.html'), function(status) {
  
 	setTimeout(function(){
 		
+		try{
 		var content = page.content;
 		console.log('Content: ' + content);
 		
@@ -25,7 +26,11 @@ page.open('file://' + fs.absolute('test/page.html'), function(status) {
 		var status=page.evaluate(function(){ 
 			return {
 				
+				console.log("Parsing Qunit output");
+				
 				$$('li li.fail').forEach(function(l){ console.log(l.textContent); });
+				
+				
 				
 				failed:parseInt($$('span.failed')[0].innerHTML),
 				passed:parseInt($$('span.passed')[0].innerHTML),
@@ -33,6 +38,9 @@ page.open('file://' + fs.absolute('test/page.html'), function(status) {
 				}; 
 			});
 		console.log(status);
+		}catch(e){
+			console.log(e);
+		}
 		phantom.exit(status.failed);
 	}, 10000);
 	  
