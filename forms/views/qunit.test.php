@@ -39,11 +39,12 @@ window.addEvent("load",function(){
 
 				        	 expected=expected.replace(/-+$/,'');
 					         assert.equal(expected.indexOf('--'), -1, "expected value does not contain 2 -- in a row: "+expected);
-					         assert.notEqual(expected,"", "expected value is not an empty string for input "+e.name);
 
+
+					         //assert.notEqual(expected,"", "expected value is not an empty string for input "+e.name);
 				        	 console.log(expected);
 				        	 if(expected===""){
-					        	 assert.ok((e.value=="true"||e.value=="false"), "Checkbox value can be true or false only, when there is no label")
+					        	 assert.ok((e.value=="true"||e.value=="false"), "Checkbox value can only be true or false only, when there is no label")
 
 					         }else{
 					        	 assert.equal( e.value,expected, "form "+e.type+":"+e.name+" has a value \""+e.value+"\"" );
