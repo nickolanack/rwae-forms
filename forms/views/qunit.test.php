@@ -24,10 +24,12 @@ window.addEvent("load",function(){
 
 
 			  try{
-			  var form=UIFormManager.getForm(name);
+				   var form=UIFormManager.getForm(name);
 			  }catch(e){
                   assert.ok(false,'Expected form name: '+name+' '+e.message);
+                  return;
 		      }
+
 
 			  assert.ok( form.nodeName=="FORM", "Form exists" );
 

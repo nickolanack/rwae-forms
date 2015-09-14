@@ -83,6 +83,8 @@ var UIFormManager=(function(){
 		
 		displayList:function(){
 
+			//TODO: this section should be taken out of UIFormManager. and use UIFormManager events to trigger
+			
 			var me=this;
 
 			if((typeof url)=="undefined"){
