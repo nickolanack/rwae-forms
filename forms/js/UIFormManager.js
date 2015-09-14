@@ -31,36 +31,43 @@ var UIFormManager=(function(){
 
 		},
 		
+		getFormConfiguration(name){
+			if((typeof me._forms[name])=="undefined"){
+				throw new Error("There is no form named: "+name);
+			}
+			return me._forms[name];
+		}
+		
 		getFormContainer:function(name){
 			var me=this;
-			return me._forms[name].container;
+			return me.getFormConfiguration(name).container;
 			
 		},
 		getForm:function(name){
 			var me=this;
-			return me._forms[name].form;
+			return me.getFormConfiguration(name).form;
 			
 		},
 		
 		getFormSubmitButtons:function(name){
 			var me=this;
-			return me._forms[name].submitButtons;
+			return me.getFormConfiguration(name).submitButtons;
 			
 		},
 		
 		getFormCancelButtons:function(name){
 			var me=this;
-			return me._forms[name].cancelButtons;
+			return me.getFormConfiguration(name).cancelButtons;
 		},
 		
 		getFormFnButtons:function(name){
 			var me=this;
-			return me._forms[name].additionalFormButtons;
+			return me.getFormConfiguration(name).additionalFormButtons;
 		},
 		
 		getFormDefaultData:function(name){
 			var me=this;
-			return me._forms[name].defaultFormData;
+			return me.getFormConfiguration(name).defaultFormData;
 		},
 		
 		
@@ -333,7 +340,7 @@ var UIFormManager=(function(){
 		saveForm:function(name, callback){
 
 			var me=this;	
-			var task=me._forms[name].ajaxTask;
+			var task=me.getFormConfiguration(name).ajaxTask;
 			
 			var form=me.getForm(name);
 			(new AjaxControlQuery(
@@ -358,7 +365,7 @@ var UIFormManager=(function(){
 			
 			var me=this;
 			me.getFormNames().forEach(function(name){
-				var area=me._forms[name].warningsArea;
+				var area=me.getFormConfiguration(name).warningsArea;
 				Array.prototype.slice.call(area.childNodes,0).forEach(function(c){
 					area.removeChild(c);
 				});
@@ -377,7 +384,7 @@ var UIFormManager=(function(){
 
 			var key=name+'.'+title;
 			
-			var area=me._forms[name].warningsArea;
+			var area=me.getFormConfiguration(name).warningsArea;
 
 
 			if(me._warnings[key]){
