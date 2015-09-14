@@ -39,11 +39,11 @@ page.open('file://' + fs.absolute('test/page.html'), function(status) {
 			});
 		console.log(JSON.stringify(status));
 		}catch(e){
-			console.log(e);
+			console.log('Exception parsing qunit results');
 		}
 		phantom.exit(status.failed);
 	}, 10000);
-	  
+	console.log('waiting for 10s - to ensure qunit completes');
 	  
    
 	  
