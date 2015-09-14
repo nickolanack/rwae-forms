@@ -33,7 +33,8 @@ page.open('file://' + fs.absolute('test/page.html'), function(status) {
 					failed:parseInt($$('span.failed')[0].innerHTML),
 					passed:parseInt($$('span.passed')[0].innerHTML),
 					total:parseInt($$('span.total')[0].innerHTML),
-					errors:[]
+					errors:[],
+					configs:UIFormManager._forms
 			};
 			
 			$$('li li.fail').forEach(function(l){ result.errors.push(l.textContent); });
