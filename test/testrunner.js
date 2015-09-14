@@ -11,6 +11,9 @@ page.onError=function(msg, trace){
 	phantom.exit(1);
 	
 };
+page.onConsoleMessage = function(msg, lineNum, sourceId) {
+	  console.log('CONSOLE: ' + msg + ' (from line #' + lineNum + ' in "' + sourceId + '")');
+	};
 
 page.open('file://' + fs.absolute('test/page.html'), function(status) {
   console.log("Status: " + status);
