@@ -160,7 +160,8 @@ var UIFormManager=(function(){
 						addendum.addEvent('click',function(){
 							
 							me.loadFormData(me.getForm("addendum"), Object.append(
-									me.getFieldsFrom(data.formData,[
+									data.formData, //should load all data that matches.
+									/*me.getFieldsFrom(data.formData,[
 									                       
 									   'participant-first-name',
 									   'participant-id',
@@ -170,7 +171,7 @@ var UIFormManager=(function(){
 									   'agency-contact-phone',
 									   'agency-contact-email'
 									   
-									   ]), 
+									   ]), */
 									me.getFormDefaultData("scheduled")));
 							me.showForm("addendum");
 							var message=new Element('span', {html:'TODO: does not submit - needs backend work'});

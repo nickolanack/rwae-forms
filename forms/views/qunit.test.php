@@ -25,7 +25,7 @@ window.addEvent("load",function(){
 
 			  try{
 			  var form=UIFormManager.getForm(name);
-			  catch(e){
+			  }catch(e){
                   assert.ok(false,'Expected form name: '+name+' '+e.message);
 		      }
 

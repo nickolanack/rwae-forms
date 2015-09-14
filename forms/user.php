@@ -63,6 +63,8 @@ if (UrlVar('task') == 'create-new-scheduled') {
             
             $data = get_object_vars($record);
             $data['formData'] = json_decode($record->formData);
+            $data['currentData'] = json_decode($record->formData); // this should reflect all changes made by addendums,
+                                                                   // and quarterlys
             
             ob_start();
             Scaffold('list.scheduled.item', $data, __DIR__ . DS . 'views');
