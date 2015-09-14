@@ -21,7 +21,19 @@ page.open('file://' + fs.absolute('test/page.html'), function(status) {
 		var content = page.content;
 		console.log('Content: ' + content);
 		
-		phantom.exit();
+		
+		var status=page.evaluate(function(){ 
+			return {
+				
+				$$('li li.fail').forEach(function(l){ console.log(l.textContent); });
+				
+				failed:parseInt($$('span.failed')[0].innerHTML),
+				passed:parseInt($$('span.passed')[0].innerHTML),
+				total:parseInt($$('span.total')[0].innerHTML),
+				}; 
+			});
+		console.log(status);
+		phantom.exit(status.failed);
 	}, 10000);
 	  
 	  
