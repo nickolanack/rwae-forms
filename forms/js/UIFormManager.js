@@ -23,7 +23,7 @@ var UIFormManager=(function(){
 
 			me.loadFormData(me.getForm(config.name), me.getFormDefaultData(config.name));
 			
-			console.log("UIFormManager - Added Form: "+name);
+			console.log("UIFormManager - Added Form: "+config.name);
 			
 		},
 		
