@@ -26,21 +26,18 @@ page.open('file://' + fs.absolute('test/page.html'), function(status) {
 		var status=page.evaluate(function(){ 
 			
 			console.log("Parsing Qunit output");
+			var result={
+					failed:parseInt($$('span.failed')[0].innerHTML),
+					passed:parseInt($$('span.passed')[0].innerHTML),
+					total:parseInt($$('span.total')[0].innerHTML),
+					errors:[];=
+			};
 			
-			$$('li li.fail').forEach(function(l){ console.log(l.textContent); });
+			$$('li li.fail').forEach(function(l){ result.errors.push(l.textContent); });
 			
-			return {
-				
-				
-				
-				
-				
-				failed:parseInt($$('span.failed')[0].innerHTML),
-				passed:parseInt($$('span.passed')[0].innerHTML),
-				total:parseInt($$('span.total')[0].innerHTML),
-				}; 
+			return result;
 			});
-		console.log(status);
+		console.log(JSON.stringify(status));
 		}catch(e){
 			console.log(e);
 		}
