@@ -23,7 +23,12 @@ window.addEvent("load",function(){
 
 
 
+			  try{
 			  var form=UIFormManager.getForm(name);
+			  catch(e){
+                  assert.fail('Expected form name: '+name);
+		      }
+
 			  assert.ok( form.nodeName=="FORM", "Form exists" );
 
 			  Array.prototype.slice.call(form,0).forEach(function(e){
