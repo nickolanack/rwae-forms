@@ -13,15 +13,17 @@ $_html = array(
 class PageTest extends PHPUnit_Framework_TestCase {
 
     protected function _includeScaffolds() {
-
-        include dirname(__DIR__) . '/Scaffolds/scaffolds/defines.php';
+        if (file_exists(dirname(__DIR__) . '/forms/php-core-app')) {
+            include dirname(__DIR__) . '/forms/php-core-app/library/scaffold/defines.php';
+        } else {
+            include dirname(__DIR__) . '/Scaffolds/scaffolds/defines.php';
+        }
     }
 
     /**
      * @runInSeparateProcess
      */
     public function testWriteForms() {
-
         $this->_includeScaffolds();
         
         $this->assertTrue(file_exists(dirname(__DIR__) . '/forms/views'), 
@@ -114,7 +116,7 @@ class PageTest extends PHPUnit_Framework_TestCase {
             defaultFormData:' . json_encode(
                             array(
                                 // the default values when creating a schedule d
-                                'id' => -1,
+                                'id' => - 1,
                                 'admin-year' => 2015,
                                 'admin-quarter' => '1st',
                                 'employed-quarter' => 'no',
@@ -134,7 +136,7 @@ class PageTest extends PHPUnit_Framework_TestCase {
             defaultFormData:' . json_encode(
                             array(
                                 // the default values when creating a schedule d
-                                'id' => -1,
+                                'id' => - 1,
                                 'admin-year' => 2015,
                                 'admin-quarter' => '1st',
                                 'employed-quarter' => 'no',
@@ -153,7 +155,7 @@ class PageTest extends PHPUnit_Framework_TestCase {
             defaultFormData:' . json_encode(
                             array(
                                 // the default values when creating a schedule d
-                                'id' => -1,
+                                'id' => - 1,
                                 'admin-year' => 2015,
                                 'admin-quarter' => '1st',
                                 'employed-quarter' => 'no',
@@ -165,7 +167,7 @@ class PageTest extends PHPUnit_Framework_TestCase {
         });
 
 
-        UIFormManager.displayList();
+
 
 
     });
@@ -186,7 +188,6 @@ class PageTest extends PHPUnit_Framework_TestCase {
 }
 
 function IncludeJSBlock($js) {
-
     global $_html;
     $_html['js'][] = $js;
     // echo 'block:' . $js;
@@ -208,7 +209,6 @@ function IncludeCSSBlock($css) {
 }
 
 function Scaffold($name, $params = array(), $dir = null) {
-
     global $scaffold;
     return $scaffold->build($name, $params, $dir);
 }
