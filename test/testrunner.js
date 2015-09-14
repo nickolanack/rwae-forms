@@ -19,8 +19,8 @@ page.open('file://' + fs.absolute('test/page.html'), function(status) {
 	setTimeout(function(){
 		
 		try{
-		var content = page.content;
-		console.log('Content: ' + content);
+		//var content = page.content;
+		//console.log('Content: ' + content);
 		
 		
 		var status=page.evaluate(function(){ 
