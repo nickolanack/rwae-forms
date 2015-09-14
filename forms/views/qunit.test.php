@@ -49,7 +49,7 @@ window.addEvent("load",function(){
 
 
 					         //assert.notEqual(expected,"", "expected value is not an empty string for input "+e.name);
-				        	 console.log(expected);
+				        	 //console.log(expected);
 				        	 if(expected===""){
 					        	 assert.ok((e.value=="true"||e.value=="false"), "Checkbox value can only be true or false only, when there is no label")
 

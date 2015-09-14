@@ -12,7 +12,7 @@ page.onError=function(msg, trace){
 	
 };
 page.onConsoleMessage = function(msg, lineNum, sourceId) {
-	  console.log('CONSOLE: ' + msg + ' (from line #' + lineNum + ' in "' + sourceId + '")');
+	  console.log('CONSOLE: ' + msg );
 	};
 
 page.open('file://' + fs.absolute('test/page.html'), function(status) {
