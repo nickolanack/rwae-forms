@@ -24,11 +24,14 @@ page.open('file://' + fs.absolute('test/page.html'), function(status) {
 		
 		
 		var status=page.evaluate(function(){ 
+			
+			console.log("Parsing Qunit output");
+			
+			$$('li li.fail').forEach(function(l){ console.log(l.textContent); });
+			
 			return {
 				
-				console.log("Parsing Qunit output");
 				
-				$$('li li.fail').forEach(function(l){ console.log(l.textContent); });
 				
 				
 				
