@@ -9,7 +9,7 @@ Scaffold('cpanel.button',
         'script' => '
 
              if(!this.getAttribute("disabled")){
-                //UIFormManager.saveForm();
+                UIFormManager.saveForm("addendum");
              }
 
         '
@@ -38,7 +38,7 @@ Scaffold('cpanel.button',
         'icon' => Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_new.png?tint=rgb(255,255,255)',
         'script' => '
             if(!this.getAttribute("disabled")){
-                //UIFormManager.saveForm();
+                UIFormManager.saveForm("addendum");
             }
         '
     ));

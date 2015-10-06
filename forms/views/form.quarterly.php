@@ -158,7 +158,7 @@ Scaffold('form.switch',
 
 
                             <?php
-            Scaffold('form.scheduled.enrolment.support');
+            Scaffold('form.scheduled.enrollment.support');
         }
     ));
 ?>

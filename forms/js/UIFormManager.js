@@ -34,11 +34,12 @@ var UIFormManager=(function(){
 		},
 		
 		getFormConfiguration(name){
+			var me=this;
 			if((typeof me._forms[name])=="undefined"){
 				throw new Error("There is no form named: "+name);
 			}
 			return me._forms[name];
-		}
+		},
 		
 		getFormContainer:function(name){
 			var me=this;
@@ -222,6 +223,24 @@ var UIFormManager=(function(){
 							me.setWarning('quarterly','update', message);
 
 						});
+						
+						
+						(new AjaxControlQuery(
+								url,
+								"list-addendums-quarterlys",
+								me.getFieldsFrom(data.formData,['participant-id'])
+						)).addEvent("success",function(response){
+							
+							if(response.success){
+								
+								
+								
+								
+							}
+							
+						}).execute();
+						
+						
 
 					});
 

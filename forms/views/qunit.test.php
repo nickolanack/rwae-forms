@@ -83,5 +83,7 @@ window.addEvent("load",function(){
 
 </script>
 <h3 style="margin-top: 100px;">Unit Test</h3>
+<h4>This section is for developement purposes only - you can completely
+	ignore it</h4>
 <div id="qunit"></div>
 <div id="qunit-fixture"></div>
