@@ -31,7 +31,7 @@ include the forms for UIFormManager.js
 There is user.panel.php which in the main form page, it includes each [form name].workspace.php file
 and configures UIFormManager.js to provide the form behavior etc.
 
-
+```
 Forms Page: user.panel.php
 				|-sheduled.workspace
 						|-form.scheduled
@@ -51,7 +51,7 @@ Forms Page: user.panel.php
 				|-script:
 					-get users list scheduled forms (ie: list of participants) and add behavior for loading 
 					 and editing as well as initiating new addendums and quarterlys for existing scheduled forms.
-
+```
 
 ##Template##
 
