@@ -12,27 +12,27 @@ var UIFormManager=(function(){
 		setAjaxUrl:function(url){
 			ajaxUrl=url;
 		},
-		
+
 		addForm:function(config){
 			var me=this;
 			if(!me._forms){
 				me._forms={};
 			}
-			
+
 			me._forms[config.name]=Object.append({},config);
 
 			me.loadFormData(me.getForm(config.name), me.getFormDefaultData(config.name));
-			
+
 			console.log("UIFormManager - Added Form: "+config.name);
-			
+
 		},
-		
+
 		getFormNames:function(){
 			var me=this;
 			return Object.keys(me._forms);
 
 		},
-		
+
 		getFormConfiguration(name){
 			var me=this;
 			if((typeof me._forms[name])=="undefined"){
@@ -40,221 +40,53 @@ var UIFormManager=(function(){
 			}
 			return me._forms[name];
 		},
-		
+
 		getFormContainer:function(name){
 			var me=this;
 			return me.getFormConfiguration(name).container;
-			
+
 		},
 		getForm:function(name){
 			var me=this;
 			return me.getFormConfiguration(name).form;
-			
+
 		},
-		
+
 		getFormSubmitButtons:function(name){
 			var me=this;
 			return me.getFormConfiguration(name).submitButtons;
-			
+
 		},
-		
+
 		getFormCancelButtons:function(name){
 			var me=this;
 			return me.getFormConfiguration(name).cancelButtons;
 		},
-		
+
 		getFormFnButtons:function(name){
 			var me=this;
 			return me.getFormConfiguration(name).additionalFormButtons;
 		},
-		
+
 		getFormDefaultData:function(name){
 			var me=this;
 			return me.getFormConfiguration(name).defaultFormData;
 		},
-		
-		
-		
+
+
+
 		getFieldsFrom:function(formDataObject, fieldNameArray){
-			
+
 			var data={};
-			
+
 			fieldNameArray.forEach(function(fieldName){
 				data[fieldName]=formDataObject[fieldName];
 			});
-		
+
 			return data;
-		
-		},
-
-		getListContainer:function(){
-			return $("list-schedule-d");
-		},
-		
-		displayList:function(){
-
-			//TODO: this section should be taken out of UIFormManager. and use UIFormManager events to trigger
-			
-			var me=this;
-
-			if((typeof url)=="undefined"){
-				url=ajaxUrl;
-			}else{
-				ajaxUrl=url;
-			}
-
-
-			(new AjaxControlQuery(
-					url,
-					"list-scheduled",
-					{}
-			)).addEvent("success",function(response){
-
-				if(response.success&&response.results.length){
-
-					me.getListContainer().innerHTML="<h3>Your Previously Completed Forms</h3>";
-					var section=new Element("section");
-					me.getListContainer().appendChild(section);
-
-					var last=null;
-					var dateFn=function(str){
-
-						var date=(new Date(str)).timeAgoInWords();
-						if(date!==last){
-							section.appendChild(new Element("div",{"class":"timeago", html:date}));
-							last=date;
-						}
-					};
-
-					response.results.forEach(function(data){
-
-						dateFn(data.submitDate);
-
-						var edit=new Element('span',{"class":"btn btn-primary"});
-						var addendum=new Element('span',{"class":"btn btn-danger"});
-						var quarterly=new Element('span',{"class":"btn btn-success"});
-
-						var item=section.appendChild(new Element("div", {
-							"class":"scheduled-item",
-							html:data.html
-						}));
-
-						item.appendChild(edit);
-						item.appendChild(quarterly);
-						item.appendChild(addendum);
-
-
-						new UIPopover(edit, {description:"Edit Schedule D",anchor:UIPopover.AnchorTo('top')});
-						new UIPopover(addendum, {description:"Add Addendum",anchor:UIPopover.AnchorTo('top')});
-						new UIPopover(quarterly, {description:"Complete Quarterly",anchor:UIPopover.AnchorTo('top')});
-
-						edit.addEvent('click',function(){
-							
-							var form=me.getForm("scheduled");
-							me.setReadOnly(form);
-							
-							var formData=Object.append({}, data.formData);
-							
-							me.loadFormData(form, Object.append(formData, {id:data.id}));
-							me.showForm("scheduled");
-							var message=new Element('span', {html:'this is an existing Schedule D, do you want to enable it for editing? '});
-							message.appendChild(new Element('span',{"class":"btn btn-danger", html:"yes", events:{
-								click:function(){
-									me.clearWarnings();
-									me.setEditable(form);
-								}
-							}}));
-							me.setWarning('scheduled','update', message);
-
-
-						});
-						
-						addendum.addEvent('click',function(){
-							
-							me.loadFormData(me.getForm("addendum"), Object.append(
-									data.formData, //should load all data that matches.
-									/*me.getFieldsFrom(data.formData,[
-									                       
-									   'participant-first-name',
-									   'participant-id',
-
-									   'agency-name',
-									   'agency-contact-person',
-									   'agency-contact-phone',
-									   'agency-contact-email'
-									   
-									   ]), */
-									me.getFormDefaultData("scheduled")));
-							me.showForm("addendum");
-							var message=new Element('span', {html:'TODO: does not submit - needs backend work'});
-							message.appendChild(new Element('span',{"class":"btn btn-danger", html:"close", events:{
-								click:function(){
-									me.clearWarnings();
-								}
-							}}));
-							me.setWarning('addendum','update', message);
-
-						});
-						
-						
-						quarterly.addEvent('click',function(){
-							
-							me.loadFormData(me.getForm("quarterly"), Object.append(
-									me.getFieldsFrom(data.formData,[
-									                       
-									   'participant-first-name',
-									   'participant-id',
-
-									   'agency-name',
-									   'agency-contact-person',
-									   'agency-contact-phone',
-									   'agency-contact-email'
-									   
-									   ]), 
-									me.getFormDefaultData("scheduled")));
-							me.showForm("quarterly");
-							
-							var message=new Element('span', {html:'TODO: not finished - it is basically just addendum-form right now'});
-							message.appendChild(new Element('span',{"class":"btn btn-danger", html:"close", events:{
-								click:function(){
-									me.clearWarnings();
-								}
-							}}));
-							me.setWarning('quarterly','update', message);
-
-						});
-						
-						
-						(new AjaxControlQuery(
-								url,
-								"list-addendums-quarterlys",
-								me.getFieldsFrom(data.formData,['participant-id'])
-						)).addEvent("success",function(response){
-							
-							if(response.success){
-								
-								
-								
-								
-							}
-							
-						}).execute();
-						
-						
-
-					});
-
-				}else{
-					me.getListContainer().innerHTML="<section><div>you have not created any schedule d forms</div></section>"
-				}
-
-			}).execute();
-
-
 
 		},
 
-		
 		getFormData:function(form){
 
 
@@ -362,7 +194,7 @@ var UIFormManager=(function(){
 
 			var me=this;	
 			var task=me.getFormConfiguration(name).ajaxTask;
-			
+
 			var form=me.getForm(name);
 			(new AjaxControlQuery(
 					ajaxUrl,
@@ -371,8 +203,10 @@ var UIFormManager=(function(){
 			).addEvent("success",function(result){
 
 				console.log(result);
-				me.displayList();
+				me.fireEvent('saveForm',[name]);
+				me.fireEvent('saveForm.'+name);
 				me.loadFormData(form, me.getFormDefaultData(name));
+				
 				if((typeof callback)=='function')callback(true);
 
 			}).execute();
@@ -382,17 +216,17 @@ var UIFormManager=(function(){
 
 		},
 		clearWarnings:function(){
-			
-			
+
+
 			var me=this;
 			me.getFormNames().forEach(function(name){
 				var area=me.getFormConfiguration(name).warningsArea;
 				Array.prototype.slice.call(area.childNodes,0).forEach(function(c){
 					area.removeChild(c);
 				});
-				
+
 			});
-			
+
 			me._warnings={};
 
 		},
@@ -404,7 +238,7 @@ var UIFormManager=(function(){
 			}
 
 			var key=name+'.'+title;
-			
+
 			var area=me.getFormConfiguration(name).warningsArea;
 
 
@@ -431,21 +265,14 @@ var UIFormManager=(function(){
 
 		},
 
-		hideListContainer:function(){
-			var me=this;
-			me.getListContainer().removeClass("enabled");
-		},
-		showListContainer:function(){
-			var me=this;
-			me.getListContainer().addClass("enabled");
-		},
+	
 		hideForms:function(){
 
 			var me=this;
 
-			
+
 			me.getFormNames().forEach(function(name){
-				
+
 				var container=me.getFormContainer(name);
 				if(container.hasClass('enabled')){
 					var form=me.getForm(name);
@@ -454,17 +281,16 @@ var UIFormManager=(function(){
 					me.setEditable(form);
 					me.fireEvent("hideForm."+name);
 				}
-				
-				
-				
+
+
+
 			});
 
-			
+
 
 			me.clearWarnings();
-			me.showListContainer();
 			me.fireEvent("hideForms");
-			
+
 
 		},
 
@@ -472,15 +298,15 @@ var UIFormManager=(function(){
 			var me=this;
 
 			me.getFormContainer(name).addClass("enabled");
-			me.hideListContainer();
+
 
 			me.fireEvent("showForm");
 			me.fireEvent("showForm."+name);
 
 		},
-		
 
-	
+
+
 
 		setReadOnly:function(form){
 			var me=this;
