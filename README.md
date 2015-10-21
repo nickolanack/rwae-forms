@@ -38,14 +38,17 @@ Forms Page: user.panel.php
 								|-section.admin
 								|-form.scheduled.job
 								|-...
+						|-submit/cancel buttons
 				|-addendum.workspace
 						|-...
-				|-...
+						|-submit/cancel buttons
+				|-... (quarterly)
 				|
 				|-UIFormManager.js
 				|-script:
-					-configure UIFormManager with the current forms on the page,
-					 set the default values for each form
+					-configure UIFormManager with the current forms on the page, set the default values for each form, 
+					 and other params like dom elements for sumbit buttons all will be managed by UIFormManager.
+					 UIFormManager handles display and populating the forms and extracting and submiting form data
 				|
 				|-UsersForms.js : TODO this is currently part of UIFormManager.js but it should be extracted
 				|-script:
