@@ -257,19 +257,26 @@ IncludeJSBlock(
 
 		displayUsersFormsList(ajaxUrl, UIFormManager, $("list-schedule-d"));
 
-        UIFormManager.addEvent("showForm",function(){
-
-        });
-
+        /**
+         * Users Form List Display Behavior
+         */
+        // hide users list of completed forms whenever any form becomes visible
         UIFormManager.addEvent("showForm",function(){
             $("list-schedule-d").removeClass("enabled");
         });
 
+        // show users list of completed forms whenever all forms are hidden
         UIFormManager.addEvent("hideForms",function(){
             $("list-schedule-d").addClass("enabled");
         });
 
+        // refresh users list of forms whenever a form is edited or created
         UIFormManager.addEvent("saveForm",function(){
+            displayUsersFormsList(ajaxUrl, UIFormManager, $("list-schedule-d"));
+        });
+
+        // refresh users list of forms whenever a form is edited or created
+        UIFormManager.addEvent("deleteForm",function(){
             displayUsersFormsList(ajaxUrl, UIFormManager, $("list-schedule-d"));
         });
 
