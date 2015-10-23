@@ -29,8 +29,6 @@ Scaffold('cpanel.button',
 Scaffold('form.quarterly', array());
 ?><div></div><?php
 
-IncludeJs(dirname(__DIR__) . DS . 'js' . DS . 'UIFormManager.js');
-
 Scaffold('cpanel.button', 
     array(
         'title' => 'Submit',

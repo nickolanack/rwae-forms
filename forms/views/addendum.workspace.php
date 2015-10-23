@@ -1,7 +1,7 @@
 <div id="addendum-area" class="form-container">
 	<div id="addendum-warnings-area"></div>
 <?php
-Scaffold('cpanel.button', 
+Scaffold('cpanel.button',
     array(
         'title' => 'Submit',
         'className' => 'btn btn-primary pull-right submit-btn',
@@ -14,7 +14,7 @@ Scaffold('cpanel.button',
 
         '
     ));
-Scaffold('cpanel.button', 
+Scaffold('cpanel.button',
     array(
         'title' => 'Cancel',
         'className' => 'btn btn-danger pull-right cancel-btn',
@@ -29,9 +29,9 @@ Scaffold('cpanel.button',
 Scaffold('form.addendum', array());
 ?><div></div><?php
 
-IncludeJs(dirname(__DIR__) . DS . 'js' . DS . 'UIFormManager.js');
 
-Scaffold('cpanel.button', 
+
+Scaffold('cpanel.button',
     array(
         'title' => 'Submit',
         'className' => 'btn btn-primary pull-right submit-btn',

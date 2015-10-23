@@ -379,3 +379,39 @@ span.data-agency-name, span.data-participant-first-name {
     z-index: -1;
 	
 }
+
+
+.subforms-list {
+    margin: 20px 50px;
+}
+
+.subforms-list .data-agency-name, .subforms-list .data-participant-first-name {
+    display: none;
+}
+
+.subforms-list>li {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px 10px;
+    border-radius: 14px;
+}
+
+.subforms-list>li>span {
+    padding-right: 5px;
+}
+
+.subform-quarterly {
+    background-color: rgba(255, 242, 0, 0.4);
+}
+
+.subform-addendum{
+    background-color: rgba(235, 0, 139, 0.2);
+}
+
+
+.subforms-list span.btn, .subforms-list span.btn:hover {
+    background-color: transparent;
+    box-shadow: none;
+    height: 9px;
+    background-position: center;
+}
