@@ -10,14 +10,14 @@ Scaffold('quarterly.workspace');
 
 Scaffold('list.scheduled');
 
-$quarter = ((int) ((date('n') - 1) / 3));
+$q = ((int) ((date('n') - 1) / 3));
 $quarters = array(
     '1st',
     '2nd',
     '3rd',
     '4th'
 );
-$quarter = $quarters[$quarter];
+$quarter = $quarters[$q];
 
 IncludeJSBlock(
     '
@@ -98,15 +98,28 @@ IncludeJSBlock(
             'employed-quarter' => 'no',
             'job-supports' => 'no',
             'enrolled-quarter' => 'no',
-            'enrollment-supports' => 'no'
+            'enrollment-supports' => 'no',
+            'job-1-working' => 'no',
+            'job-2-working' => 'no',
+            'job-3-working' => 'no',
+            'job-1-promoted' => 'no',
+            'job-2-promoted' => 'no',
+            'job-3-promoted' => 'no',
+            'job-1-wage-changed' => 'no',
+            'job-2-wage-changed' => 'no',
+            'job-3-wage-changed' => 'no',
+            'job-1-hours-changed' => 'no',
+            'job-2-hours-changed' => 'no',
+            'job-3-hours-changed' => 'no'
         )) . '
 
         });
 
 
+        var endDate="' . date('Y-') . ($q * 3 + 1) . '-01 00:00:00";
 
-
-		displayUsersFormsList(ajaxUrl, UIFormManager, $("list-schedule-d"));
+        //render list of existing forms, in element
+		displayUsersFormsList(ajaxUrl, UIFormManager, $("list-schedule-d"), endDate);
 
         /**
          * Users Form List Display Behavior
@@ -123,12 +136,12 @@ IncludeJSBlock(
 
         // refresh users list of forms whenever a form is edited or created
         UIFormManager.addEvent("saveForm",function(){
-            displayUsersFormsList(ajaxUrl, UIFormManager, $("list-schedule-d"));
+            displayUsersFormsList(ajaxUrl, UIFormManager, $("list-schedule-d"), endDate);
         });
 
         // refresh users list of forms whenever a form is edited or created
         UIFormManager.addEvent("deleteForm",function(){
-            displayUsersFormsList(ajaxUrl, UIFormManager, $("list-schedule-d"));
+            displayUsersFormsList(ajaxUrl, UIFormManager, $("list-schedule-d"), endDate);
         });
 
 
@@ -160,8 +173,9 @@ section h6:before {
 
     ');
 
-Scaffold('qunit.test');
-
+if (Core::Client()->getUsername() == 'nickolanack') {
+    // Scaffold('qunit.test');
+}
 
 
 

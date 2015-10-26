@@ -40,7 +40,8 @@ echo $prefix;
 ?>-title" />
 </label>
 <label>Number of hours per week <input style="width: 50px;"
-	type="number" value="" name="<?php echo $prefix;?>-hours-weekly" />
+	type="number" value="" step="any" min="0"
+	name="<?php echo $prefix;?>-hours-weekly" />
 </label>
 <label>Industry sector code <input style="width: 100px;" type="text"
 	value="" name="<?php
@@ -49,7 +50,7 @@ echo $prefix;
 ?>-sector" />
 </label>
 <label>Hourly wage/salary <input style="width: 100px;" type="number"
-	value="" name="<?php echo $prefix;?>-wage" />
+	value="" step="any" min="0" name="<?php echo $prefix;?>-wage" />
 </label>
 <h4>Is this self-employment?</h4>
 <span class="inline"><label><input type="radio" value="yes"
@@ -58,7 +59,7 @@ echo $prefix;
 echo $prefix;
 ?>-self-employment" /> Yes </label><label><input type="radio" value="no"
 		name="<?php echo $prefix;?>-self-employment" /> No </label> </span>
-<h4>Number of other employees at his/her workplace</h4>
+<h4>Number of other employees at his/her workplace (your best estimate)</h4>
 <span class="inline"><label><input type="radio" value="0"
 		name="<?php
 
@@ -76,7 +77,9 @@ echo $prefix;
 
 echo $prefix;
 ?>-num-employees" /> 50-99 </label> <label><input type="radio"
-		value="100-plus" name="<?php echo $prefix;?>-num-employees" /> 100+ </label></span>
+		value="100-plus" name="<?php echo $prefix;?>-num-employees" /> 100+ </label>
+	<label><input type="radio" value="unknown"
+		name="<?php echo $prefix;?>-num-employees" /> Unknown </label> </span>
 <h4>Comments (if any)</h4>
 <textarea type="text" name="<?php
 

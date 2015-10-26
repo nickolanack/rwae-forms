@@ -345,8 +345,10 @@ var UIFormManager=(function(){
 			var me=this;
 			Array.prototype.slice.call(form, 0).forEach(function(i){
 
-				i.removeAttribute('disabled');
-
+				
+				if(!i.getAttribute('data-force-disabled')){
+					i.removeAttribute('disabled');
+				}
 
 			});
 

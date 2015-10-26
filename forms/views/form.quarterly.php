@@ -20,11 +20,11 @@
 
 	<h4>Employment</h4>
 	<section class="c">
-		<h6>Here I should be able to detect if they are employed - and if not
-			indicate the need for an addendum</h6>
+		<!-- 		<h6>Here I should be able to detect if they are employed - and if not -->
+		<!-- 			indicate the need for an addendum</h6> -->
 		<h4>Any changes in this person’s employment through RWA?</h4>
 		<?php
-Scaffold('form.switch', 
+Scaffold('form.switch',
     array(
         'name' => 'employed-quarter',
         'className' => 'jobs qtr-jobs two three',
@@ -33,7 +33,7 @@ Scaffold('form.switch',
 			changes in this person’s employment though RWA since their Schedule D
 			or last Quarterly Update (or Addendum).</h4>
 		<hr />
-		<h6>should detect job count</h6>
+		<!-- 		<h6>should detect job count</h6> -->
 		<?php
             Scaffold('form.quarterly.job');
         }
@@ -43,12 +43,12 @@ Scaffold('form.switch',
 
 
 		<hr />
-		<h6>same as note abov,e</h6>
+		<!-- 		<h6>same as note abov,e</h6> -->
 		<h4>Any changes in this person’s need for or use of supports for
 			employment from RWA?</h4>
 
 			<?php
-Scaffold('form.switch', 
+Scaffold('form.switch',
     array(
         'name' => 'job-supports',
         'className' => 'job-supports two three',
@@ -59,14 +59,13 @@ Scaffold('form.switch',
 			employment since their Schedule D or last Quarterly Update (or
 			Addendum).</h4>
 		<hr />
-		<span class="jobs qtr-jobs" style="">
-			<h6>should detect support count via job count</h6>
+		<span class="jobs qtr-jobs" style=""> <!-- 			<h6>should detect support count via job count</h6> -->
 				<?php
-            
+
             Scaffold('form.scheduled.job.support', array(
                 'class' => 'qtr-job'
             ));
-            
+
             ?>
 
 
@@ -89,14 +88,14 @@ Scaffold('form.switch',
 	<h4>Post Secondary Education</h4>
 	<section class="a">
 
-		<h6>Here I should be able to detect if they are enrolled - and if not
-			indicate the need for an addendum</h6>
+		<!-- 		<h6>Here I should be able to detect if they are enrolled - and if not -->
+		<!-- 			indicate the need for an addendum</h6> -->
 		<h4>Was this person enrolled in post-secondary education as a result
 			of RWA?</h4>
 
 
 						<?php
-    Scaffold('form.switch', 
+    Scaffold('form.switch',
         array(
             'name' => 'enrolled-quarter',
             'callback' => function () {
@@ -138,13 +137,13 @@ Scaffold('form.switch',
     ?>
 
 			<hr />
-		<h6>same as above</h6>
+		<!-- 		<h6>same as above</h6> -->
 		<h4>Any changes in this person’s need for or use of supports for post
 			secondary education from RWA?</h4>
 
 
 			<?php
-Scaffold('form.switch', 
+Scaffold('form.switch',
     array(
         'name' => 'enrollment-supports',
         'callback' => function () {

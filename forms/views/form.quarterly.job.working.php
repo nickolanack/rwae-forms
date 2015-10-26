@@ -30,7 +30,7 @@ echo $prefix;
 ?>-wage-changed" /> yes </label> <label><input type="radio" value="no"
 		name="<?php echo $prefix;?>-wage-changed" /> no </label></span>
 <label>New Hourly wage/salary <input style="width: 100px;" type="number"
-	value="no" name="<?php echo $prefix;?>-wage" /></label>
+	step="any" min="0" value="no" name="<?php echo $prefix;?>-wage" /></label>
 
 <h4>Any change in the number of hours of work per week?</h4>
 <span class="inline"><label><input type="radio" value="yes-increase"
@@ -42,4 +42,5 @@ echo $prefix;
 		decrease </label> <label><input type="radio" value="no"
 		name="<?php echo $prefix;?>-hours-changed" /> no </label></span>
 <label>New number of hours per week <input style="width: 100px;"
-	type="number" value="" name="<?php echo $prefix;?>-hours-weekly" /></label>
+	type="number" value="" step="any" min="0"
+	name="<?php echo $prefix;?>-hours-weekly" /></label>

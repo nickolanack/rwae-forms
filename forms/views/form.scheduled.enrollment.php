@@ -1,7 +1,7 @@
 <span class="group"><span class="left"><label>Start date <input
 			type="date" value="" name="enroll-start-date" /></label> <label>Expected
 			duration of program <input style="width: 150px;" type="number"
-			value="" name="enroll-duration-months" />
+			step="any" min="0" value="" name="enroll-duration-months" />
 	</label> <label><input type="checkbox" value="true"
 			name="enroll-less-month" /> (Check if less than 1 month)</label> </span><span
 	class="right">

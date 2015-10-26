@@ -31,7 +31,22 @@ IncludeCSSBlock(
 
 .subforms-list .btn-primary {
     background-image:url("' .
-         UrlFrom(Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'xsm_edit.png') . '?tint=rgb(0,0,0)");
+         UrlFrom(Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'xsm_edit.png') .
+         '?tint=rgb(0,0,0)");
+}
+
+.scheduled-item .btn-remove {
+    background-image:url("' .
+         UrlFrom(Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'xsm_delete.png') .
+         '?tint=rgb(235, 0, 139)");
+    background-color: transparent;
+    box-shadow: none;
 
 }
+
+.subform-expected-quarterly>.btn-primary {
+    background-image: url("' .
+         UrlFrom(Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'xsm_plus.png') . '?tint=rgb(0,0,0)");
+}
+
 ');

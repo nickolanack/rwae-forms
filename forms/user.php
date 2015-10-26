@@ -1,5 +1,5 @@
 <?php
-if (!defined('_JEXEC')) {
+if (! defined('_JEXEC')) {
     define('_JOOMLA', 1);
 }
 
@@ -185,7 +185,7 @@ if (UrlVar('task') == 'create-new-scheduled') {
     
     $countAddendums = 0;
     $json = json_decode(UrlVar('json'));
-    if (!key_exists('participant-id', $json)) {
+    if (! key_exists('participant-id', $json)) {
         throw new Exception('Expected $json->{\'participant-id\'}');
     }
     $code = $json->{'participant-id'};
@@ -250,6 +250,51 @@ if (UrlVar('task') == 'create-new-scheduled') {
         ));
     
     echo ']},' . "\n" . ' "success":true}';
+    
+    return;
+} elseif (UrlVar('task') == 'delete-scheduled') {
+    
+    include_once __DIR__ . DS . 'database' . DS . 'ScheduleDatabase.php';
+    $json = json_decode(UrlVar('json'));
+    if (! key_exists('id', $json)) {}
+    $id = (int) $json->id;
+    
+    $db = ScheduleDatabase::GetInstance();
+    $s = $db->getSchedule($id);
+    if (empty($s)) {}
+    $scheduled = $s[0];
+    
+    $db->deleteSchedule($id);
+    $db->execute('DELETE FROM ' . $db->table('Addendum') . ' WHERE code=' . $scheduled->code);
+    $db->execute('DELETE FROM ' . $db->table('Quarterly') . ' WHERE code=' . $scheduled->code);
+    
+    echo '{"success":true}';
+    
+    return;
+} elseif (UrlVar('task') == 'delete-quarterly') {
+    
+    include_once __DIR__ . DS . 'database' . DS . 'ScheduleDatabase.php';
+    $json = json_decode(UrlVar('json'));
+    if (! key_exists('id', $json)) {}
+    $id = (int) $json->id;
+    
+    $db = ScheduleDatabase::GetInstance();
+    $db->deleteQuarterly($id);
+    
+    echo '{"success":true}';
+    
+    return;
+} elseif (UrlVar('task') == 'delete-addendum') {
+    
+    include_once __DIR__ . DS . 'database' . DS . 'ScheduleDatabase.php';
+    $json = json_decode(UrlVar('json'));
+    if (! key_exists('id', $json)) {}
+    $id = (int) $json->id;
+    
+    $db = ScheduleDatabase::GetInstance();
+    $db->deleteAddendum($id);
+    
+    echo '{"success":true}';
     
     return;
 }
