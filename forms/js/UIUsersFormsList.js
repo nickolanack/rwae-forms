@@ -2,9 +2,46 @@
  *	Displays the list of existing user forms, and add button behaviors for UIFormManager
  */
 
-var displayUsersFormsList=function(url, formManager, listContainerEl, endDate){
+
+var UIUsersFormsList=new Class({
+	initialize:function(config){
+		
+		var me=this;
+		
+		
+		 //render list of existing forms, in element
+		displayUsersFormsList(config);
+
+      
+
+        // refresh users list of forms whenever a form is edited or created
+        UIFormManager.addEvent("saveForm",function(){
+            displayUsersFormsList(config);
+        });
+
+        // refresh users list of forms whenever a form is edited or created
+        UIFormManager.addEvent("deleteForm",function(){
+            displayUsersFormsList(config);
+        });
+		
+	}
+	
+	
+	
+});
 
 
+var displayUsersFormsList=function(options){
+
+	var config=Object.append({
+		title:'Your Previously Completed Forms',
+		showCreateButtons:true
+	}, options);
+
+	var url=config.url;
+	var formManager=config.formManager;
+	var listContainerEl=config.element;
+	var endDate=config.endDate;
 
 	(new AjaxControlQuery(
 			url,
@@ -14,7 +51,7 @@ var displayUsersFormsList=function(url, formManager, listContainerEl, endDate){
 
 		if(response.success&&response.results.length){
 
-			listContainerEl.innerHTML="<h3>Your Previously Completed Forms</h3>"; //also clears previous content
+			listContainerEl.innerHTML="<h3>"+config.title+"</h3>"; //also clears previous content
 			var section=new Element("section");
 			listContainerEl.appendChild(section);
 
@@ -32,29 +69,52 @@ var displayUsersFormsList=function(url, formManager, listContainerEl, endDate){
 
 				dateFn(data.submitDate);
 
-				var edit=new Element("span",{"class":"btn btn-primary"});
-				var addendum=new Element("span",{"class":"btn btn-danger"});
-				var quarterly=new Element("span",{"class":"btn btn-success"});
 				
 				
-				var remove=new Element("span",{"class":"btn btn-remove"});
-
+				
+				
 				var item=section.appendChild(new Element("div", {
 					"class":"scheduled-item",
 					html:data.html
 				}));
 
+				if(data.user){
+					item.appendChild(new Element('span',{"class":'user-details',html:'Authored by: '+data.user.name+' <span class="user-id">'+data.user.id+'</span>'}))
+				}
+				
+				
+				var expand=new Element("span",{"class":"btn btn-activate"});
+				item.appendChild(expand);
+				expand.addEvent('click',function(){
+					if(item.hasClass('activated')){
+						item.removeClass('activated');
+						expand.removeClass('active');
+					}else{
+						item.addClass('activated');
+						expand.addClass('active');
+					}
+					
+				});
+				
+				var edit=new Element("span",{"class":"btn btn-primary"});
+				new UIPopover(edit, {description:"Edit Schedule D",anchor:UIPopover.AnchorTo("top")});
 				item.appendChild(edit);
-				item.appendChild(quarterly);
-				item.appendChild(addendum);
+				
+				if(config.showCreateButtons){
+					var addendum=new Element("span",{"class":"btn btn-danger"});
+					var quarterly=new Element("span",{"class":"btn btn-success"});
+					new UIPopover(addendum, {description:"Add Addendum",anchor:UIPopover.AnchorTo("top")});
+					new UIPopover(quarterly, {description:"Add Quarterly",anchor:UIPopover.AnchorTo("top")});
+					item.appendChild(quarterly);
+					item.appendChild(addendum);
+				}
+				
+				var remove=new Element("span",{"class":"btn btn-remove"});
+				new UIPopover(remove, {description:"Delete Schedule D",anchor:UIPopover.AnchorTo("top")});
 				item.appendChild(remove);
 				
 
 
-				new UIPopover(edit, {description:"Edit Schedule D",anchor:UIPopover.AnchorTo("top")});
-				new UIPopover(addendum, {description:"Add Addendum",anchor:UIPopover.AnchorTo("top")});
-				new UIPopover(quarterly, {description:"Add Quarterly",anchor:UIPopover.AnchorTo("top")});
-				new UIPopover(remove, {description:"Delete Schedule D",anchor:UIPopover.AnchorTo("top")});
 
 				edit.addEvent("click",function(){
 
@@ -77,37 +137,38 @@ var displayUsersFormsList=function(url, formManager, listContainerEl, endDate){
 
 				});
 
-				addendum.addEvent("click",function(){
-
-					formManager.loadFormData(formManager.getForm("addendum"), Object.append(
-							data.formData, //should load all data that matches.
-							/*formManager.getFieldsFrom(data.formData,[
-
-									   "participant-first-name",
-									   "participant-id",
-
-									   "agency-name",
-									   "agency-contact-person",
-									   "agency-contact-phone",
-									   "agency-contact-email"
-
-									   ]), */
-							formManager.getFormDefaultData("addendum")));
-					formManager.showForm("addendum");
-					/*
-					 * 
-					var message=new Element("span", {html:"TODO: does not submit - needs backend work"});
-					message.appendChild(new Element("span",{"class":"btn btn-danger", html:"close", events:{
-						click:function(){
-							formManager.clearWarnings();
-						}
-					}}));
-					formManager.setWarning("addendum","update", message);
-					*
-					*/
-
-				});
-
+				if(config.showCreateButtons){
+					addendum.addEvent("click",function(){
+	
+						formManager.loadFormData(formManager.getForm("addendum"), Object.append(
+								data.formData, //should load all data that matches.
+								/*formManager.getFieldsFrom(data.formData,[
+	
+										   "participant-first-name",
+										   "participant-id",
+	
+										   "agency-name",
+										   "agency-contact-person",
+										   "agency-contact-phone",
+										   "agency-contact-email"
+	
+										   ]), */
+								formManager.getFormDefaultData("addendum")));
+						formManager.showForm("addendum");
+						/*
+						 * 
+						var message=new Element("span", {html:"TODO: does not submit - needs backend work"});
+						message.appendChild(new Element("span",{"class":"btn btn-danger", html:"close", events:{
+							click:function(){
+								formManager.clearWarnings();
+							}
+						}}));
+						formManager.setWarning("addendum","update", message);
+						*
+						*/
+	
+					});
+				}
 				
 				var displayNewQuarterlyFromData=function(data, override){
 					
@@ -137,24 +198,25 @@ var displayUsersFormsList=function(url, formManager, listContainerEl, endDate){
 					
 				};
 				
-
-				quarterly.addEvent("click",function(){
-
-					displayNewQuarterlyFromData(data);
-
-					/*
-					 * 
-					var message=new Element("span", {html:"TODO: not finished - it is basically just addendum-form right now"});
-					message.appendChild(new Element("span",{"class":"btn btn-danger", html:"close", events:{
-						click:function(){
-							formManager.clearWarnings();
-						}
-					}}));
-					formManager.setWarning("quarterly","update", message);
-					*
-					*/
-
-				});
+				if(config.showCreateButtons){
+					quarterly.addEvent("click",function(){
+	
+						displayNewQuarterlyFromData(data);
+	
+						/*
+						 * 
+						var message=new Element("span", {html:"TODO: not finished - it is basically just addendum-form right now"});
+						message.appendChild(new Element("span",{"class":"btn btn-danger", html:"close", events:{
+							click:function(){
+								formManager.clearWarnings();
+							}
+						}}));
+						formManager.setWarning("quarterly","update", message);
+						*
+						*/
+	
+					});
+				}
 				
 				
 				remove.addEvent('click',function(){
@@ -169,7 +231,7 @@ var displayUsersFormsList=function(url, formManager, listContainerEl, endDate){
 									{id:data.id}
 							)).addEvent("success",function(response){
 								
-								displayUsersFormsList(url, formManager, listContainerEl, endDate);
+								displayUsersFormsList(config);
 								
 							}).execute();
 
@@ -247,15 +309,16 @@ var displayUsersFormsList=function(url, formManager, listContainerEl, endDate){
 								
 								
 								var li=new Element('li', {"class":"subform-expected-quarterly", html:expected.html});
-								var insert=new Element("span",{"class":"btn btn-primary"});
-								li.appendChild(insert);
 								
-								
-								new UIPopover(insert, {description:"Insert Quarterly", anchor:UIPopover.AnchorTo("top")});
-								
-								insert.addEvent('click',function(){	
-									displayNewQuarterlyFromData(data, expected.formData);
-								});
+								if(config.showCreateButtons){
+									var insert=new Element("span",{"class":"btn btn-primary"});
+									new UIPopover(insert, {description:"Insert Quarterly", anchor:UIPopover.AnchorTo("top")});
+									li.appendChild(insert);
+									
+									insert.addEvent('click',function(){	
+										displayNewQuarterlyFromData(data, expected.formData);
+									});
+								}
 								
 								subUl.appendChild(li);
 								
@@ -371,7 +434,7 @@ var displayUsersFormsList=function(url, formManager, listContainerEl, endDate){
 													{id:entry.id}
 											)).addEvent("success",function(response){
 												
-												displayUsersFormsList(url, formManager, listContainerEl, endDate);
+												displayUsersFormsList(config);
 												
 											}).execute();
 

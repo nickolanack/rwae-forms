@@ -33,11 +33,11 @@ span.cpanel_button_image {
 	margin: 5px;
 }
 
-.form-container, #list-schedule-d {
+.form-container, #list-schedule-d, .form-container, #list-users, .form-container, #list-utilities {
 	display: none;
 }
 
-.form-container.enabled, #list-schedule-d.enabled {
+.form-container.enabled, #list-schedule-d.enabled, #list-users.enabled, #list-utilities.enabled {
 	display: inline-block;
 	width: 100%;
 }
@@ -50,7 +50,7 @@ span.cpanel_button_image {
 	margin-top: 100px;
 }
 
-.form-container section, #list-schedule-d section {
+.form-container section, #list-schedule-d section, .form-container section, #list-users section, .form-container section, #list-utilities section {
 	background-color: rgba(0, 0, 0, 0.05);
 	border-radius: 4px;
 	padding: 20px;
@@ -358,10 +358,17 @@ span.data-agency-name, span.data-participant-first-name {
 	background-position: center;
 }
 
-.scheduled-item>.btn-primary {
+.scheduled-item>.btn-primary, .scheduled-item>.btn-activate {
     float: left;
 }
-
+.scheduled-item>.btn-activate {
+	
+    background-color: transparent;
+}
+.scheduled-item>.btn-activate.active {
+	
+	
+}
 
 .popover>.tip, .bubble {
     background-color: white;
@@ -390,10 +397,22 @@ span.data-agency-name, span.data-participant-first-name {
 
 .subforms-list {
     margin: 20px 50px;
+    display:none;
+}
+.activated>.subforms-list {
+    display: block;
 }
 
 .subforms-list .data-agency-name, .subforms-list .data-participant-first-name {
     display: none;
+}
+
+span.user-details {
+    color: slategray;
+}
+
+span.user-id {
+    opacity: 0.2;
 }
 
 .subforms-list>li {

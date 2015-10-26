@@ -43,11 +43,40 @@ echo $prefix;
 	type="number" value="" step="any" min="0"
 	name="<?php echo $prefix;?>-hours-weekly" />
 </label>
-<label>Industry sector code <input style="width: 100px;" type="text"
+<label>Industry sector code <!--  <input style="width: 100px;" type="text"
 	value="" name="<?php
 
 echo $prefix;
-?>-sector" />
+?>-sector" />--> <select name="<?php
+
+echo $prefix;
+?>-sector" value="">
+		<option value="ADMIN">Administration</option>
+		<option value="AGRIC">Agriculture/Forestry</option>
+		<option value="ARTS">Arts/Entertainment/Recreation</option>
+		<option value="CONST">Construction</option>
+		<option value="EDUC">Education & Early Learning</option>
+		<option value="FINA">Finance & Insurance</option>
+		<option value="FOOD">Food Services</option>
+		<option value="HLTH">Health Care & Social Assistance</option>
+		<option value="IT">Information & Communication Technology</option>
+		<option value="CULT">Information & Culture</option>
+		<option value="MGMT">Management</option>
+		<option value="MANU">Manufacturing</option>
+		<option value="NTRL">Natural Resources</option>
+		<option value="PROF">Professional, Science & Tech Services</option>
+		<option value="PUBL">Public Administration</option>
+		<option value="REAL">Real Estate</option>
+		<option value="RETA">Retail</option>
+		<option value="TRANS">Transportation</option>
+		<option value="TRVL">Travel & Tourism</option>
+		<option value="UTIL">Utilities</option>
+		<option value="WARE">Warehousing</option>
+		<option value="OTHER">Other services (repair, laundry, religious)</option>
+
+
+</select>
+
 </label>
 <label>Hourly wage/salary <input style="width: 100px;" type="number"
 	value="" step="any" min="0" name="<?php echo $prefix;?>-wage" />

@@ -33,7 +33,7 @@ var UIFormManager=(function(){
 
 		},
 
-		getFormConfiguration(name){
+		getFormConfiguration:function(name){
 			var me=this;
 			if((typeof me._forms[name])=="undefined"){
 				throw new Error("There is no form named: "+name);

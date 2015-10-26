@@ -1,14 +1,57 @@
 <?php
 Behavior('ajax');
 
-Scaffold('button.create.scheduled');
+?><link rel="stylesheet"
+	href="<?php echo UrlFrom(dirname(__DIR__) . DS . 'css' . DS . 'forms.css');?>"
+	type="text/css"><?php
+
+$sbtn = Scaffold('cpanel.button', 
+    array(
+        'title' => 'Show All Schedule D Forms',
+        'className' => 'btn btn-primary big',
+        'icon' => Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_table.png?tint=rgb(255,255,255)',
+        'script' => '
+            this.removeClass("btn-primary");
+		    this.setAttribute("disabled", true);
+        '
+    ));
+
+Scaffold('cpanel.button', 
+    array(
+        'title' => 'Show All Schedule D Authors',
+        'className' => 'btn btn-danger big',
+        'icon' => Core::AssetsDir() . DS . 'Tile Icons' . DS . 'profile.png?tint=rgb(255,255,255)',
+        'script' => '
+
+            ' . $sbtn . '.addClass("btn-primary");
+		    ' . $sbtn . '.removeAttribute("disabled");
+
+        '
+    ));
+
+Scaffold('cpanel.button', 
+    array(
+        'title' => 'Generate Reports',
+        'className' => 'btn btn-success big',
+        'icon' => Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_clipboard.png?tint=rgb(255,255,255)',
+        'script' => '
+
+            ' . $sbtn . '.addClass("btn-primary");
+		    ' . $sbtn . '.removeAttribute("disabled");
+
+        '
+    ));
+
 IncludeJS(dirname(__DIR__) . DS . 'js' . DS . 'UIFormManager.js');
+IncludeJS(dirname(__DIR__) . DS . 'js' . DS . 'UIUserList.js');
 IncludeJS(dirname(__DIR__) . DS . 'js' . DS . 'UIUsersFormsList.js');
 Scaffold('scheduled.workspace');
 Scaffold('addendum.workspace');
 Scaffold('quarterly.workspace');
 
 Scaffold('list.scheduled');
+Scaffold('list.users');
+Scaffold('list.utilities');
 
 $q = ((int) ((date('n') - 1) / 3));
 $quarters = array(
@@ -23,6 +66,13 @@ IncludeJSBlock(
     '
 
     window.addEvent("load",function(){
+
+        ' . $sbtn . '.removeClass("btn-primary");
+		' . $sbtn . '.setAttribute("disabled", true);
+
+
+
+
 
         var ajaxUrl=' . json_encode($params['url']) . ';
 
@@ -116,13 +166,14 @@ IncludeJSBlock(
         });
 
 
-         new UIUsersFormsList({
+        new UIUsersFormsList({
             url:ajaxUrl,
             formManager:UIFormManager,
             element:$("list-schedule-d"),
-            endDate:"' . date('Y-') . ($q * 3 + 1) . '-01 00:00:00"
+            endDate:"' . date('Y-') . ($q * 3 + 1) . '-01 00:00:00",
+            title:"All Previously Completed Forms (for all users)"
+            //showCreateButtons:false
         });
-
 
         /**
          * Users Form List Display Behavior
@@ -137,37 +188,17 @@ IncludeJSBlock(
             $("list-schedule-d").addClass("enabled");
         });
 
+
+
+
+        new UIUserList({
+            url:ajaxUrl,
+            formManager:UIFormManager,
+            element:$("list-users"),
+        });
+
+
+
     });
 
 ');
-
-IncludeCSS(dirname(__DIR__) . DS . 'css' . DS . 'forms.css');
-
-IncludeCSSBlock(
-    '
-
-section h6 {
-    background-color: #F8EAF2;
-    line-height: 20px;
-    padding: 5px;
-    width: 50%;
-    border-radius: 4px;
-    margin: 5px;
-    color: rgb(235, 0, 139);
-    border: 1px solid rgba(235, 0, 139, 0.2);
-    position: relative;
-    left: -100px;
-}
-
-section h6:before {
-    content: "Temporary Note: ";
-}
-
-    ');
-
-if (Core::Client()->getUsername() == 'nickolanack') {
-    // Scaffold('qunit.test');
-}
-
-
-
