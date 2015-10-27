@@ -21,7 +21,7 @@ $authButton = Scaffold('cpanel.button',
 
 $expButton = Scaffold('cpanel.button', 
     array(
-        'title' => 'Generate Reports',
+        'title' => 'Manage Data',
         'className' => 'btn btn-success big',
         'icon' => Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_clipboard.png?tint=rgb(255,255,255)'
     ));
@@ -32,6 +32,7 @@ IncludeJS(dirname(__DIR__) . DS . 'js' . DS . 'UIUsersFormsList.js');
 Scaffold('scheduled.workspace');
 Scaffold('addendum.workspace');
 Scaffold('quarterly.workspace');
+Scaffold('user.workspace');
 
 Scaffold('list.scheduled');
 Scaffold('list.users');
@@ -70,7 +71,7 @@ IncludeJSBlock(
             defaultFormData:' . json_encode(
         array(
             // the default values when creating a schedule d
-            'id' => -1,
+            'id' => - 1,
             'admin-year' => date('Y'),
             'admin-quarter' => $quarter,
             'employed-quarter' => 'no',
@@ -95,7 +96,7 @@ IncludeJSBlock(
             defaultFormData:' . json_encode(
         array(
             // the default values when creating a schedule d
-            'id' => -1,
+            'id' => - 1,
             'admin-year' => date('Y'),
             'admin-quarter' => $quarter,
             'employed-quarter' => 'no',
@@ -119,7 +120,7 @@ IncludeJSBlock(
             defaultFormData:' . json_encode(
         array(
             // the default values when creating a schedule d
-            'id' => -1,
+            'id' => - 1,
             'admin-year' => date('Y'),
             'admin-quarter' => $quarter,
             'employed-quarter' => 'no',
@@ -139,6 +140,23 @@ IncludeJSBlock(
             'job-2-hours-changed' => 'no',
             'job-3-hours-changed' => 'no'
         )) . '
+
+        });
+
+
+        UIFormManager.addForm({
+            name:"user",
+            ajaxUrl:null,
+            ajaxTask:"save-user",
+            container:$("user-area"),
+            form:$$("#user-area>form")[0],
+            submitButtons:$$("#user-area .submit-btn"),
+            cancelButtons:$$("#user-area .cancel-btn"),
+            additionalFormButtons:$$("#user-area>form .btn"),
+            warningsArea:$("user-warnings-area"),
+            defaultFormData:' . json_encode(array())
+
+     . '
 
         });
 

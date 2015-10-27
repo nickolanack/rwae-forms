@@ -5,15 +5,17 @@
 		<?php
 Scaffold('cpanel.button', 
     array(
-        'title' => 'Export as Spreadsheet',
-        'className' => 'btn btn-primary big',
-        'icon' => Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_table.png?tint=rgb(255,255,255)',
+        'title' => 'Export Spreadsheets',
+        'className' => 'btn btn-danger',
+        'icon' => Core::AssetsDir() . DS . 'Control Panel Icons' . DS . 'download.png?tint=rgb(255,255,255)',
         'script' => '
 
-           window.open("' .
-             UrlFrom(dirname(__DIR__) . DS . 'admin.php') . '?task=export", "_blank");
-
-
+            window.open("' .
+             UrlFrom(dirname(__DIR__) . DS . 'admin.php') . '?task=export-scheduled", "_blank");
+            window.open("' .
+             UrlFrom(dirname(__DIR__) . DS . 'admin.php') . '?task=export-addendum", "_blank");
+            window.open("' .
+             UrlFrom(dirname(__DIR__) . DS . 'admin.php') . '?task=export-quarterly", "_blank");
         '
     ));
 

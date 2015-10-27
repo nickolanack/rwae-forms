@@ -2,7 +2,7 @@
 error_reporting(E_ALL ^ E_NOTICE); // report everything except notices
 ini_set('display_errors', 1);
 
-if (!defined('_JEXEC')) {
+if (! defined('_JEXEC')) {
     define('_JOOMLA', 1);
 }
 
@@ -190,7 +190,7 @@ if (UrlVar('task') == 'create-new-scheduled') {
     
     $countAddendums = 0;
     $json = json_decode(UrlVar('json'));
-    if (!key_exists('participant-id', $json)) {
+    if (! key_exists('participant-id', $json)) {
         throw new Exception('Expected $json->{\'participant-id\'}');
     }
     $code = $json->{'participant-id'};
@@ -261,7 +261,7 @@ if (UrlVar('task') == 'create-new-scheduled') {
     
     include_once __DIR__ . DS . 'database' . DS . 'ScheduleDatabase.php';
     $json = json_decode(UrlVar('json'));
-    if (!key_exists('id', $json)) {}
+    if (! key_exists('id', $json)) {}
     $id = (int) $json->id;
     
     $db = ScheduleDatabase::GetInstance();
@@ -280,7 +280,7 @@ if (UrlVar('task') == 'create-new-scheduled') {
     
     include_once __DIR__ . DS . 'database' . DS . 'ScheduleDatabase.php';
     $json = json_decode(UrlVar('json'));
-    if (!key_exists('id', $json)) {}
+    if (! key_exists('id', $json)) {}
     $id = (int) $json->id;
     
     $db = ScheduleDatabase::GetInstance();
@@ -294,7 +294,7 @@ if (UrlVar('task') == 'create-new-scheduled') {
     echo '{"success":true}';
     
     return;
-} elseif (UrlVar('task') == 'export') {
+} elseif (UrlVar('task') == 'export-scheduled') {
     
     include_once Core::LibDir() . DS . 'easycsv' . DS . 'EasyCsv.php';
     include_once __DIR__ . DS . 'database' . DS . 'ScheduleDatabase.php';
@@ -313,7 +313,53 @@ if (UrlVar('task') == 'create-new-scheduled') {
         });
     
     header('Content-Type: application/csv;');
-    header('Content-disposition: filename="rwa-export' . date('Y-m-d') . '.csv"');
+    header('Content-disposition: filename="rwa-export-scheduled-' . date('Y-m-d') . '.csv"');
+    echo EasyCsv::Write($csv);
+    
+    return;
+} elseif (UrlVar('task') == 'export-addendum') {
+    
+    include_once Core::LibDir() . DS . 'easycsv' . DS . 'EasyCsv.php';
+    include_once __DIR__ . DS . 'database' . DS . 'ScheduleDatabase.php';
+    $db = ScheduleDatabase::GetInstance();
+    $csv = null;
+    $db->iterateAllAddendums(
+        function ($record) use(&$csv) {
+            
+            $form = get_object_vars(json_decode($record->formData));
+            
+            if (empty($csv)) {
+                $keys = array_merge(array(), array_keys($form));
+                $csv = EasyCsv::CreateCsv($keys);
+            }
+            EasyCsv::AddRow($csv, array_values($form));
+        });
+    
+    header('Content-Type: application/csv;');
+    header('Content-disposition: filename="rwa-export-addendum-' . date('Y-m-d') . '.csv"');
+    echo EasyCsv::Write($csv);
+    
+    return;
+} elseif (UrlVar('task') == 'export-quarterly') {
+    
+    include_once Core::LibDir() . DS . 'easycsv' . DS . 'EasyCsv.php';
+    include_once __DIR__ . DS . 'database' . DS . 'ScheduleDatabase.php';
+    $db = ScheduleDatabase::GetInstance();
+    $csv = null;
+    $db->iterateAllQuarterlys(
+        function ($record) use(&$csv) {
+            
+            $form = get_object_vars(json_decode($record->formData));
+            
+            if (empty($csv)) {
+                $keys = array_merge(array(), array_keys($form));
+                $csv = EasyCsv::CreateCsv($keys);
+            }
+            EasyCsv::AddRow($csv, array_values($form));
+        });
+    
+    header('Content-Type: application/csv;');
+    header('Content-disposition: filename="rwa-export-quarterly-' . date('Y-m-d') . '.csv"');
     echo EasyCsv::Write($csv);
     
     return;

@@ -34,6 +34,21 @@ var UIUserList=new Class({
 					"class":"scheduled-item",
 					html:'<span>'+user.name+'</span><span>'+user.username+'</span><span>'+user.email+'</span><span>'+user.id+'</span>'
 				}));
+				
+				var edit=new Element("span",{"class":"btn btn-primary"});
+				new UIPopover(edit, {description:"Edit User Details",anchor:UIPopover.AnchorTo("top")});
+				item.appendChild(edit);
+				
+				edit.addEvent('click',function(){
+					
+					var form=formManager.getForm("user");
+					
+					var formData={};
+
+					formManager.loadFormData(form, Object.append(formData, {id:user.id}));
+					formManager.showForm("user");
+				});
+				
 				section.appendChild(item);
 			});
 			

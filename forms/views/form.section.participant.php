@@ -1,8 +1,21 @@
 <h3>Participant</h3>
 <span class="group"> <span class="left"> <label>First name or nickname <input
 			type="text" value="" name="participant-first-name" />
-	</label> <label>Province/Territory <input type="text" value=""
-			name="participant-province-territory" />
+	</label> <label>Province/Territory <!-- <input type="text" value=""
+			name="participant-province-territory" /> --> <select
+			name="participant-province-territory" value="">
+				<option value="Alberta">Alberta</option>
+				<option value="British Columbia">British Columbia</option>
+				<option value="Manitoba">Manitoba</option>
+				<option value="New Brunswick">New Brunswick</option>
+				<option value="Newfoundland & Labrador">Newfoundland & Labrador</option>
+				<option value="Nova Scotia">Nova Scotia</option>
+				<option value="Ontario">Ontario</option>
+				<option value="Prince Edward Island">Prince Edward Island</option>
+				<option value="Quebec">Quebec</option>
+				<option value="Saskatchewan">Saskatchewan</option>
+
+		</select>
 	</label><label>Start date with RWA <input type="date" value=""
 			name="participant-start-date" />
 	</label> <label>Individual's community <input type="text" value=""

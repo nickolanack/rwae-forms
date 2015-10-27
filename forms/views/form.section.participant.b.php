@@ -3,5 +3,5 @@
 	name="participant-first-name" />
 </label>
 <label>Participant’s ID <input type="text" value=""
-	name="participant-id" disabled data-force-disabled="1" />
+	name="participant-id" />
 </label>
