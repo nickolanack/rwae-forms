@@ -5,41 +5,25 @@ Behavior('ajax');
 	href="<?php echo UrlFrom(dirname(__DIR__) . DS . 'css' . DS . 'forms.css');?>"
 	type="text/css"><?php
 
-$sbtn = Scaffold('cpanel.button', 
+$schedButton = Scaffold('cpanel.button', 
     array(
         'title' => 'Show All Schedule D Forms',
         'className' => 'btn btn-primary big',
-        'icon' => Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_table.png?tint=rgb(255,255,255)',
-        'script' => '
-            this.removeClass("btn-primary");
-		    this.setAttribute("disabled", true);
-        '
+        'icon' => Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_table.png?tint=rgb(255,255,255)'
     ));
 
-Scaffold('cpanel.button', 
+$authButton = Scaffold('cpanel.button', 
     array(
         'title' => 'Show All Schedule D Authors',
         'className' => 'btn btn-danger big',
-        'icon' => Core::AssetsDir() . DS . 'Tile Icons' . DS . 'profile.png?tint=rgb(255,255,255)',
-        'script' => '
-
-            ' . $sbtn . '.addClass("btn-primary");
-		    ' . $sbtn . '.removeAttribute("disabled");
-
-        '
+        'icon' => Core::AssetsDir() . DS . 'Tile Icons' . DS . 'profile.png?tint=rgb(255,255,255)'
     ));
 
-Scaffold('cpanel.button', 
+$expButton = Scaffold('cpanel.button', 
     array(
         'title' => 'Generate Reports',
         'className' => 'btn btn-success big',
-        'icon' => Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_clipboard.png?tint=rgb(255,255,255)',
-        'script' => '
-
-            ' . $sbtn . '.addClass("btn-primary");
-		    ' . $sbtn . '.removeAttribute("disabled");
-
-        '
+        'icon' => Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_clipboard.png?tint=rgb(255,255,255)'
     ));
 
 IncludeJS(dirname(__DIR__) . DS . 'js' . DS . 'UIFormManager.js');
@@ -67,13 +51,6 @@ IncludeJSBlock(
 
     window.addEvent("load",function(){
 
-        ' . $sbtn . '.removeClass("btn-primary");
-		' . $sbtn . '.setAttribute("disabled", true);
-
-
-
-
-
         var ajaxUrl=' . json_encode($params['url']) . ';
 
         UIFormManager.setAjaxUrl(ajaxUrl);
@@ -93,7 +70,7 @@ IncludeJSBlock(
             defaultFormData:' . json_encode(
         array(
             // the default values when creating a schedule d
-            'id' => - 1,
+            'id' => -1,
             'admin-year' => date('Y'),
             'admin-quarter' => $quarter,
             'employed-quarter' => 'no',
@@ -118,7 +95,7 @@ IncludeJSBlock(
             defaultFormData:' . json_encode(
         array(
             // the default values when creating a schedule d
-            'id' => - 1,
+            'id' => -1,
             'admin-year' => date('Y'),
             'admin-quarter' => $quarter,
             'employed-quarter' => 'no',
@@ -142,7 +119,7 @@ IncludeJSBlock(
             defaultFormData:' . json_encode(
         array(
             // the default values when creating a schedule d
-            'id' => - 1,
+            'id' => -1,
             'admin-year' => date('Y'),
             'admin-quarter' => $quarter,
             'employed-quarter' => 'no',
@@ -166,6 +143,43 @@ IncludeJSBlock(
         });
 
 
+        var enableScheduleButton=function(){
+            ' . $schedButton . '.addClass("btn-primary");
+		    ' . $schedButton . '.removeAttribute("disabled");
+            $("list-schedule-d").removeClass("enabled");
+        };
+        var disableScheduleButton=function(){
+            ' . $schedButton . '.removeClass("btn-primary");
+		    ' . $schedButton . '.setAttribute("disabled", true);
+        };
+        disableScheduleButton();
+
+
+        var enableAuthButton=function(){
+            ' . $authButton . '.addClass("btn-danger");
+		    ' . $authButton . '.removeAttribute("disabled");
+            $("list-users").removeClass("enabled");
+
+        };
+        var disableAuthButton=function(){
+            ' . $authButton . '.removeClass("btn-danger");
+		    ' . $authButton . '.setAttribute("disabled", true);
+        };
+
+         var enableExpButton=function(){
+            ' . $expButton . '.addClass("btn-success");
+		    ' . $expButton . '.removeAttribute("disabled");
+            $("list-utilities").removeClass("enabled");
+
+        };
+        var disableExpButton=function(){
+            ' . $expButton . '.removeClass("btn-success");
+		    ' . $expButton . '.setAttribute("disabled", true);
+        };
+
+
+
+
         new UIUsersFormsList({
             url:ajaxUrl,
             formManager:UIFormManager,
@@ -181,21 +195,56 @@ IncludeJSBlock(
         // hide users list of completed forms whenever any form becomes visible
         UIFormManager.addEvent("showForm",function(){
             $("list-schedule-d").removeClass("enabled");
+            disableScheduleButton();
+            disableAuthButton();
+            disableExpButton();
+
         });
 
         // show users list of completed forms whenever all forms are hidden
         UIFormManager.addEvent("hideForms",function(){
             $("list-schedule-d").addClass("enabled");
+            disableScheduleButton();
+            enableAuthButton();
+            enableExpButton();
+
         });
 
 
+         ' . $schedButton . '.addEvent("click", function(){
+            $("list-schedule-d").addClass("enabled");
+            disableScheduleButton();
+            enableAuthButton();
+            enableExpButton();
+
+         });
 
 
-        new UIUserList({
+        ' . $authButton . '.addEvent("click",function(){
+            $("list-users").addClass("enabled");
+            enableScheduleButton();
+            disableAuthButton();
+            enableExpButton();
+
+         });
+
+
+        ' . $expButton . '.addEvent("click",function(){
+            $("list-utilities").addClass("enabled");
+            enableScheduleButton();
+            enableAuthButton();
+            disableExpButton();
+         });
+
+
+
+        var userList=new UIUserList({
             url:ajaxUrl,
             formManager:UIFormManager,
             element:$("list-users"),
         });
+
+
 
 
 
