@@ -45,22 +45,18 @@
 </span>
 </span>
 <hr />
-<h4>His/her sources of income in the year before coming into RWA. (Check
-	any that apply.)</h4>
+<h4>His/her sources of income in the year before coming into RWA. (Check any that apply.)</h4>
 <label><input type="checkbox"
 	value="earnings-from-employment-or-self-employment"
-	name="participant-previous-income" /> Earnings from employment or
-	self-employment </label>
+	name="participant-previous-income" /> Earnings from employment or self-employment </label>
 <label><input type="checkbox" value="employment-insurance"
 	name="participant-previous-income" /> Employment insurance </label>
 <label><input type="checkbox" value="canada-or-quebec-pension-plan"
-	name="participant-previous-income" /> Canada/Quebec Pension Plan
-	(Disability) </label>
+	name="participant-previous-income" /> Canada/Quebec Pension Plan (Disability) </label>
 <label><input type="checkbox" value="workers-compensation"
 	name="participant-previous-income" /> Workers’ compensation </label>
 <label class="longtext"><input type="checkbox"
 	value="social-assistance-incl-provincial-or-territorial-disability-program"
-	name="participant-previous-income" /> Social assistance, incl.
-	provincial / territorial disability program </label>
+	name="participant-previous-income" /> Social assistance, incl. provincial / territorial disability program </label>
 <label><input type="checkbox" value="other"
 	name="participant-previous-income" /> Other </label>

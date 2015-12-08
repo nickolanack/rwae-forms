@@ -2,7 +2,7 @@
 
 	<input type="hidden" name="id" value="-1" id="scheduled-id" />
 
-	<h2>Schedule D</h2>
+	<h2>Participant Information Form</h2>
 	<h3>Administrative and Baseline</h3>
 	<section class="c">
 
@@ -17,8 +17,7 @@
 	<h4>Employment</h4>
 	<section class="a">
 
-		<h4>Was this person employed as a result of RWA for any part of this
-			quarter?</h4>
+		<h4>Was this person employed as a result of RWA for any part of this quarter?</h4>
 
 					<?php
     Scaffold('form.switch', 
@@ -99,8 +98,7 @@
 	<h4>Post Secondary Education</h4>
 	<section class="b">
 
-		<h4>Was this person enrolled in post-secondary education as a result
-			of RWA for any part of this quarter ?</h4>
+		<h4>Was this person enrolled in post-secondary education as a result of RWA for any part of this quarter ?</h4>
 	<?php
 
 Scaffold('form.switch', 
@@ -114,8 +112,7 @@ Scaffold('form.switch',
             ?>
 
 		<h3>Supports for Post-Secondary Education</h3>
-		<h4>Does this person require any supports from RWA for post-secondary
-			education?</h4>
+		<h4>Does this person require any supports from RWA for post-secondary education?</h4>
 
 				<?php
             Scaffold('form.switch', 

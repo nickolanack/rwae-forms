@@ -1,12 +1,64 @@
 <?php
+include_once dirname(__DIR__).DS.'lib'.DS.'Localize.php';
+$language=get_object_vars(json_decode(file_get_contents(__DIR__.DS.'words.json')));
+array_walk ( $language , function(&$v, $k){
+
+    $v='<span style="color:red;">'.$k.'</span>';//'-en:'.$k.'-';
+
+});
+
+
+
+
 Behavior('ajax');
 
-Scaffold('button.create.scheduled');
+Localize(function(){
+
+    Scaffold('button.create.scheduled');
+
+}, $language);
+
 IncludeJS(dirname(__DIR__) . DS . 'js' . DS . 'UIFormManager.js');
 IncludeJS(dirname(__DIR__) . DS . 'js' . DS . 'UIUsersFormsList.js');
-Scaffold('scheduled.workspace');
-Scaffold('addendum.workspace');
-Scaffold('quarterly.workspace');
+IncludeJS(dirname(__DIR__) . DS . 'js' . DS . 'Language.js');
+
+
+$keys=array_keys($language);
+usort($keys, function($a, $b){
+    return strlen($b)-strlen($a);
+});
+
+IncludeJSBlock('
+
+/*
+'.print_r($keys,true).'
+ */
+window.Language.Instance=new Language({'."\n".implode(",\n", array_map(function($k) use($language){
+
+return '  '.json_encode($k).':'.json_encode($language[$k]);
+
+
+},$keys))."\n".'});
+
+');
+
+
+
+Core::LibDir().DS.'easycsv'.DS.'EasyCsv.php';
+
+
+
+
+//print_r($language);
+
+Localize(function(){
+
+    Scaffold('scheduled.workspace');
+    Scaffold('addendum.workspace');
+    Scaffold('quarterly.workspace');
+
+}, $language);
+
 
 Scaffold('list.scheduled');
 

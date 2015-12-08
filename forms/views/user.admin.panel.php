@@ -7,14 +7,14 @@ Behavior('ajax');
 
 $schedButton = Scaffold('cpanel.button', 
     array(
-        'title' => 'Show All Schedule D Forms',
+        'title' => 'Show All Participant Information Form Forms',
         'className' => 'btn btn-primary big',
         'icon' => Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_table.png?tint=rgb(255,255,255)'
     ));
 
 $authButton = Scaffold('cpanel.button', 
     array(
-        'title' => 'Show All Schedule D Authors',
+        'title' => 'Show All Participant Information Form Authors',
         'className' => 'btn btn-danger big',
         'icon' => Core::AssetsDir() . DS . 'Tile Icons' . DS . 'profile.png?tint=rgb(255,255,255)'
     ));

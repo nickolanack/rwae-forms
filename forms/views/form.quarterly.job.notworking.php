@@ -6,24 +6,19 @@ $prefix = $config['prefix'];
 ?>
 
 
-<h4>If not working, went to new employment or enrolled in post-
-	secondary education this quarter (Please check the best one.)</h4>
+<h4>If not working, went to new employment or enrolled in post-secondary education this quarter (Please check the best one.)</h4>
 <span class="inline"> <label><input type="radio"
 		value="went-to-new-employer"
-		name="<?php echo $prefix; ?>-notworking-reason" /> Went to new
-		employer</label> <label><input type="radio"
+		name="<?php echo $prefix; ?>-notworking-reason" /> Went to new employer</label> <label><input type="radio"
 		value="went-to-self-employment"
-		name="<?php echo $prefix; ?>-notworking-reason" /> Went to self-
-		employment</label> <label><input type="radio" value="going-to-school"
+		name="<?php echo $prefix; ?>-notworking-reason" /> Went to self-employment</label> <label><input type="radio" value="going-to-school"
 		name="<?php echo $prefix; ?>-notworking-reason" /> Going to school</label>
 	<label><input type="radio" value="illness-or-disability"
-		name="<?php echo $prefix; ?>-notworking-reason" /> Not at their job
-		this quarter because of Illness/disability</label> <label><input
+		name="<?php echo $prefix; ?>-notworking-reason" /> Not at their job this quarter because of Illness/disability</label> <label><input
 		type="radio" value="waiting-for-recall"
 		name="<?php echo $prefix; ?>-notworking-reason" /> Waiting for recall</label>
 	<label><input type="radio" value="laid-off-indefinitely"
-		name="<?php echo $prefix; ?>-notworking-reason" /> Laid off
-		indefinitely</label> <label><input type="radio" value="quit"
+		name="<?php echo $prefix; ?>-notworking-reason" /> Laid off indefinitely</label> <label><input type="radio" value="quit"
 		name="<?php echo $prefix; ?>-notworking-reason" /> Quit</label> <label><input
 		type="radio" value="was-terminated"
 		name="<?php echo $prefix; ?>-notworking-reason" /> Was Terminated</label>

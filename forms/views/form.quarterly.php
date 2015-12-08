@@ -2,7 +2,7 @@
 
 	<input type="hidden" name="id" value="-1" id="scheduled-id" />
 
-	<h2>Schedule D Quarterly</h2>
+	<h2>Participant Information Form Quarterly</h2>
 	<section class="b">
 		<?php Scaffold('form.section.admin');?>
 		<hr />
@@ -29,9 +29,7 @@ Scaffold('form.switch',
         'name' => 'employed-quarter',
         'className' => 'jobs qtr-jobs two three',
         'callback' => function () {
-            ?><h4>Please complete this section only if there have been
-			changes in this person’s employment though RWA since their Schedule D
-			or last Quarterly Update (or Addendum).</h4>
+            ?><h4>Please complete this section only if there have been changes in this person’s employment though RWA since their Participant Information Form or last Quarterly Update (or Addendum).</h4>
 		<hr />
 		<!-- 		<h6>should detect job count</h6> -->
 		<?php
@@ -44,8 +42,7 @@ Scaffold('form.switch',
 
 		<hr />
 		<!-- 		<h6>same as note abov,e</h6> -->
-		<h4>Any changes in this person’s need for or use of supports for
-			employment from RWA?</h4>
+		<h4>Any changes in this person’s need for or use of supports for employment from RWA?</h4>
 
 			<?php
 Scaffold('form.switch',
@@ -54,10 +51,7 @@ Scaffold('form.switch',
         'className' => 'job-supports two three',
         'callback' => function () {
             ?>
-         <h4>Please complete this section only if there have been
-			changes in this person’s need for or use of supports from RWA for
-			employment since their Schedule D or last Quarterly Update (or
-			Addendum).</h4>
+         <h4>Please complete this section only if there have been changes in this person’s need for or use of supports from RWA for employment since their Participant Information Form or last Quarterly Update (or Addendum).</h4>
 		<hr />
 		<span class="jobs qtr-jobs" style=""> <!-- 			<h6>should detect support count via job count</h6> -->
 				<?php
@@ -90,8 +84,7 @@ Scaffold('form.switch',
 
 		<!-- 		<h6>Here I should be able to detect if they are enrolled - and if not -->
 		<!-- 			indicate the need for an addendum</h6> -->
-		<h4>Was this person enrolled in post-secondary education as a result
-			of RWA?</h4>
+		<h4>Was this person enrolled in post-secondary education as a result of RWA?</h4>
 
 
 						<?php
@@ -100,17 +93,14 @@ Scaffold('form.switch',
             'name' => 'enrolled-quarter',
             'callback' => function () {
                 ?>
-			<h4>Please complete this section only if this person was enrolled in
-			post-secondary education as a result of RWA for any part of this
-			quarter.</h4>
+			<h4>Please complete this section only if this person was enrolled in post-secondary education as a result of RWA for any part of this quarter.</h4>
 		<hr />
 
 
 		<span class="group"><span class="left">
 				<h4>Enrollment Status</h4> <span class="inline"> <label><input
 						type="radio" value="still-in-same-program-as-last-quarter"
-						name="enrolled-quarter-status" /> Still in same program as last
-						quarter</label> <label><input type="radio"
+						name="enrolled-quarter-status" /> Still in same program as last quarter</label> <label><input type="radio"
 						value="finished-graduated" name="enrolled-quarter-status" />
 						Finished: Graduated</label> <label><input type="radio"
 						value="finished-did-not-graduate" name="enrolled-quarter-status" />
@@ -138,8 +128,7 @@ Scaffold('form.switch',
 
 			<hr />
 		<!-- 		<h6>same as above</h6> -->
-		<h4>Any changes in this person’s need for or use of supports for post
-			secondary education from RWA?</h4>
+		<h4>Any changes in this person’s need for or use of supports for post secondary education from RWA?</h4>
 
 
 			<?php
@@ -148,10 +137,7 @@ Scaffold('form.switch',
         'name' => 'enrollment-supports',
         'callback' => function () {
             ?>
-            <h4>Please complete this section only if there have been any
-			changes in this person’s need for or use of supports from RWA for
-			post-secondary education since their Schedule D or last Quarterly
-			Update (or Addendum).</h4>
+            <h4>Please complete this section only if there have been any changes in this person’s need for or use of supports from RWA for post-secondary education since their Participant Information Form or last Quarterly Update (or Addendum).</h4>
 		<hr />
 
 

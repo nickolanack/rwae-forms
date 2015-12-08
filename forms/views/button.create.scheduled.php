@@ -1,7 +1,7 @@
 <?php
 $btn = Scaffold('cpanel.button', 
     array(
-        'title' => 'Create A New Schedule D',
+        'title' => 'Create A New Participant Information Form',
         'className' => 'btn btn-primary big',
         'icon' => Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_new.png?tint=rgb(255,255,255)',
         'script' => '

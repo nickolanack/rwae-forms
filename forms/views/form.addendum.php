@@ -2,9 +2,8 @@
 
 	<input type="hidden" name="id" value="-1" id="scheduled-id" />
 
-	<h2>Schedule D Addendum</h2>
-	<h3>To be completed ONLY if the participant has a new employer, is
-		newly self-employed or is newly enrolled in post-secondary education</h3>
+	<h2>Participant Information Form Addendum</h2>
+	<h3>To be completed ONLY if the participant has a new employer, is newly self-employed or is newly enrolled in post-secondary education</h3>
 	<section class="a">
 
 		<?php Scaffold('form.section.admin');?>

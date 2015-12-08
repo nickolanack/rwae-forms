@@ -47,9 +47,7 @@ $num = array(
 		</label>
 	</span><span class="right">
 			<h4>Other</h4>
-			<div style="width: 250px;">Please describe any other charge not
-				captured above (e.g., for uniform, supplies, fees, devices, ramps,
-				etc.)</div> <textarea type="text"
+			<div style="width: 250px;">Please describe any other charge not captured above (e.g., for uniform, supplies, fees, devices, ramps, etc.)</div> <textarea type="text"
 				name="job-support-<?php echo $config['n']; ?>-trans-other"
 				style="resize: vertical; width: 250px; box-sizing: border-box;"></textarea>
 			<label>Provider <input type="text" value=""

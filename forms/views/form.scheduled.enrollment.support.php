@@ -34,9 +34,7 @@
 	</label>
 </span><span class="right">
 		<h4>Other</h4>
-		<div style="width: 380px;">Please describe any other charge not
-			captured above (e.g., for uniform, supplies, fees, devices, ramps,
-			etc.)</div> <textarea name="enrollment-support-trans-other"
+		<div style="width: 380px;">Please describe any other charge not captured above (e.g., for uniform, supplies, fees, devices, ramps, etc.)</div> <textarea name="enrollment-support-trans-other"
 			style="resize: vertical; width: 380px; box-sizing: border-box;"></textarea>
 		<label>Total $ needed for this other support this request<input
 			style="width: 50px;" type="number" value="" step="any" min="0"

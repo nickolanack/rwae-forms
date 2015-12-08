@@ -38,8 +38,7 @@ echo $prefix;
 
 echo $prefix;
 ?>-hours-changed" /> yes increase</label> <label><input type="radio"
-		value="yes-decrease" name="<?php echo $prefix;?>-hours-changed" /> yes
-		decrease </label> <label><input type="radio" value="no"
+		value="yes-decrease" name="<?php echo $prefix;?>-hours-changed" /> yes decrease </label> <label><input type="radio" value="no"
 		name="<?php echo $prefix;?>-hours-changed" /> no </label></span>
 <label>New number of hours per week <input style="width: 100px;"
 	type="number" value="" step="any" min="0"
