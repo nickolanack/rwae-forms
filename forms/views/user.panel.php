@@ -3,7 +3,7 @@ include_once dirname(__DIR__).DS.'lib'.DS.'Localize.php';
 $language=get_object_vars(json_decode(file_get_contents(__DIR__.DS.'words.json')));
 array_walk ( $language , function(&$v, $k){
 
-    $v='<span style="color:red;">'.$k.'</span>';//'-en:'.$k.'-';
+    $v='<span class="lang-en" data-fr="" >'.$k.'</span>';//'-en:'.$k.'-';
 
 });
 
@@ -30,9 +30,7 @@ usort($keys, function($a, $b){
 
 IncludeJSBlock('
 
-/*
-'.print_r($keys,true).'
- */
+
 window.Language.Instance=new Language({'."\n".implode(",\n", array_map(function($k) use($language){
 
 return '  '.json_encode($k).':'.json_encode($language[$k]);
