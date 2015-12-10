@@ -2,7 +2,7 @@
 error_reporting(E_ALL ^ E_NOTICE); // report everything except notices
 ini_set('display_errors', 1);
 
-if (! defined('_JEXEC')) {
+if (!defined('_JEXEC')) {
     define('_JOOMLA', 1);
 }
 
@@ -190,7 +190,7 @@ if (UrlVar('task') == 'create-new-scheduled') {
     
     $countAddendums = 0;
     $json = json_decode(UrlVar('json'));
-    if (! key_exists('participant-id', $json)) {
+    if (!key_exists('participant-id', $json)) {
         throw new Exception('Expected $json->{\'participant-id\'}');
     }
     $code = $json->{'participant-id'};
@@ -261,7 +261,7 @@ if (UrlVar('task') == 'create-new-scheduled') {
     
     include_once __DIR__ . DS . 'database' . DS . 'ScheduleDatabase.php';
     $json = json_decode(UrlVar('json'));
-    if (! key_exists('id', $json)) {}
+    if (!key_exists('id', $json)) {}
     $id = (int) $json->id;
     
     $db = ScheduleDatabase::GetInstance();
@@ -280,7 +280,7 @@ if (UrlVar('task') == 'create-new-scheduled') {
     
     include_once __DIR__ . DS . 'database' . DS . 'ScheduleDatabase.php';
     $json = json_decode(UrlVar('json'));
-    if (! key_exists('id', $json)) {}
+    if (!key_exists('id', $json)) {}
     $id = (int) $json->id;
     
     $db = ScheduleDatabase::GetInstance();
@@ -421,6 +421,6 @@ if ($total > 0) {
     echo " and " + $total + " update" + ($total == 1 ? "" : "s") + " where made";
 } else {
     
-    echo " and it is prefect! (as I expected)";
+    echo " and it is perfect! (as I expected)";
 }
 echo ' -->';
