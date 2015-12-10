@@ -14,10 +14,7 @@ $num = array(
 ?><section class="job <?php echo $config['class'];?> h4-bar">
 	<h4>Support Details For Job <?php echo $num[$config['n']-1];?></h4>
 	<span class="group"><span class="left">
-			<h4>Job Coach</h4> 
-		<label>Provider <input type="text" value=""
-				name="job-support-<?php echo $config['n']; ?>-provider" />
-		</label>
+			<h4>Job Coach</h4> 	
 		<label>Number of hours per week <input
 				style="width: 50px;" type="number" value="" step="any" min="0"
 				name="job-support-<?php echo $config['n']; ?>-coach-hours-weekly" />
@@ -29,6 +26,9 @@ $num = array(
 		</label> <label>Total $ needed for job coach at this request <input
 				type="number" value="" step="any" min="0"
 				name="job-support-<?php echo $config['n']; ?>-coach-total" />
+		</label>
+		<label>Provider <input type="text" value=""
+				name="job-support-<?php echo $config['n']; ?>-provider" />
 		</label>
 	</span><span class="right">
 			<h4>Transportation</h4> <label>Number of trips <input
