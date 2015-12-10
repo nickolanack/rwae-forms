@@ -3,5 +3,5 @@
 	name="participant-first-name" />
 </label>
 <label>Participant’s ID <input type="text" value=""
-	name="participant-id" />
+	name="participant-id" placeholder="province-agency-participant" />
 </label>

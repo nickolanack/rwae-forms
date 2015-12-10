@@ -90,8 +90,7 @@ class RWAForm {
     }
 
     private static function _GeneratePid() {
-
-        return 'gen-rwa-' . rand(100000, 999999) . '-pid';
+        return 'ON-001-001';
     }
 
     public static function GetFormDate($data) {
