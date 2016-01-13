@@ -1,11 +1,30 @@
 <?php
 include_once dirname(__DIR__).DS.'lib'.DS.'Localize.php';
-$language=get_object_vars(json_decode(file_get_contents(__DIR__.DS.'words.json')));
-array_walk ( $language , function(&$v, $k){
 
-    $v='<span class="lang-en" data-fr="" >'.$k.'</span>';//'-en:'.$k.'-';
+include_once Core::LibDir().DS.'easycsv'.DS.'EasyCsv.php';
+$language=array();
+$languageFilePath=dirname(__DIR__).DS.'language.csv';
+if(file_exists($languageFilePath)){
+   $csv= EasyCsv::OpenCsv($languageFilePath);
 
-});
+   //echo '<pre>';
+
+   EasyCsv::IterateRows_Assoc($csv, function($row, $i)use(&$language){
+        if(!empty($row['English'])){
+            $language[$row['English']]=$row['French'];
+        }
+   });
+  file_put_contents(dirname(__DIR__).DS.'language.json', json_encode($language, JSON_PRETTY_PRINT));
+   //echo '</pre>';
+
+
+
+}else{
+
+    $language=get_object_vars(json_decode(file_get_contents(__DIR__.DS.'words.json')));
+}
+
+
 
 
 
@@ -30,11 +49,9 @@ usort($keys, function($a, $b){
 
 IncludeJSBlock('
 
-
 window.Language.Instance=new Language({'."\n".implode(",\n", array_map(function($k) use($language){
 
 return '  '.json_encode($k).':'.json_encode($language[$k]);
-
 
 },$keys))."\n".'});
 

@@ -98,7 +98,7 @@
 	<h4>Post Secondary Education</h4>
 	<section class="b">
 
-		<h4>Was this person enrolled in post-secondary education as a result of RWA for any part of this quarter ?</h4>
+		<h4>Was this person enrolled in post-secondary education as a result of RWA for any part of this quarter?</h4>
 	<?php
 
 Scaffold('form.switch', 

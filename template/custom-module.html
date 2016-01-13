@@ -1,0 +1,31 @@
+<button id="setEnglish" class="btn">En</button><button id="setFrench" class="btn">Fr</button><script type="text/javascript">
+
+(function(){
+
+var setEnglish=$('setEnglish');
+var setFrench=$('setFrench');
+
+setFrench.addEvent('click',function(){
+   setFrench.addClass('btn-primary');
+   setEnglish.removeClass('btn-primary');
+   document.body.removeClass('en');
+   document.body.addClass('fr');
+});
+
+
+setEnglish.addEvent('click',function(){
+   setEnglish.addClass('btn-primary');
+   setFrench.removeClass('btn-primary');
+   document.body.removeClass('fr');
+   document.body.addClass('en');
+});
+
+if(document.body.hasClass('fr')){
+  setFrench.addClass('btn-primary');
+}else{
+  setEnglish.addClass('btn-primary');
+}
+
+
+})();
+</script>

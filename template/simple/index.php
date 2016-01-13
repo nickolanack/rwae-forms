@@ -8,6 +8,9 @@
  */
 defined('_JEXEC') or die();
 
+include_once (dirname(dirname(__DIR__))).'/forms/php-core-app/core.php';
+Behavior('mootools');
+
 $app = JFactory::getApplication();
 $doc = JFactory::getDocument();
 $user = JFactory::getUser();
@@ -52,6 +55,19 @@ if ($this->countModules('position-7') && $this->countModules('position-8')) {
     $span = "span9";
 } else {
     $span = "span12";
+}
+
+
+
+if(key_exists('HTTP_ACCEPT_LANGUAGE', $_SERVER)){
+	$ln=substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+	if($ln==='fr'){
+		$lang =& JFactory::getLanguage();
+		$lang->setLanguage( 'fr-FR' );
+		$lang->load();
+	}
+}else{
+	$ln='en';
 }
 
 ?>
@@ -110,6 +126,13 @@ if ($this->countModules('position-7') && $this->countModules('position-8')) {
 echo $option . ' view-' . $view . ($layout ? ' layout-' . $layout : ' no-layout') .
      ($task ? ' task-' . $task : ' no-task') . ($itemid ? ' itemid-' . $itemid : '') .
      ($params->get('fluidContainer') ? ' fluid' : '');
+
+
+	echo ' '.($ln=substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));
+	echo ' '.JFactory::getLanguage()->getTag();
+
+
+
 ?>">
 
 	<!-- Body -->
@@ -120,8 +143,7 @@ echo $option . ' view-' . $view . ($layout ? ' layout-' . $layout : ' no-layout'
 				<div style="max-width: 960px; margin: auto; text-align: left;">
 					<img
 						src="http://readywillingable.ca/wp-content/themes/RWA2015/public/images/logos/rwa-oneline-eng.png" />
-					<div class="site-tagline" style="text-transform: uppercase;">Building
-						an inclusive labour force</div>
+					<div class="site-tagline" style="text-transform: uppercase;"><span class="lang" data-fr="Construire une force de travail inclusif"><span class="en">Building an inclusive labour force</span><span></div>
 				</div>
 
 				<div class="header-search pull-right">
@@ -150,7 +172,7 @@ echo $option . ' view-' . $view . ($layout ? ' layout-' . $layout : ' no-layout'
 			<hr />
 			<jdoc:include type="modules" name="footer" style="none" />
 			<p>
-				&copy; <?php echo date('Y'); ?> <?php echo $sitename; ?> | Designed by the Spice Lab at the University of British Columbia
+				&copy; <?php echo date('Y'); ?> <span class="lang" data-fr="Prêt Willing & Able"><span class="en"><?php echo $sitename; ?></span></span> | <span class="lang" data-fr="Conçu par le Spice Lab de l' Université de la British Columbia"><span class="en">Designed by the Spice Lab at the University of British Columbia</span></span>
 			</p>
 		</div>
 	</footer>
