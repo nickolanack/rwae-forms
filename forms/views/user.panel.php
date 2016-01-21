@@ -6,16 +6,18 @@ $language=array();
 $languageFilePath=dirname(__DIR__).DS.'language.csv';
 if(file_exists($languageFilePath)){
    $csv= EasyCsv::OpenCsv($languageFilePath);
+   $cleaned=EasyCsv::CreateCsv(array('English', 'French'));
 
    //echo '<pre>';
 
-   EasyCsv::IterateRows_Assoc($csv, function($row, $i)use(&$language){
+   EasyCsv::IterateRows_Assoc($csv, function($row, $i)use(&$language, &$cleaned){
         if(!empty($row['English'])){
             $language[$row['English']]=$row['French'];
+            EasyCsv::AddRow($cleaned, array($row['English'], $row['French']));
         }
    });
   file_put_contents(dirname(__DIR__).DS.'language.json', json_encode($language, JSON_PRETTY_PRINT));
-   //echo '</pre>';
+  file_put_contents(dirname(__DIR__).DS.'localize.csv', EasyCsv::Write($cleaned));
 
 
 
@@ -233,7 +235,7 @@ section h6:before {
     ');
 
 if (Core::Client()->getUsername() == 'nickolanack') {
-    // Scaffold('qunit.test');
+     Scaffold('qunit.test');
 }
 
 

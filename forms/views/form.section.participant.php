@@ -34,7 +34,9 @@
 				type="radio" value="55-64" name="participant-age" /> 55-64</label> <label><input
 				type="radio" value="65-plus" name="participant-age" /> 65 + </label>
 	</span>
-</span><span class="left">
+</span>
+
+	<span class="left">
 		<h4>His/her disability (Check any that apply.)</h4> <span
 		class="inline"><label><input type="checkbox"
 				value="autism-spectrum-disorder" name="participant-disabilities[]" />
@@ -44,6 +46,21 @@
 
 </span>
 </span>
+
+
+<hr />
+<h4>Was this job-seeker referred by an RWA AOC?</h4>
+<span class="inline">
+	<label><input type="checkbox" value="yes"
+		name="participant-referred-by-rwa-aoc" /> Yes </label>
+	<label><input type="checkbox" value="no"
+		name="participant-referred-by-rwa-aoc" /> No </label>
+	<label><input type="checkbox" value="dont-know-not-sure"
+		name="participant-referred-by-rwa-aoc" /> Don't know / not sure </label>
+</span>
+
+
+
 <hr />
 <h4>His/her sources of income in the year before coming into RWA (check any that apply)</h4>
 <label><input type="checkbox"
