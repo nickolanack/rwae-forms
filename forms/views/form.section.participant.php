@@ -19,7 +19,7 @@
 	</label><label>Start date with RWA <input type="date" value=""
 			name="participant-start-date" />
 	</label> <label>Individual's community <input type="text" value=""
-			name="participant-age" />
+			name="participant-community" />
 	</label>
 </span><span class="right"> <!-- right -->
 		<h4>His/her gender</h4> <span class="inline"><label><input
@@ -51,11 +51,11 @@
 <hr />
 <h4>Was this job-seeker referred by an RWA AOC?</h4>
 <span class="inline">
-	<label><input type="checkbox" value="yes"
+	<label><input type="radio" value="yes"
 		name="participant-referred-by-rwa-aoc" /> Yes </label>
-	<label><input type="checkbox" value="no"
+	<label><input type="radio" value="no"
 		name="participant-referred-by-rwa-aoc" /> No </label>
-	<label><input type="checkbox" value="dont-know-not-sure"
+	<label><input type="radio" value="dont-know-not-sure"
 		name="participant-referred-by-rwa-aoc" /> Don't know / not sure </label>
 </span>
 

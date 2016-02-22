@@ -194,7 +194,7 @@ class Ajax
                 $data['user'] = Core::Client()->userMetadataFor($record->uid);
 
                 ob_start();
-                Scaffold('list.scheduled.item', $data, __DIR__ . DS . 'views');
+                Scaffold('list.scheduled.item', $data, dirname(__DIR__) . DS . 'views');
                 $html = ob_get_contents();
                 ob_end_clean();
 
@@ -236,7 +236,7 @@ class Ajax
                 // and quarterlys
 
                 ob_start();
-                Scaffold('list.scheduled.item', $data, __DIR__ . DS . 'views');
+                Scaffold('list.scheduled.item', $data, dirname(__DIR__) . DS . 'views');
                 $html = ob_get_contents();
                 ob_end_clean();
 
@@ -282,7 +282,7 @@ class Ajax
                 $data['formData'] = json_decode($record->formData);
 
                 ob_start();
-                Scaffold('list.scheduled.item', $data, __DIR__ . DS . 'views');
+                Scaffold('list.scheduled.item', $data, dirname(__DIR__) . DS . 'views');
                 $html = ob_get_contents();
                 ob_end_clean();
 
@@ -312,7 +312,7 @@ class Ajax
                 $data['formData'] = json_decode($record->formData);
 
                 ob_start();
-                Scaffold('list.scheduled.item', $data, __DIR__ . DS . 'views');
+                Scaffold('list.scheduled.item', $data, dirname(__DIR__) . DS . 'views');
                 $html = ob_get_contents();
                 ob_end_clean();
 

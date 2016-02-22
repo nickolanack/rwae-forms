@@ -33,8 +33,8 @@ Scaffold('form.switch',
 		<hr />
 		<!-- 		<h6>should detect job count</h6> -->
 		<?php
-            Scaffold('form.quarterly.job');
-        }
+Scaffold('form.quarterly.job');
+        },
     ));
 ?>
 
@@ -57,7 +57,7 @@ Scaffold('form.switch',
 				<?php
 
             Scaffold('form.scheduled.job.support', array(
-                'class' => 'qtr-job'
+                'class' => 'qtr-job',
             ));
 
             ?>
@@ -66,7 +66,7 @@ Scaffold('form.switch',
 		</span>
 
             <?php
-        }
+},
     ));
 ?>
 
@@ -88,11 +88,11 @@ Scaffold('form.switch',
 
 
 						<?php
-    Scaffold('form.switch',
-        array(
-            'name' => 'enrolled-quarter',
-            'callback' => function () {
-                ?>
+Scaffold('form.switch',
+    array(
+        'name' => 'enrolled-quarter',
+        'callback' => function () {
+            ?>
 			<h4>Please complete this section only if this person was enrolled in post-secondary education as a result of RWA for any part of this quarter.</h4>
 		<hr />
 
@@ -106,9 +106,9 @@ Scaffold('form.switch',
 						value="finished-did-not-graduate" name="enrolled-quarter-status" />
 						Finished: Did not graduate</label> <label><input type="radio"
 						value="withdrew-illness-or-disability"
-						name="enrolled-quarter-status" /> Withdrew – Illness or disability</label>
+						name="enrolled-quarter-status" /> Withdrew: Illness or disability</label>
 					<label><input type="radio" value="withdrew-other-reason"
-						name="enrolled-quarter-status" /> Withdrew – Other reason</label>
+						name="enrolled-quarter-status" /> Withdrew: Other reason</label>
 			</span>
 		</span><span class="right">
 
@@ -122,9 +122,9 @@ Scaffold('form.switch',
 	</textarea>
 		</span></span>
 		<?php
-            }
-        ));
-    ?>
+},
+    ));
+?>
 
 			<hr />
 		<!-- 		<h6>same as above</h6> -->
@@ -143,8 +143,8 @@ Scaffold('form.switch',
 
 
                             <?php
-            Scaffold('form.scheduled.enrollment.support');
-        }
+Scaffold('form.scheduled.enrollment.support');
+        },
     ));
 ?>
 	</section>

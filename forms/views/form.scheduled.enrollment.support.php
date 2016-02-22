@@ -12,7 +12,7 @@
 			style="width: 50px;" type="number" value="" step="any" min="0"
 			name="enrollment-support-coach-total" />
 	</label><label>Provider <input type="text" value=""
-			name="enrollment-support-trans-provider" />
+			name="enrollment-support-provider" />
 	</label>
 </span><span class="right">
 		<h4>Transportation</h4> <label>Number of trips <input type="number"
@@ -38,12 +38,12 @@
 			style="resize: vertical; width: 380px; box-sizing: border-box;"></textarea>
 		<label>Total $ needed for this other support this request<input
 			style="width: 50px;" type="number" value="" step="any" min="0"
-			name="enrollment-support-trans-total" />
+			name="enrollment-support-trans-other-total" />
 	</label><label>Provider <input type="text" value=""
 			name="enrollment-support-trans-other-provider" />
 	</label>
 </span><span class="right">
-		<h4>Comments</h4> <textarea name="enrollment-support-trans-other"
+		<h4>Comments</h4> <textarea name="enrollment-support-trans-other-comments"
 			style="resize: vertical; width: 380px; box-sizing: border-box;"></textarea>
 
 </span></span>

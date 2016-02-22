@@ -1,6 +1,6 @@
 <?php
 $config = array_merge(array(
-    'prefix' => 'job-1-'
+    'prefix' => 'job-1-',
 ), $params);
 $prefix = $config['prefix'];
 ?>
@@ -37,7 +37,9 @@ echo $prefix;
 
 
 <label>Date s/he left the job (MM/DD/YYYY)<input type="date" value=""
-	name="participant-start-date" /></label>
+	name="<?php
+echo $prefix;
+?>-end-date" /></label>
 
 <h4>Comments</h4>
 <textarea type="text"
