@@ -18,14 +18,14 @@
 		<h4>did employment change?</h4>
 
 		<?php
-Scaffold('form.switch', 
+Scaffold('form.switch',
     array(
         'name' => 'employed-quarter',
         'className' => 'jobs two three',
         'callback' => function () {
-            
+
             Scaffold('form.scheduled.job');
-            
+
             ?>
 
 
@@ -38,7 +38,7 @@ Scaffold('form.switch',
 			</label>
 		</section>
         <?php
-        }
+},
     ));
 ?>
 
@@ -56,15 +56,15 @@ Scaffold('form.switch',
 		<h4>did enrollment change?</h4>
 
 		<?php
-Scaffold('form.switch', 
+Scaffold('form.switch',
     array(
         'name' => 'enrolled-quarter',
         'callback' => function () {
             ?><hr />
 		<?php
-            
+
             Scaffold('form.scheduled.enrollment');
-        }
+        },
     ));
 ?>
 	</section>

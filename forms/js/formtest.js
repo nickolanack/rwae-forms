@@ -28,15 +28,19 @@ window.addEvent("load", function() {
 
 
 				if (currentName !== e.name) {
-					assert.ok(!uniqueNames[e.name], "Disconnected (from group), or duplicate form name: " + e.name + '="' + e.value + '", current name = ' + currentName);
-					currentName = e.name;
+					assert.ok(!uniqueNames[e.name], "form name: " + e.name + '="' + e.value + '", current group name = ' + currentName + ' should not be disconnected (from group), or duplicated');
+				} else {
+					assert.ok((e.type == "radio" || e.type == "checkbox"), "only radio and checkbox types can be grouped");
+
 				}
+				currentName = e.name;
 
 				if (!uniqueNames[e.name]) {
 					uniqueNames[e.name] = [];
 				}
 
-				assert.ok(uniqueNames[e.name].indexOf(e.value) === -1, "Duplicate form item value: " + e.name + '="' + e.value + '"');
+				assert.ok(uniqueNames[e.name].indexOf(e.value) === -1, "form item value: " + e.name + '="' + e.value + '" should have a unique value');
+				uniqueNames[e.name].push(e.value);
 
 
 

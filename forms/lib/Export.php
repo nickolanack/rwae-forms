@@ -8,17 +8,23 @@ class Export
         include_once Core::LibDir() . DS . 'easycsv' . DS . 'EasyCsv.php';
         include_once dirname(__DIR__) . DS . 'database' . DS . 'ScheduleDatabase.php';
         $db = ScheduleDatabase::GetInstance();
-        $csv = null;
+        include_once __DIR__ . '/RWAForm.php';
+        $fieldsNames = RWAForm::GetFieldNames('scheduled');
+        $csv = EasyCsv::CreateCsv($fieldsNames);
         $db->iterateAllSchedules(
-            function ($record) use (&$csv) {
+            function ($record) use (&$csv, $fieldsNames) {
 
                 $form = get_object_vars(json_decode($record->formData));
 
-                if (empty($csv)) {
-                    $keys = array_merge(array(), array_keys($form));
-                    $csv = EasyCsv::CreateCsv($keys);
+                $values = array();
+                foreach ($fieldsNames as $field) {
+                    if (key_exists($field, $form)) {
+                        $values[] = $form[$field];
+                    } else {
+                        $values[] = "";
+                    }
                 }
-                EasyCsv::AddRow($csv, array_values($form));
+                EasyCsv::AddRow($csv, $values);
             });
 
         header('Content-Type: application/csv;');
@@ -33,17 +39,26 @@ class Export
         include_once Core::LibDir() . DS . 'easycsv' . DS . 'EasyCsv.php';
         include_once dirname(__DIR__) . DS . 'database' . DS . 'ScheduleDatabase.php';
         $db = ScheduleDatabase::GetInstance();
-        $csv = null;
+
+        include_once __DIR__ . '/RWAForm.php';
+        $fieldsNames = RWAForm::GetFieldNames('addendum');
+        $csv = EasyCsv::CreateCsv($fieldsNames);
+
         $db->iterateAllAddendums(
-            function ($record) use (&$csv) {
+            function ($record) use (&$csv, $fieldsNames) {
 
                 $form = get_object_vars(json_decode($record->formData));
 
-                if (empty($csv)) {
-                    $keys = array_merge(array(), array_keys($form));
-                    $csv = EasyCsv::CreateCsv($keys);
+                $values = array();
+                foreach ($fieldsNames as $field) {
+                    if (key_exists($field, $form)) {
+                        $values[] = $form[$field];
+                    } else {
+                        $values[] = "";
+                    }
                 }
-                EasyCsv::AddRow($csv, array_values($form));
+
+                EasyCsv::AddRow($csv, $values);
             });
 
         header('Content-Type: application/csv;');
@@ -58,17 +73,25 @@ class Export
         include_once Core::LibDir() . DS . 'easycsv' . DS . 'EasyCsv.php';
         include_once dirname(__DIR__) . DS . 'database' . DS . 'ScheduleDatabase.php';
         $db = ScheduleDatabase::GetInstance();
-        $csv = null;
+        include_once __DIR__ . '/RWAForm.php';
+        $fieldsNames = RWAForm::GetFieldNames('quarterly');
+        $csv = EasyCsv::CreateCsv($fieldsNames);
+
         $db->iterateAllQuarterlys(
-            function ($record) use (&$csv) {
+            function ($record) use (&$csv, $fieldsNames) {
 
                 $form = get_object_vars(json_decode($record->formData));
 
-                if (empty($csv)) {
-                    $keys = array_merge(array(), array_keys($form));
-                    $csv = EasyCsv::CreateCsv($keys);
+                $values = array();
+                foreach ($fieldsNames as $field) {
+                    if (key_exists($field, $form)) {
+                        $values[] = $form[$field];
+                    } else {
+                        $values[] = "";
+                    }
                 }
-                EasyCsv::AddRow($csv, array_values($form));
+
+                EasyCsv::AddRow($csv, $values);
             });
 
         header('Content-Type: application/csv;');

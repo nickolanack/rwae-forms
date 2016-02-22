@@ -2,17 +2,19 @@
 global $_html;
 $_html = array(
     'js' => array(),
-    'css' => array()
+    'css' => array(),
 );
 
 /**
  *
  * @author nblackwe
- *        
+ *
  */
-class PageTest extends PHPUnit_Framework_TestCase {
+class PageTest extends PHPUnit_Framework_TestCase
+{
 
-    protected function _includeScaffolds() {
+    protected function _includeScaffolds()
+    {
         if (file_exists(dirname(__DIR__) . '/forms/php-core-app')) {
             include dirname(__DIR__) . '/forms/php-core-app/library/scaffold/defines.php';
         } else {
@@ -23,19 +25,20 @@ class PageTest extends PHPUnit_Framework_TestCase {
     /**
      * @runInSeparateProcess
      */
-    public function testWriteForms() {
+    public function testWriteForms()
+    {
         $this->_includeScaffolds();
-        
-        $this->assertTrue(file_exists(dirname(__DIR__) . '/forms/views'), 
+
+        $this->assertTrue(file_exists(dirname(__DIR__) . '/forms/views'),
             'scaffolds directory: ' . dirname(__DIR__) . '/forms/views');
-        
+
         ob_start();
-        
-        HTML('document', 
+
+        HTML('document',
             array(
                 'buffered' => true,
                 'header' => function () {
-                    
+
                     // need a bunch of resources.
                     ?>
 
@@ -89,18 +92,18 @@ class PageTest extends PHPUnit_Framework_TestCase {
 	type="text/javascript"></script>
 <script type="text/javascript">
 <?php
-                    global $_html;
+global $_html;
                     echo implode("\n\n", $_html['js']);
                     ?>
                     </script>
 <?php
-                },
+},
                 'body' => function () {
-                    
+
                     ?><section id="schedule-d-area"><?php Scaffold('form.scheduled', array(), dirname(__DIR__) . '/forms/views');?></section>
 <section id="quarterly-area"><?php Scaffold('form.quarterly', array(), dirname(__DIR__) . '/forms/views');?></section>
 <section id="addendum-area"><?php Scaffold('form.addendum', array(), dirname(__DIR__) . '/forms/views');?></section><?php
-                    
+
                     IncludeJSBlock(
                         '
 
@@ -116,13 +119,13 @@ class PageTest extends PHPUnit_Framework_TestCase {
             defaultFormData:' . json_encode(
                             array(
                                 // the default values when creating a schedule d
-                                'id' => - 1,
+                                'id' => -1,
                                 'admin-year' => 2015,
                                 'admin-quarter' => '1st',
                                 'employed-quarter' => 'no',
                                 'job-supports' => 'no',
                                 'enrolled-quarter' => 'no',
-                                'enrollment-supports' => 'no'
+                                'enrollment-supports' => 'no',
                             )) . '
 
         });
@@ -136,13 +139,13 @@ class PageTest extends PHPUnit_Framework_TestCase {
             defaultFormData:' . json_encode(
                             array(
                                 // the default values when creating a schedule d
-                                'id' => - 1,
+                                'id' => -1,
                                 'admin-year' => 2015,
                                 'admin-quarter' => '1st',
                                 'employed-quarter' => 'no',
                                 'job-supports' => 'no',
                                 'enrolled-quarter' => 'no',
-                                'enrollment-supports' => 'no'
+                                'enrollment-supports' => 'no',
                             )) . '
 
         });
@@ -155,13 +158,13 @@ class PageTest extends PHPUnit_Framework_TestCase {
             defaultFormData:' . json_encode(
                             array(
                                 // the default values when creating a schedule d
-                                'id' => - 1,
+                                'id' => -1,
                                 'admin-year' => 2015,
                                 'admin-quarter' => '1st',
                                 'employed-quarter' => 'no',
                                 'job-supports' => 'no',
                                 'enrolled-quarter' => 'no',
-                                'enrollment-supports' => 'no'
+                                'enrollment-supports' => 'no',
                             )) . '
 
         });
@@ -173,42 +176,51 @@ class PageTest extends PHPUnit_Framework_TestCase {
     });
 
 ');
-                    
+
                     Scaffold('qunit.test', array(), dirname(__DIR__) . '/forms/views');
-                }
+                },
             ));
-        
+
         $page = ob_get_contents();
         ob_end_clean();
-        
+
         file_put_contents(__DIR__ . '/page.html', $page);
         // echo $page;
         $this->assertTrue(file_exists(__DIR__ . '/page.html'));
     }
 }
 
-function IncludeJSBlock($js) {
+/**
+ * stub methods that are expected to have been implemented by php-core-app
+ */
+
+function IncludeJSBlock($js)
+{
     global $_html;
     $_html['js'][] = $js;
     // echo 'block:' . $js;
 }
 
-function IncludeJS($js) {
-    
+function IncludeJS($js)
+{
+
     // echo 'scr:' . $js;
 }
 
-function IncludeCSS($css) {
-    
+function IncludeCSS($css)
+{
+
     // echo 'scr:' . $css;
 }
 
-function IncludeCSSBlock($css) {
-    
+function IncludeCSSBlock($css)
+{
+
     // echo 'block:' . $css;
 }
 
-function Scaffold($name, $params = array(), $dir = null) {
+function Scaffold($name, $params = array(), $dir = null)
+{
     global $scaffold;
     return $scaffold->build($name, $params, $dir);
 }
