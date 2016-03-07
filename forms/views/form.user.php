@@ -1,6 +1,7 @@
 <form>
 	<input type="hidden" value="" name="id" />
 	<h2>User Details</h2>
+	this form doesn't work yet
 	<section class="b">
 		<label>Contact Name <input type="text" value="" name="rwa-name" /></label>
 		<br /> <label>Province/Territory <!-- <input type="text" value=""

@@ -35,6 +35,30 @@ var UIUserList = new Class({
                     html: '<span>' + user.name + '</span><span>' + user.username + '</span><span>' + user.email + '</span><span>' + user.id + '</span>'
                 }));
 
+
+
+                var assign = new Element("span", {
+                    "class": "btn btn-warn"
+                });
+                new UIPopover(assign, {
+                    description: "Assign Participants To User",
+                    anchor: UIPopover.AnchorTo("top")
+                });
+                item.appendChild(assign);
+
+                assign.addEvent('click', function() {
+
+                    var form = formManager.getForm("userassign");
+
+                    var formData = {};
+
+                    formManager.loadFormData(form, Object.append(formData, {
+                        id: user.id
+                    }));
+                    formManager.showForm("userassign");
+                });
+
+
                 var edit = new Element("span", {
                     "class": "btn btn-primary"
                 });

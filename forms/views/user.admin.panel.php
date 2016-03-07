@@ -2,28 +2,28 @@
 Behavior('ajax');
 
 ?><link rel="stylesheet"
-	href="<?php echo UrlFrom(dirname(__DIR__) . DS . 'css' . DS . 'forms.css');?>"
+	href="<?php echo UrlFrom(dirname(__DIR__) . DS . 'css' . DS . 'forms.css'); ?>"
 	type="text/css"><?php
 
-$schedButton = Scaffold('cpanel.button', 
+$schedButton = Scaffold('cpanel.button',
     array(
-        'title' => 'Show All Participant Information Form Forms',
+        'title'     => 'Show All Participant Information Form Forms',
         'className' => 'btn btn-primary big',
-        'icon' => Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_table.png?tint=rgb(255,255,255)'
+        'icon'      => Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_table.png?tint=rgb(255,255,255)',
     ));
 
-$authButton = Scaffold('cpanel.button', 
+$authButton = Scaffold('cpanel.button',
     array(
-        'title' => 'Show All Participant Information Form Authors',
+        'title'     => 'Show All Participant Information Form Authors',
         'className' => 'btn btn-danger big',
-        'icon' => Core::AssetsDir() . DS . 'Tile Icons' . DS . 'profile.png?tint=rgb(255,255,255)'
+        'icon'      => Core::AssetsDir() . DS . 'Tile Icons' . DS . 'profile.png?tint=rgb(255,255,255)',
     ));
 
-$expButton = Scaffold('cpanel.button', 
+$expButton = Scaffold('cpanel.button',
     array(
-        'title' => 'Manage Data',
+        'title'     => 'Manage Data',
         'className' => 'btn btn-success big',
-        'icon' => Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_clipboard.png?tint=rgb(255,255,255)'
+        'icon'      => Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_clipboard.png?tint=rgb(255,255,255)',
     ));
 
 IncludeJS(dirname(__DIR__) . DS . 'js' . DS . 'UIFormManager.js');
@@ -38,12 +38,12 @@ Scaffold('list.scheduled');
 Scaffold('list.users');
 Scaffold('list.utilities');
 
-$q = ((int) ((date('n') - 1) / 3));
+$q        = ((int) ((date('n') - 1) / 3));
 $quarters = array(
     '1st',
     '2nd',
     '3rd',
-    '4th'
+    '4th',
 );
 $quarter = $quarters[$q];
 
@@ -71,13 +71,13 @@ IncludeJSBlock(
             defaultFormData:' . json_encode(
         array(
             // the default values when creating a schedule d
-            'id' => - 1,
-            'admin-year' => date('Y'),
-            'admin-quarter' => $quarter,
-            'employed-quarter' => 'no',
-            'job-supports' => 'no',
-            'enrolled-quarter' => 'no',
-            'enrollment-supports' => 'no'
+            'id'                  => -1,
+            'admin-year'          => date('Y'),
+            'admin-quarter'       => $quarter,
+            'employed-quarter'    => 'no',
+            'job-supports'        => 'no',
+            'enrolled-quarter'    => 'no',
+            'enrollment-supports' => 'no',
         )) . '
 
         });
@@ -96,13 +96,13 @@ IncludeJSBlock(
             defaultFormData:' . json_encode(
         array(
             // the default values when creating a schedule d
-            'id' => - 1,
-            'admin-year' => date('Y'),
-            'admin-quarter' => $quarter,
-            'employed-quarter' => 'no',
-            'job-supports' => 'no',
-            'enrolled-quarter' => 'no',
-            'enrollment-supports' => 'no'
+            'id'                  => -1,
+            'admin-year'          => date('Y'),
+            'admin-quarter'       => $quarter,
+            'employed-quarter'    => 'no',
+            'job-supports'        => 'no',
+            'enrolled-quarter'    => 'no',
+            'enrollment-supports' => 'no',
         )) . '
 
         });
@@ -120,25 +120,25 @@ IncludeJSBlock(
             defaultFormData:' . json_encode(
         array(
             // the default values when creating a schedule d
-            'id' => - 1,
-            'admin-year' => date('Y'),
-            'admin-quarter' => $quarter,
-            'employed-quarter' => 'no',
-            'job-supports' => 'no',
-            'enrolled-quarter' => 'no',
+            'id'                  => -1,
+            'admin-year'          => date('Y'),
+            'admin-quarter'       => $quarter,
+            'employed-quarter'    => 'no',
+            'job-supports'        => 'no',
+            'enrolled-quarter'    => 'no',
             'enrollment-supports' => 'no',
-            'job-1-working' => 'no',
-            'job-2-working' => 'no',
-            'job-3-working' => 'no',
-            'job-1-promoted' => 'no',
-            'job-2-promoted' => 'no',
-            'job-3-promoted' => 'no',
-            'job-1-wage-changed' => 'no',
-            'job-2-wage-changed' => 'no',
-            'job-3-wage-changed' => 'no',
+            'job-1-working'       => 'no',
+            'job-2-working'       => 'no',
+            'job-3-working'       => 'no',
+            'job-1-promoted'      => 'no',
+            'job-2-promoted'      => 'no',
+            'job-3-promoted'      => 'no',
+            'job-1-wage-changed'  => 'no',
+            'job-2-wage-changed'  => 'no',
+            'job-3-wage-changed'  => 'no',
             'job-1-hours-changed' => 'no',
             'job-2-hours-changed' => 'no',
-            'job-3-hours-changed' => 'no'
+            'job-3-hours-changed' => 'no',
         )) . '
 
         });
@@ -156,7 +156,24 @@ IncludeJSBlock(
             warningsArea:$("user-warnings-area"),
             defaultFormData:' . json_encode(array())
 
-     . '
+    . '
+
+        });
+
+
+        UIFormManager.addForm({
+            name:"userassign",
+            ajaxUrl:null,
+            ajaxTask:"assiqn-user",
+            container:$("userassign-area"),
+            form:$$("#userassign-area>form")[0],
+            submitButtons:$$("#userassign-area .submit-btn"),
+            cancelButtons:$$("#userassign-area .cancel-btn"),
+            additionalFormButtons:$$("#userassign-area>form .btn"),
+            warningsArea:$("userassign-warnings-area"),
+            defaultFormData:' . json_encode(array())
+
+    . '
 
         });
 
