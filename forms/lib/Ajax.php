@@ -176,7 +176,7 @@ class Ajax
         $db = ScheduleDatabase::GetInstance();
         $count = 0;
 
-        $max = 10;
+        $max = 20;
 
         echo '{"results":[' . "\n";
         $db->iterateAllSchedules(
@@ -203,7 +203,7 @@ class Ajax
                 )), JSON_PRETTY_PRINT);
                 $count++;
                 if ($count >= $max) {
-                    return false;
+                    //return false;
                 }
             }, array(
 
@@ -221,7 +221,7 @@ class Ajax
         $db = ScheduleDatabase::GetInstance();
         $count = 0;
 
-        $max = 10;
+        $max = 20;
 
         echo '{"results":[' . "\n";
         $db->iterateAllSchedules(
@@ -245,14 +245,22 @@ class Ajax
                 )), JSON_PRETTY_PRINT);
                 $count++;
                 if ($count >= $max) {
-                    return false;
+                    //return false;
                 }
             }, array(
                 'uid' => Core::Client()->getUserId(),
                 'ORDER BY' => 'formDate DESC',
             ));
 
-        echo '],' . "\n" . ' "success":true}';
+        $query = $db->lastQuery();
+        file_put_contents(__DIR__ . '/.query.log', $query . "\n", FILE_APPEND);
+
+/*
+$count = (int) $db->countSchedule(array(
+'uid' => Core::Client()->getUserId()));
+ */
+
+        echo '], ' . "\n" . ' "success":true}';
 
         return;
     }

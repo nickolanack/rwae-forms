@@ -23,7 +23,7 @@ IncludeCSSBlock(
 
 .scheduled-item>.btn-danger {
     background-image:url("' .
-         UrlFrom(Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_new.png') . '?tint=rgb(255,255,255)");
+    UrlFrom(Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_new.png') . '?tint=rgb(255,255,255)");
     background-size:11px;
     width: 1px;
 }

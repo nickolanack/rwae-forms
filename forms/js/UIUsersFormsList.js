@@ -55,8 +55,7 @@ var displayUsersFormsList = function(options) {
 
     (new AjaxControlQuery(
         url,
-        "list-scheduled",
-        {}
+        "list-scheduled", {}
     )).addEvent("success", function(response) {
 
         if (response.success && response.results.length) {
@@ -81,10 +80,6 @@ var displayUsersFormsList = function(options) {
             response.results.forEach(function(data) {
 
                 dateFn(data.submitDate);
-
-
-
-
 
                 var item = section.appendChild(new Element("div", {
                     "class": "scheduled-item",
@@ -150,7 +145,6 @@ var displayUsersFormsList = function(options) {
                     anchor: UIPopover.AnchorTo("top")
                 });
                 item.appendChild(remove);
-
 
 
 
@@ -273,8 +267,7 @@ var displayUsersFormsList = function(options) {
 
                         (new AjaxControlQuery(
                             url,
-                            "delete-scheduled",
-                            {
+                            "delete-scheduled", {
                                 id: data.id
                             }
                         )).addEvent("success", function(response) {
@@ -297,7 +290,6 @@ var displayUsersFormsList = function(options) {
                 )).addEvent("success", function(response) {
 
                     if (response.success) {
-
 
 
 
@@ -344,14 +336,11 @@ var displayUsersFormsList = function(options) {
 
 
 
-
                         if (total > 0 || calcQs.length > 0) {
 
                             var subUl = new Element('ul', {
                                 "class": "subforms-list"
                             });
-
-
 
 
 
@@ -379,8 +368,6 @@ var displayUsersFormsList = function(options) {
                                 }
 
                                 subUl.appendChild(li);
-
-
 
 
 
@@ -509,8 +496,7 @@ var displayUsersFormsList = function(options) {
 
                                         (new AjaxControlQuery(
                                             url,
-                                            "delete-" + entry.form,
-                                            {
+                                            "delete-" + entry.form, {
                                                 id: entry.id
                                             }
                                         )).addEvent("success", function(response) {
@@ -519,8 +505,7 @@ var displayUsersFormsList = function(options) {
 
                                         }).execute();
 
-                                    }
-                                    ;
+                                    };
 
                                 });
 
@@ -556,8 +541,6 @@ var displayUsersFormsList = function(options) {
                         } else {
                             item.addClass('empty-subforms');
                         }
-
-
 
 
 
