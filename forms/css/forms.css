@@ -461,3 +461,17 @@ li.subform-expected-quarterly>.btn {
     height: 9px;
     background-position: center;
 }
+
+
+/* quarterly 1-16 selection */
+span.ext-q {
+    float: right;
+    margin-top: 30px;
+}
+
+.ext-q button.btn {
+    height: 20px;
+    line-height: 10px;
+    margin: 2px;
+    padding: 2px 7px;
+}

@@ -22,10 +22,20 @@ function Localize($callback, $replace){
 
         $i=0;
         while(($i=strpos($text, $search, $i))!==false){
+          
            $stag=strrpos($text, '<', $i-strlen($text));
            $etag=strrpos($text, '>', $i-strlen($text));
            $lang=strrpos($text, '"en">', $i-strlen($text));
-           if($stag===false||($etag>$stag&&($lang===false||$lang<$stag))){
+
+           $isInnerHtml=($stag===false||($etag>$stag&&($lang===false||$lang<$stag)));
+
+           $sstag=strrpos($text, '<script', $i-strlen($text));
+           $estag=strrpos($text, '</script', $i-strlen($text));
+        
+
+           $isNotInScript=($sstag===false||($estag>$sstag));
+
+           if($isInnerHtml&&$isNotInScript){
                 $text=substr($text, 0, $i). $replace[$search].substr($text, $i+strlen($search));
            }
            $i+=strlen($replace[$search]);
