@@ -37,6 +37,7 @@ class ScheduleDatabase extends CoreDatabase
                 'Schedule' => $p . 'Schedule',
                 'Addendum' => $p . 'Addendum',
                 'Quarterly' => $p . 'Quarterly',
+                'User' => $p . 'User',
             );
         }
 
@@ -53,6 +54,7 @@ class ScheduleDatabase extends CoreDatabase
             $Schedule = $names['Schedule'];
             $Addendum = $names['Addendum'];
             $Quarterly = $names['Quarterly'];
+            $User = $names['User'];
 
             $this->createStrings = array(
                 $Schedule => 'CREATE TABLE ' . $Schedule . '(
@@ -101,6 +103,16 @@ class ScheduleDatabase extends CoreDatabase
 
 				PRIMARY KEY (id)
 			)',
+
+            $User => 'CREATE TABLE ' . $User . '(
+                id INT(11) AUTO_INCREMENT,
+                uid INT(11)
+                    COMMENT "user id of the form the author",
+                data LONGTEXT
+                    COMMENT "json encoded user parameters",
+                PRIMARY KEY (id)
+            )',
+
             );
         }
 
@@ -241,4 +253,36 @@ class ScheduleDatabase extends CoreDatabase
             'id' => $id,
         ));
     }
+
+
+
+
+    public function createUserData($args)
+    {
+
+        return $this->createEntry($args, 'User',
+            array(
+                'uid',
+                'data'
+            ));
+    }
+
+    public function updateUserData($args)
+    {
+
+        return $this->updateEntry($args, 'User',
+            array(
+                'uid',
+                'data'
+            ));
+    }
+
+        public function getUserData($id)
+    {
+
+        return $this->recordList('User', array(
+            'uid' => $id,
+        ));
+    }
+
 }

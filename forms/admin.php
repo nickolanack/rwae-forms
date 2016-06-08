@@ -81,6 +81,19 @@ if (UrlVar('task') == 'create-new-scheduled') {
     include_once __DIR__ . DS . 'lib' . DS . 'Ajax.php';
     Ajax::ListUsers();
     return;
+} elseif (UrlVar('task') == 'save-user') {
+
+    include_once __DIR__ . DS . 'lib' . DS . 'Ajax.php';
+    Ajax::SaveUserData();
+    return;
+}elseif (UrlVar('task') == 'user-data') {
+
+    include_once __DIR__ . DS . 'lib' . DS . 'Ajax.php';
+    Ajax::GetUserData();
+    return;
+}  elseif (UrlVar('task') == 'assign-user') {
+    Ajax::AssignFormToUser();
+    return;
 } elseif (UrlVar('task') == 'export-formatted') {
 
     include_once Core::LibDir() . DS . 'easycsv' . DS . 'EasyCsv.php';

@@ -9,7 +9,7 @@ Scaffold('cpanel.button',
         'script'    => '
 
              if(!this.getAttribute("disabled")){
-                UIFormManager.saveForm("addendum");
+                UIFormManager.saveForm("user");
              }
 
         ',
@@ -35,7 +35,7 @@ Scaffold('cpanel.button',
         'icon'      => Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_new.png?tint=rgb(255,255,255)',
         'script'    => '
             if(!this.getAttribute("disabled")){
-                UIFormManager.saveForm("addendum");
+                UIFormManager.saveForm("user");
             }
         ',
     ));
@@ -56,7 +56,7 @@ Scaffold('cpanel.button',
         'script'    => '
 
              if(!this.getAttribute("disabled")){
-                UIFormManager.saveForm("addendum");
+                UIFormManager.saveForm("userassign");
              }
 
         ',
@@ -82,7 +82,7 @@ Scaffold('cpanel.button',
         'icon'      => Core::AssetsDir() . DS . 'Map Item Icons' . DS . 'sm_new.png?tint=rgb(255,255,255)',
         'script'    => '
             if(!this.getAttribute("disabled")){
-                UIFormManager.saveForm("addendum");
+                UIFormManager.saveForm("userassign");
             }
         ',
     ));
