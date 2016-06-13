@@ -1,7 +1,7 @@
 <?php
 include_once dirname(__DIR__).DS.'lib'.DS.'Localize.php';
-
 include_once Core::LibDir().DS.'easycsv'.DS.'EasyCsv.php';
+
 $language=array();
 $languageFilePath=dirname(__DIR__).DS.'language.csv';
 if(file_exists($languageFilePath)){

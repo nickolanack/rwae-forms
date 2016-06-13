@@ -17,6 +17,7 @@
 				<option value="Prince Edward Island">Prince Edward Island</option>
 				<option value="Quebec">Quebec</option>
 				<option value="Saskatchewan">Saskatchewan</option>
+				<option value="Yukon">Yukon</option>
 		</select>
 		</label>
 
