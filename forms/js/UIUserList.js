@@ -16,8 +16,7 @@ var UIUserList = new Class({
 
         (new AjaxControlQuery(
             url,
-            "list-users",
-            {}
+            "list-users", {}
         )).addEvent("success", function(response) {
 
 
@@ -70,14 +69,28 @@ var UIUserList = new Class({
 
                 edit.addEvent('click', function() {
 
-                    var form = formManager.getForm("user");
 
-                    var formData = {};
+                    (new AjaxControlQuery(
+                        url,
+                        "user-data", {
+                            id: user.id
+                        }
+                    )).addEvent("success", function(response) {
 
-                    formManager.loadFormData(form, Object.append(formData, {
-                        id: user.id
-                    }));
-                    formManager.showForm("user");
+                        var form = formManager.getForm("user");
+
+                        var formData = response.data;
+
+                        formManager.loadFormData(form, Object.append(formData, {
+                            id: user.id
+                        }));
+                        formManager.showForm("user");
+
+
+                    }).execute();
+
+
+
                 });
 
                 section.appendChild(item);
@@ -87,4 +100,3 @@ var UIUserList = new Class({
         }).execute();
     }
 });
-

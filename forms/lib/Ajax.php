@@ -207,7 +207,7 @@ class Ajax
                 }
             }, array(
 
-                'ORDER BY' => 'formDate DESC',
+                'ORDER BY' => 'submitDate DESC',
             ));
 
         echo '],' . "\n" . ' "success":true}';
@@ -219,6 +219,26 @@ class Ajax
     {
         include_once dirname(__DIR__) . DS . 'database' . DS . 'ScheduleDatabase.php';
         $db = ScheduleDatabase::GetInstance();
+        $uid=Core::Client()->getUserId();
+
+
+        $prefixes=array();
+
+        $results=$db->getUserData($uid);
+
+        if($results){
+            $prefixes=json_decode($results[0]->data)->{'rwa-prefixes'};
+        }
+
+        $filter= array(
+                array_merge(array('join'=>'OR', 'uid' => $uid), array_map(function($p){
+                    return array('field'=>'LOWER(code)','value'=>strtolower($p).'-%', 'comparator'=>'LIKE');
+                },$prefixes)),
+                'ORDER BY' => 'submitDate DESC',
+            );
+
+
+
         $count = 0;
 
         $max = 20;
@@ -247,18 +267,15 @@ class Ajax
                 if ($count >= $max) {
                     //return false;
                 }
-            }, array(
-                'uid' => Core::Client()->getUserId(),
-                'ORDER BY' => 'formDate DESC',
-            ));
+            }, $filter);
 
         $query = $db->lastQuery();
         file_put_contents(__DIR__ . '/.query.log', $query . "\n", FILE_APPEND);
 
-/*
-$count = (int) $db->countSchedule(array(
-'uid' => Core::Client()->getUserId()));
- */
+        /*
+        $count = (int) $db->countSchedule(array(
+        'uid' => Core::Client()->getUserId()));
+         */
 
         echo '], ' . "\n" . ' "success":true}';
 
@@ -303,7 +320,7 @@ $count = (int) $db->countSchedule(array(
                 }
             }, array(
                 'code' => $code,
-                'ORDER BY' => 'formDate DESC',
+                'ORDER BY' => 'submitDate DESC',
             ));
 
         echo '],' . "\n" . '"quarterlys":[';
@@ -333,7 +350,7 @@ $count = (int) $db->countSchedule(array(
                 }
             }, array(
                 'code' => $code,
-                'ORDER BY' => 'formDate DESC',
+                'ORDER BY' => 'submitDate DESC',
             ));
 
         echo ']},' . "\n" . ' "success":true}';
@@ -412,12 +429,68 @@ $count = (int) $db->countSchedule(array(
                 }
             }, array(
 
-                'ORDER BY' => 'formDate DESC',
+                'ORDER BY' => 'submitDate DESC',
             ));
 
         echo '],' . "\n" . ' "success":true}';
 
         return;
+    }
+
+    public static function SaveUserData(){
+        $json = json_decode(UrlVar('json'));
+     
+
+        $rwaPrefixes=$json->{'rwa-prefixes'};
+        $uid=$json->id;
+        $rwaPrefixes=str_replace(',', ' ',$rwaPrefixes);
+        $rwaPrefixes=explode(' ', $rwaPrefixes);
+        $rwaPrefixes=array_filter($rwaPrefixes, function($p){
+            $p=trim($p);
+            return !empty($p);
+        });
+
+        include_once dirname(__DIR__) . DS . 'database' . DS . 'ScheduleDatabase.php';
+        $db = ScheduleDatabase::GetInstance();
+        //$uid=Core::Client()->getUserId();
+        $results=$db->getUserData($uid);
+
+        $fields=array('uid'=>$uid, 'data'=>json_encode(array('rwa-prefixes'=>array_values($rwaPrefixes)),JSON_PRETTY_PRINT));
+
+        if(! $results){
+            $db->createUserData($fields);
+        }else{
+            $db->updateUserData(array_merge($fields, array('id'=>$results[0]->id)));
+        }
+
+        echo '{"success":true}';
+
+        return;
+
+    }
+
+     public static function GetUserData(){
+  
+        $json = json_decode(UrlVar('json'));
+        $uid=$json->id;
+
+        include_once dirname(__DIR__) . DS . 'database' . DS . 'ScheduleDatabase.php';
+        $db = ScheduleDatabase::GetInstance();
+        //$uid=Core::Client()->getUserId();
+        $results=$db->getUserData($uid);
+
+        if($results){
+            $prefixes=implode(', ',json_decode($results[0]->data)->{'rwa-prefixes'});
+
+            echo json_encode(array('success'=>true, 'data'=>array('rwa-prefixes'=>$prefixes)));
+            return;
+        }
+
+    
+        echo '{"success":true, data:{}}';
+
+        return;
+
     }
 
 }
