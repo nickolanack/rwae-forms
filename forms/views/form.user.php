@@ -6,7 +6,6 @@
 
 		<label>Prefix<input type="text" value="" name="rwa-prefixes" /></label>
 
-		</label>
 
 	</section>
 </form>

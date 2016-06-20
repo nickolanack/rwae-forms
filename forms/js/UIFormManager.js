@@ -377,6 +377,8 @@ var UIFormManager = (function() {
 			me.fireEvent("showForm");
 			me.fireEvent("showForm." + name);
 
+			window.scrollTo(0,0);
+
 		},
 
 

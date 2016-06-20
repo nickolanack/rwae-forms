@@ -396,10 +396,20 @@ class Ajax
 
     }
 
-    public static function DeleteAdminAddendum()
+    public static function DeleteAddendum()
     {
 
+        include_once dirname(__DIR__) . DS . 'database' . DS . 'ScheduleDatabase.php';
+        $json = json_decode(UrlVar('json'));
+        if (!key_exists('id', $json)) {}
+        $id = (int) $json->id;
+
+        $db = ScheduleDatabase::GetInstance();
+        $db->deleteAddendum($id);
+
         echo '{"success":true}';
+
+        return;
 
         return;
 
