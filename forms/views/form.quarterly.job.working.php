@@ -43,3 +43,20 @@ echo $prefix;
 <label>New number of hours per week <input style="width: 100px;"
 	type="number" value="" step="any" min="0"
 	name="<?php echo $prefix;?>-hours-weekly" /></label>
+
+<h4>Any change to employment status? Seasonal to permanent</h4>
+<span class="inline">
+		<label><input type="radio" value="yes"
+		name="<?php echo $prefix; ?>-to-permanent" /> Yes </label>
+	<label><input type="radio" value="no"
+		name="<?php echo $prefix; ?>-to-permanent" /> No </label>
+</span>
+
+
+<h4>Comments</h4>
+<textarea type="text" name="<?php
+
+echo $prefix;
+?>-comments"
+	style="resize: vertical; width: 250px; box-sizing: border-box;">
+	</textarea>

@@ -475,3 +475,18 @@ span.ext-q {
     margin: 2px;
     padding: 2px 7px;
 }
+
+
+
+span.help-icon:before {
+    content: '?';
+    color: white;
+    background: #01AEEF;
+    width: 18px;
+    display: inline-block;
+    text-align: center;
+    height: 18px;
+    border-radius: 100%;
+    line-height: 18px;
+    margin-right: 5px;
+}

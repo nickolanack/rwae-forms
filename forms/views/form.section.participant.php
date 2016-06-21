@@ -19,8 +19,8 @@
 				<option value="Nunavut">Nunavut</option>
 
 		</select>
-	</label><label>Start date with RWA <input type="date" value=""
-			name="participant-start-date" />
+	<!-- </label><label>Start date with RWA <input type="date" value=""
+			name="participant-start-date" /> -->
 	</label> <label>Individual's community <input type="text" value=""
 			name="participant-community" />
 	</label>
@@ -80,3 +80,9 @@
 	name="participant-previous-income[]" /> Social assistance, incl. provincial / territorial disability program </label>
 <label><input type="checkbox" value="other"
 	name="participant-previous-income[]" /> Other </label>
+
+	<h4>Comments</h4>
+<textarea type="text"
+	name="participant-previous-income-comment"
+	style="resize: vertical; width: 380px; box-sizing: border-box;">
+	</textarea>

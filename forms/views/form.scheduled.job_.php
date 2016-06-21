@@ -40,11 +40,29 @@ echo $prefix;
 ?>-title" />
 </label>
 <label>Number of hours per week <input style="width: 50px;"
-	type="number" value="" step="any" min="0"
+	type="text" value=""
 	name="<?php echo $prefix; ?>-hours-weekly" />
 </label>
-<label>Industry sector code <!--  <input style="width: 100px;" type="text"
+<label><span id="<?php echo $prefix; ?>-help" class="help-icon"><?php 
+IncludeJSBlock('
+	 
+	 window.addEvent("load",function(){
+
+	 	
+
+	 	new UIPopover($("'.$prefix.'-help"), {
+                    description: "the sector code should reflect the sector or industry of the business/organization and not the individual position",
+                    anchor: UIPopover.AnchorTo("top")
+                });
+
+
+	 });
+
+');
+?>
+</span>Industry sector code <!--  <input style="width: 100px;" type="text"
 	value="" name="<?php
+
 
 echo $prefix;
 ?>-sector" />--> <select name="<?php
@@ -79,8 +97,8 @@ echo $prefix;
 </select>
 
 </label>
-<label>Hourly wage/salary <input style="width: 100px;" type="number"
-	value="" step="any" min="0" name="<?php echo $prefix; ?>-wage" />
+<label>Hourly wage/salary <input style="width: 100px;" type="text"
+	value="" name="<?php echo $prefix; ?>-wage" />
 </label>
 <h4>Is this self-employment?</h4>
 <span class="inline"><label><input type="radio" value="yes"

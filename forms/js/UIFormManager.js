@@ -377,6 +377,11 @@ var UIFormManager = (function() {
 			me.fireEvent("showForm");
 			me.fireEvent("showForm." + name);
 
+			me.scrollToForm();			
+
+		},
+
+		scrollToForm:function(){
 			window.scrollTo(0,0);
 
 		},

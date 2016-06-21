@@ -49,6 +49,15 @@ $num = array(
 		</label> <label>Provider <input type="text" value=""
 				name="job-support-<?php echo $config['n']; ?>-trans-provider" />
 		</label>
+
+<h4>Were these supports funded by generic/agency sources?</h4>
+<span class="inline">
+		<label><input type="radio" value="yes"
+		name="job-support-<?php echo $config['n']; ?>-external-provider" /> Yes </label>
+	<label><input type="radio" value="no"
+		name="job-support-<?php echo $config['n']; ?>-external-provider" /> No </label>
+</span>
+
 	</span><span class="right">
 			<h4>Other</h4>
 			<div style="width: 250px;">Please describe any other charge not captured above (e.g., for uniform, supplies, fees, devices, ramps, etc.)</div> <textarea type="text"
