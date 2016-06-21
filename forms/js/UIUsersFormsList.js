@@ -31,6 +31,77 @@ var UIUsersFormsList = new Class({
 });
 
 
+var sortField='submitDate';
+var sortOrder='DESC';
+
+
+var displaySortOrder=function(element, options){
+
+    var list=new Element('ul', {html:'Sort Order', 'class':'sorting'});
+
+    var submittedDate=new Element('li', {html:'created', 'data-sort':'submitDate'});
+    var rwaDate=new Element('li', {html:'form quarter', 'data-sort':'formDate'});
+
+    var buttons=[submittedDate, rwaDate];
+
+
+    buttons.forEach(function(button){
+
+        list.appendChild(button);
+
+        if(button.getAttribute('data-sort')===sortField){
+            button.addClass('active');
+            button.addClass(sortOrder==='DESC'?'desc':'asc');
+        }
+
+        button.addEvent('click',function(){
+
+            var newSortOrder='desc';
+
+            buttons.forEach(function(otherButton){
+                if(otherButton!==button){
+                    otherButton.removeClass('active');
+                    otherButton.removeClass('asc');
+                    otherButton.removeClass('desc');
+                }else{
+
+                    if(otherButton.hasClass('desc')){
+                       
+
+                        otherButton.addClass('asc');
+                        otherButton.removeClass('desc');
+                        newSortOrder='ASC';
+                    }else{
+                        otherButton.removeClass('asc');
+                        otherButton.addClass('desc');
+                        newSortOrder='DESC';
+                    }
+
+                }
+
+            });
+
+            button.addClass('active')
+
+            var newSortField=button.getAttribute('data-sort');
+
+            if(newSortField!==sortField||newSortOrder!==sortOrder){
+                sortField=newSortField;
+                sortOrder=newSortOrder;
+                displayUsersFormsList(options);
+            }
+
+        });
+
+    });
+
+
+    element.appendChild(list);
+
+
+};
+
+
 var displayUsersFormsList = function(options) {
 
 
@@ -55,12 +126,20 @@ var displayUsersFormsList = function(options) {
 
     (new AjaxControlQuery(
         url,
-        "list-scheduled", {}
+        "list-scheduled", {
+            'sortField':sortField,
+            'sortOrder':sortOrder
+
+        }
     )).addEvent("success", function(response) {
 
         if (response.success && response.results.length) {
 
             listContainerEl.innerHTML = "<h3>" + config.title + "</h3>"; //also clears previous content
+            
+            displaySortOrder(listContainerEl, options);
+
+
             var section = new Element("section");
             listContainerEl.appendChild(section);
 
@@ -79,7 +158,7 @@ var displayUsersFormsList = function(options) {
 
             response.results.forEach(function(data) {
 
-                dateFn(data.submitDate);
+                dateFn(data[sortField]);
 
                 var item = section.appendChild(new Element("div", {
                     "class": "scheduled-item",

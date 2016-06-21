@@ -222,6 +222,20 @@ class Ajax
         $uid=Core::Client()->getUserId();
 
 
+        $sortField='submitDate';
+        $sortOrder='DESC';
+
+        $json = json_decode(UrlVar('json'));
+
+        if(key_exists('sortField', $json)&&in_array($json->sortField, array('submitDate', 'formDate'))){
+            $sortField=$json->sortField;
+        }
+
+        if(key_exists('sortOrder', $json)&&in_array($json->sortOrder, array('DESC', 'ASC'))){
+            $sortOrder=$json->sortOrder;
+        }
+
+
         $prefixes=array();
 
         $results=$db->getUserData($uid);
@@ -234,7 +248,7 @@ class Ajax
                 array_merge(array('join'=>'OR', 'uid' => $uid), array_map(function($p){
                     return array('field'=>'LOWER(code)','value'=>strtolower($p).'-%', 'comparator'=>'LIKE');
                 },$prefixes)),
-                'ORDER BY' => 'submitDate DESC',
+                'ORDER BY' => $sortField.' '.$sortOrder,
             );
 
 
