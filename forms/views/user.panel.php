@@ -136,7 +136,7 @@ IncludeJSBlock(
             warningsArea:$("addendum-warnings-area"),
             defaultFormData:' . json_encode(
         array(
-            // the default values when creating a schedule d
+            // the default values when creating an addendum
             'id' => - 1,
             'admin-year' => date('Y'),
             'admin-quarter' => $quarter,
@@ -160,7 +160,7 @@ IncludeJSBlock(
             warningsArea:$("quarterly-warnings-area"),
             defaultFormData:' . json_encode(
         array(
-            // the default values when creating a schedule d
+            // the default values when creating a quarterly
             'id' => - 1,
             'admin-year' => date('Y'),
             'admin-quarter' => $quarter,
