@@ -31,7 +31,23 @@ $num = array(
 				name="job-support-<?php echo $config['n']; ?>-provider" />
 		</label>
 
-		<div>Were these supports funded by generic/agency sources?</div>
+		<div><span id="job-support-<?php echo $config['n']; ?>-help1" class="help-icon"><?php 
+IncludeJSBlock('
+	 
+	 window.addEvent("load",function(){
+
+	 	
+
+	 	new UIPopover($("job-support-'.$config['n'].'-help1"), {
+                    description: "If these supports were funded by generic/agency supports, you do not need to complete the following fields: hourly rate for job coach, total $ needed for job coach at this request.",
+                    anchor: UIPopover.AnchorTo("top")
+                });
+
+
+	 });
+
+');
+?></span>Were these supports funded by generic/agency sources?</div>
 <span class="inline">
 		<label><input type="radio" value="yes"
 		name="job-support-<?php echo $config['n']; ?>-external-provider-coach" /> Yes </label>
@@ -61,7 +77,23 @@ $num = array(
 				name="job-support-<?php echo $config['n']; ?>-trans-provider" />
 		</label>
 
-<div>Were these supports funded by generic/agency sources?</div>
+<div><span id="job-support-<?php echo $config['n']; ?>-help2" class="help-icon"><?php 
+IncludeJSBlock('
+	 
+	 window.addEvent("load",function(){
+
+	 	
+
+	 	new UIPopover($("job-support-'.$config['n'].'-help2"), {
+                    description: "If these supports were funded by generic/agency supports, you do not need to complete the following fields: total $ needed for transportation at this request",
+                    anchor: UIPopover.AnchorTo("top")
+                });
+
+
+	 });
+
+');
+?></span>Were these supports funded by generic/agency sources?</div>
 <span class="inline">
 		<label><input type="radio" value="yes"
 		name="job-support-<?php echo $config['n']; ?>-external-provider-transportation" /> Yes </label>
@@ -78,7 +110,23 @@ $num = array(
 				name="job-support-<?php echo $config['n']; ?>-trans-other-provider" />
 		</label>
 
-		<div>Were these supports funded by generic/agency sources?</div>
+		<div><span id="job-support-<?php echo $config['n']; ?>-help3" class="help-icon"><?php 
+IncludeJSBlock('
+	 
+	 window.addEvent("load",function(){
+
+	 	
+
+	 	new UIPopover($("job-support-'.$config['n'].'-help3"), {
+                    description: "do we even need this help tip?",
+                    anchor: UIPopover.AnchorTo("top")
+                });
+
+
+	 });
+
+');
+?></span>Were these supports funded by generic/agency sources?</div>
 <span class="inline">
 		<label><input type="radio" value="yes"
 		name="job-support-<?php echo $config['n']; ?>-external-provider-other" /> Yes </label>

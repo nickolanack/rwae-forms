@@ -9,7 +9,10 @@
 		<?php Scaffold('form.section.admin');?>
 		<hr />
 		<?php Scaffold('form.section.agency');?>
-		 <hr />
+		 
+		<?php Scaffold('form.section.participant.b');?>
+
+		<hr />
 					<h3>RWA Section</h3>
 					<section>
 
@@ -17,7 +20,6 @@
 							name="participant-facilitator" />
 						</label>
 					</section>
-		<?php Scaffold('form.section.participant.b');?>
 	</section>
 
 	<h4>Employment</h4>
@@ -35,38 +37,27 @@
 		            ?>
 		            <h3>Supports For Employment</h3>
 		<h4>Does this person require any supports from RWA for employment?</h4>
-		<span class="inline"><label><input type="radio" value="yes"
-				name="job-supports" id="sch-cbx-supports" /> Yes </label><label><input
-				type="radio" value="no" name="job-supports" id="sch-cbx-no-supports"
-				checked="checked" /> No </label></span>
-
+		
 <?php
                 
-                Scaffold('script.radiobutton.display.toggle', 
-                    array(
-                        
-                        'elementArray' => '$$("span.sch-job-supports")',
-                        'enabler' => '$("sch-cbx-supports")',
-                        'disabler' => '$("sch-cbx-no-supports")'
-                    ));
-                ?>
 
+				Scaffold('form.switch', 
+			                array(
+			                    'name' => 'job-supports',
+			                    'callback' => function () {
+			                        ?>
+								    <hr />
 
-         <span class="sch-job-supports" style="display: none;">
-			<hr />
-				<?php
-                
-                Scaffold('form.scheduled.job.support', 
-                    array(
-                        'class' => 'sch-job'
-                    ));
-                
-                ?>
+								    <?php
+			                        
+			                        	Scaffold('form.scheduled.job.support', 
+					                    array(
+					                        'class' => 'sch-job'
+					                    ));
 
+			                        }
+			                	));
 
-		</span>
-
-		<?php
 
 				},
 			));
