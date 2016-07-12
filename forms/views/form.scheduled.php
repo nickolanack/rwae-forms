@@ -55,12 +55,17 @@
 
 		<h3>Supports For Employment</h3>
 		<h4>Does this person require any supports from RWA for employment?</h4>
+
+
+
 		<span class="inline"><label><input type="radio" value="yes"
 				name="job-supports" id="sch-cbx-supports" /> Yes </label><label><input
 				type="radio" value="no" name="job-supports" id="sch-cbx-no-supports"
 				checked="checked" /> No </label></span>
 
 <?php
+
+                //TODO: replace this with form.switch...
                 
                 Scaffold('script.radiobutton.display.toggle', 
                     array(
