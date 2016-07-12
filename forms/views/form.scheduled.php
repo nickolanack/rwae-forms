@@ -9,6 +9,16 @@
 		<?php Scaffold('form.section.admin');?>
 		<hr />
 		<?php Scaffold('form.section.agency');?>
+    
+        <h3>RWA Section</h3>
+        <section>
+
+            <label>Facilitator / Coordinator <input type="text" value=""
+                name="participant-facilitator" />
+            </label> <label>Participant’s ID <input type="text" value=""
+                name="participant-id" placeholder="province-agency-participant" />
+            </label>
+        </section>
 		<hr />
 		<?php Scaffold('form.section.participant');?>
 	</section>
@@ -40,16 +50,7 @@
 
 
 
-        <hr />
-		<h3>RWA Section</h3>
-		<section>
-
-			<label>Facilitator / Coordinator <input type="text" value=""
-				name="participant-facilitator" />
-			</label> <label>Participant’s ID <input type="text" value=""
-				name="participant-id" placeholder="province-agency-participant" />
-			</label>
-		</section>
+       
 
 
 		<h3>Supports For Employment</h3>

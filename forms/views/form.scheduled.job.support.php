@@ -30,6 +30,17 @@ $num = array(
 		<label>Provider <input type="text" value=""
 				name="job-support-<?php echo $config['n']; ?>-provider" />
 		</label>
+
+		<div>Were these supports funded by generic/agency sources?</div>
+<span class="inline">
+		<label><input type="radio" value="yes"
+		name="job-support-<?php echo $config['n']; ?>-external-provider-coach" /> Yes </label>
+	<label><input type="radio" value="no"
+		name="job-support-<?php echo $config['n']; ?>-external-provider-coach" /> No </label>
+</span>
+
+
+
 	</span><span class="right">
 			<h4>Transportation</h4> <label>Number of trips <input
 				style="width: 100px;" type="number" value=""
@@ -50,12 +61,12 @@ $num = array(
 				name="job-support-<?php echo $config['n']; ?>-trans-provider" />
 		</label>
 
-<h4>Were these supports funded by generic/agency sources?</h4>
+<div>Were these supports funded by generic/agency sources?</div>
 <span class="inline">
 		<label><input type="radio" value="yes"
-		name="job-support-<?php echo $config['n']; ?>-external-provider" /> Yes </label>
+		name="job-support-<?php echo $config['n']; ?>-external-provider-transportation" /> Yes </label>
 	<label><input type="radio" value="no"
-		name="job-support-<?php echo $config['n']; ?>-external-provider" /> No </label>
+		name="job-support-<?php echo $config['n']; ?>-external-provider-transportation" /> No </label>
 </span>
 
 	</span><span class="right">
@@ -66,6 +77,14 @@ $num = array(
 			<label>Provider <input type="text" value=""
 				name="job-support-<?php echo $config['n']; ?>-trans-other-provider" />
 		</label>
+
+		<div>Were these supports funded by generic/agency sources?</div>
+<span class="inline">
+		<label><input type="radio" value="yes"
+		name="job-support-<?php echo $config['n']; ?>-external-provider-other" /> Yes </label>
+	<label><input type="radio" value="no"
+		name="job-support-<?php echo $config['n']; ?>-external-provider-other" /> No </label>
+</span>
 	</span></span>
  <?php
 

@@ -18,31 +18,31 @@
 		<h4>did employment change?</h4>
 
 		<?php
-Scaffold('form.switch',
-    array(
-        'name' => 'employed-quarter',
-        'className' => 'jobs two three',
-        'callback' => function () {
+		Scaffold('form.switch',
+		    array(
+		        'name' => 'employed-quarter',
+		        'className' => 'jobs two three',
+		        'callback' => function () {
 
-            Scaffold('form.scheduled.job');
+		            Scaffold('form.scheduled.job');
 
-            ?>
-
-
-                <hr />
-		<h3>RWA Section</h3>
-		<section>
-
-			<label>Facilitator / Coordinator <input type="text" value=""
-				name="participant-facilitator" />
-			</label>
-		</section>
-        <?php
-},
-    ));
-?>
+		            ?>
 
 
+			        <hr />
+					<h3>RWA Section</h3>
+					<section>
+
+						<label>Facilitator / Coordinator <input type="text" value=""
+							name="participant-facilitator" />
+						</label>
+					</section>
+			        <?php
+
+
+				},
+			));
+		?>
 
 
 
@@ -56,17 +56,38 @@ Scaffold('form.switch',
 		<h4>did enrollment change?</h4>
 
 		<?php
-Scaffold('form.switch',
-    array(
-        'name' => 'enrolled-quarter',
-        'callback' => function () {
-            ?><hr />
-		<?php
+		Scaffold('form.switch',
+		    array(
+		        'name' => 'enrolled-quarter',
+		        'callback' => function () {
+		            ?><hr />
+				<?php
 
-            Scaffold('form.scheduled.enrollment');
-        },
-    ));
-?>
+		            Scaffold('form.scheduled.enrollment');
+
+		            ?>
+					<h3>Supports for Post-Secondary Education</h3>
+					<h4>Does this person require any supports from RWA for post-secondary education?</h4>
+
+						<?php
+			            Scaffold('form.switch', 
+			                array(
+			                    'name' => 'enrollment-supports',
+			                    'callback' => function () {
+			                        ?>
+								    <hr />
+
+								    <?php
+			                        Scaffold('form.scheduled.enrollment.support');
+
+			                        }
+			                	));
+					        },
+		    	));
+		?>
+
+
+
 	</section>
 
 </form>

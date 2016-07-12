@@ -78,7 +78,6 @@ echo $prefix;
 		<option value="FINA">Finance & Insurance</option>
 		<option value="FOOD">Food Services</option>
 		<option value="HLTH">Health Care & Social Assistance</option>
-		<option value="IT">Information & Communication Technology</option>
 		<option value="CULT">Information & Culture</option>
 		<option value="MGMT">Management</option>
 		<option value="MANU">Manufacturing</option>

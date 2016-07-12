@@ -437,13 +437,16 @@ class Ajax
 
         $max = 10;
 
-        echo '{"results":[' . "\n";
+        echo '{"results":' . "\n";
+
+        /*
 
         $db->iterate('SELECT count(*), uid FROM ' . $db->table('Schedule') . ' GROUP BY uid',
             function ($record) use (&$count, $max) {
                 if ($count > 0) {
                     echo ", ";
                 }
+
 
                 echo json_encode(Core::Client()->userMetadataFor($record->uid), JSON_PRETTY_PRINT);
 
@@ -456,7 +459,13 @@ class Ajax
                 'ORDER BY' => 'submitDate DESC',
             ));
 
-        echo '],' . "\n" . ' "success":true}';
+            */
+           
+           echo json_encode(Core::Client()->listUsers());
+
+        echo ',' . "\n" . ' "success":true}';
+
+
 
         return;
     }

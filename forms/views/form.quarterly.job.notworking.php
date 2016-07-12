@@ -6,7 +6,7 @@ $prefix = $config['prefix'];
 ?>
 
 
-<h4>If not working, went to new employment or enrolled in post-secondary education this quarter (Please check the best one.)</h4>
+<h4>If not working, went to new employment or enrolled in post-secondary education this quarter (Please check all that apply.)</h4>
 <span class="inline"> <label><input type="checkbox"
 		value="went-to-new-employer"
 		name="<?php echo $prefix; ?>-notworking-reason[]" /> Went to new employer</label> 
