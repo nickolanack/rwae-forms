@@ -14,6 +14,23 @@
 	</label><label>Provider <input type="text" value=""
 			name="enrollment-support-provider" />
 	</label>
+
+	<div><?php 
+
+		Scaffold('form.info',
+		    array(
+		        'text' => ' If these supports were funded by generic/agency supports, you do not need to complete the following fields: hourly rate for tutor, total $ needed for tutor (or similar) at this request.',
+		        )
+		);
+
+	?>Were these supports funded by generic/agency sources?</div>
+<span class="inline">
+		<label><input type="radio" value="yes"
+		name="job-support-<?php echo $config['n']; ?>-external-provider-enrollment-coach" /> Yes </label>
+	<label><input type="radio" value="no"
+		name="job-support-<?php echo $config['n']; ?>-external-provider-enrollment-coach" /> No </label>
+</span>
+
 </span><span class="right">
 		<h4>Transportation</h4> <label>Number of trips <input type="number"
 			value="" name="enrollment-support-trans-trips" />
@@ -32,6 +49,21 @@
 	</label> <label>Provider <input type="text" value=""
 			name="enrollment-support-trans-provider" />
 	</label>
+	<div><?php 
+
+		Scaffold('form.info',
+		    array(
+		        'text' => 'If these supports were funded by generic/agency supports, you do not need to complete the following fields: total $ needed for transportation at this request.',
+		        )
+		);
+
+	?>Were these supports funded by generic/agency sources?</div>
+<span class="inline">
+		<label><input type="radio" value="yes"
+		name="job-support-<?php echo $config['n']; ?>-external-provider-enrollment-transportation" /> Yes </label>
+	<label><input type="radio" value="no"
+		name="job-support-<?php echo $config['n']; ?>-external-provider-enrollment-transportation" /> No </label>
+</span>
 </span><span class="right">
 		<h4>Other</h4>
 		<div style="width: 380px;">Please describe any other charge not captured above (e.g., for uniform, supplies, fees, devices, ramps, etc.)</div> <textarea name="enrollment-support-trans-other"
@@ -47,3 +79,10 @@
 			style="resize: vertical; width: 380px; box-sizing: border-box;"></textarea>
 
 </span></span>
+<div>Were these supports funded by generic/agency sources?</div>
+<span class="inline">
+		<label><input type="radio" value="yes"
+		name="job-support-<?php echo $config['n']; ?>-external-provider-enrollment-other" /> Yes </label>
+	<label><input type="radio" value="no"
+		name="job-support-<?php echo $config['n']; ?>-external-provider-enrollment-other" /> No </label>
+</span>
