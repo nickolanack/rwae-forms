@@ -385,8 +385,8 @@ class Ajax
         $scheduled = $s[0];
 
         $db->deleteSchedule($id);
-        $db->execute('DELETE FROM ' . $db->table('Addendum') . ' WHERE code=' . $scheduled->code);
-        $db->execute('DELETE FROM ' . $db->table('Quarterly') . ' WHERE code=' . $scheduled->code);
+        //$db->execute('DELETE FROM ' . $db->table('Addendum') . ' WHERE code=' . $scheduled->code);
+        //$db->execute('DELETE FROM ' . $db->table('Quarterly') . ' WHERE code=' . $scheduled->code);
 
         echo '{"success":true}';
 
@@ -422,8 +422,6 @@ class Ajax
         $db->deleteAddendum($id);
 
         echo '{"success":true}';
-
-        return;
 
         return;
 

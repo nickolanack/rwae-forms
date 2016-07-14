@@ -185,9 +185,11 @@ var UIFormManager = (function() {
 				}
 
 				if (type === 'undefined' || value === undefined) {
-					i.value = "";
+					//i.value = "";
 				} else {
-					i.value = value;
+					if (type === "string") {
+						i.value = value;
+					}
 
 				}
 
@@ -377,12 +379,12 @@ var UIFormManager = (function() {
 			me.fireEvent("showForm");
 			me.fireEvent("showForm." + name);
 
-			me.scrollToForm();			
+			me.scrollToForm();
 
 		},
 
-		scrollToForm:function(){
-			window.scrollTo(0,0);
+		scrollToForm: function() {
+			window.scrollTo(0, 0);
 
 		},
 
