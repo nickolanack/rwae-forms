@@ -44,7 +44,6 @@ for($i=0;$i<16;$i++){
 	(function(id){
 
 
-
 		var container=document.getElementById(id);
 		var form=container.parentNode;
 		while(form.tagName!=='FORM'){
@@ -56,7 +55,8 @@ for($i=0;$i<16;$i++){
 			var data=UIFormManager.getFormData(form);
 			var yrQuarterStr=data['admin-year']+data['admin-quarter'];
 
-			//console.log('check update :'+yrQuarterStr);
+			console.log('check update :'+yrQuarterStr);
+			console.log(data);
 
 
 			Array.prototype.slice.call(container.childNodes, 0).forEach(function(i) {
@@ -79,6 +79,18 @@ for($i=0;$i<16;$i++){
 			}
 
 		});
+
+		//showForm event is fired after data is loaded.
+		window.addEvent('load',function(){
+			var eventName='enableForm.'+UIFormManager.getFormNameFromForm(form);
+			UIFormManager.addEvent(eventName, function(){
+				console.log('update ('+eventName+')');
+				setTimeout(updateSelected, 500);
+				
+			});
+		});
+		//
+
 
 
 	})("<?php echo $extQid;?>");

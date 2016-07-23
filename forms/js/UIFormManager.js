@@ -53,6 +53,19 @@ var UIFormManager = (function() {
 
 		},
 
+		getFormNameFromForm: function(form) {
+			var me = this;
+			var names = me.getFormNames();
+
+			for (var i = 0; i < names.length; i++) {
+				if (me.getFormConfiguration(names[i]).form === form) {
+					return names[i];
+				}
+			}
+			throw new 'Invalid form element';
+
+		},
+
 		getFormSubmitButtons: function(name) {
 			var me = this;
 			return me.getFormConfiguration(name).submitButtons;
@@ -398,15 +411,16 @@ var UIFormManager = (function() {
 
 			});
 
+			var name = me.getFormNameFromForm(form);
 
-			me.getFormSubmitButtons("scheduled").forEach(function(btn) {
+			me.getFormSubmitButtons(name).forEach(function(btn) {
 
 				btn.setAttribute('disabled', true);
 				btn.removeClass('btn-primary');
 
 			});
 
-			me.getFormFnButtons("scheduled").forEach(function(btn) {
+			me.getFormFnButtons(name).forEach(function(btn) {
 
 				btn.setAttribute('disabled', true);
 				(['btn-primary', 'btn-success', 'btn-danger']).forEach(function(c) {
@@ -421,6 +435,9 @@ var UIFormManager = (function() {
 
 			});
 
+			me.fireEvent("disableForm");
+			me.fireEvent("disableForm." + name);
+
 
 		},
 		setEditable: function(form) {
@@ -434,14 +451,18 @@ var UIFormManager = (function() {
 
 			});
 
-			me.getFormSubmitButtons("scheduled").forEach(function(btn) {
+			var name = me.getFormNameFromForm(form);
+
+			//TODO: use form name, not scheduled!!!
+
+			me.getFormSubmitButtons(name).forEach(function(btn) {
 
 				btn.removeAttribute('disabled');
 				btn.addClass('btn-primary');
 
 			});
 
-			me.getFormFnButtons("scheduled").forEach(function(btn) {
+			me.getFormFnButtons(name).forEach(function(btn) {
 
 				btn.removeAttribute('disabled');
 				(['btn-primary', 'btn-success', 'btn-danger']).forEach(function(c) {
@@ -454,6 +475,9 @@ var UIFormManager = (function() {
 
 
 			});
+
+			me.fireEvent("enableForm");
+			me.fireEvent("enableForm." + name);
 
 		}
 
