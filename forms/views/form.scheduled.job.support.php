@@ -15,12 +15,24 @@ $num = array(
 	<h4>Support Details For Job <?php echo $num[$config['n']-1];?></h4>
 	<span class="group"><span class="left">
 			<h4>Job Coach</h4> 	
-		<label>Number of hours per week <input
+		<label><?php
+
+		Scaffold('form.info',
+		    array(
+		        'text' => 'If the intensity or duration of supports is reported by the agency provider as a range, please enter the mean/average. If RWA is funding these supports, a definitive number (not a range) is required.',
+		        )
+		); ?>Number of hours per week <input
 				style="width: 50px;" type="number" value="" step="any" min="0"
 				name="job-support-<?php echo $config['n']; ?>-coach-hours-weekly" />
 		</label> <label>Hourly rate <input type="number" value="" step="any"
 				min="0" name="job-support-<?php echo $config['n']; ?>-coach-rate" />
-		</label><label>Number of weeks needed <input style="width: 50px;"
+		</label><label><?php
+
+		Scaffold('form.info',
+		    array(
+		        'text' => 'If the intensity or duration of supports is reported by the agency provider as a range, please enter the mean/average. If RWA is funding these supports, a definitive number (not a range) is required.',
+		        )
+		); ?>Number of weeks needed <input style="width: 50px;"
 				type="number" value="" step="any" min="0"
 				name="job-support-<?php echo $config['n']; ?>-coach-weeks" />
 		</label> <label>Total $ needed for job coach at this request <input
@@ -50,12 +62,24 @@ $num = array(
 
 
 	</span><span class="right">
-			<h4>Transportation</h4> <label>Number of trips <input
+			<h4>Transportation</h4> <label><?php
+
+		Scaffold('form.info',
+		    array(
+		        'text' => 'If the intensity or duration of supports is reported by the agency provider as a range, please enter the mean/average. If RWA is funding these supports, a definitive number (not a range) is required.',
+		        )
+		); ?>Number of trips <input
 				style="width: 100px;" type="number" value=""
 				name="job-support-<?php echo $config['n']; ?>-trans-trips" />
 		</label> <label>Rate per trip <input type="number" value="" step="any"
 				min="0" name="job-support-<?php echo $config['n']; ?>-trans-rate" />
-		</label><label>Number of weeks needed <input style="width: 50px;"
+		</label><label><?php
+
+		Scaffold('form.info',
+		    array(
+		        'text' => 'If the intensity or duration of supports is reported by the agency provider as a range, please enter the mean/average. If RWA is funding these supports, a definitive number (not a range) is required.',
+		        )
+		); ?>Number of weeks needed <input style="width: 50px;"
 				type="number" value="" step="any" min="0"
 				name="job-support-<?php echo $config['n']; ?>-trans-weeks" />
 		</label> Other justification if applicable<textarea
@@ -90,7 +114,10 @@ $num = array(
 			<div style="width: 250px;">Please describe any other charge not captured above (e.g., for uniform, supplies, fees, devices, ramps, etc.)</div> <textarea type="text"
 				name="job-support-<?php echo $config['n']; ?>-trans-other"
 				style="resize: vertical; width: 250px; box-sizing: border-box;"></textarea>
-			<label>Provider <input type="text" value=""
+			<label>Total $ needed for Other at this request <input
+				type="number" value="" step="any" min="0"
+				name="job-support-<?php echo $config['n']; ?>-other-total" />
+		</label><label>Provider <input type="text" value=""
 				name="job-support-<?php echo $config['n']; ?>-trans-other-provider" />
 		</label>
 

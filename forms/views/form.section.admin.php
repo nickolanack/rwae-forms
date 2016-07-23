@@ -85,7 +85,7 @@ for($i=0;$i<16;$i++){
 			var eventName='enableForm.'+UIFormManager.getFormNameFromForm(form);
 			UIFormManager.addEvent(eventName, function(){
 				console.log('update ('+eventName+')');
-				setTimeout(updateSelected, 500);
+				setTimeout(updateSelected, 100);
 				
 			});
 		});

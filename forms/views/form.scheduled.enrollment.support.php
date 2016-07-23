@@ -1,11 +1,24 @@
 
-<span class="group"><span class="left">
-		<h4>Tutor (or similar)</h4> <label>Number of hours per week <input
+<span class="group"><span class="left"><label>Start date of supports<input
+			type="date" value="" name="enrollment-support-start-date" /></label>
+		<h4>Tutor (or similar)</h4> <label><?php
+
+		Scaffold('form.info',
+		    array(
+		        'text' => 'If the intensity or duration of supports is reported by the agency provider as a range, please enter the mean/average. If RWA is funding these supports, a definitive number (not a range) is required.',
+		        )
+		); ?>Number of hours per week <input
 			style="width: 150px;" type="number" value="" step="any" min="0"
 			name="enrollment-support-coach-hours-weekly" />
 	</label> <label>Hourly rate <input type="number" value="" step="any"
 			min="0" name="enrollment-support-coach-rate" />
-	</label><label>Number of weeks needed <input style="width: 150px;"
+	</label><label><?php
+
+		Scaffold('form.info',
+		    array(
+		        'text' => 'If the intensity or duration of supports is reported by the agency provider as a range, please enter the mean/average. If RWA is funding these supports, a definitive number (not a range) is required.',
+		        )
+		); ?>Number of weeks needed <input style="width: 150px;"
 			type="number" value="" step="any" min="0"
 			name="enrollment-support-coach-weeks" />
 	</label> <label>Total $ needed for tutor (or similar) at this request <input
@@ -32,11 +45,23 @@
 </span>
 
 </span><span class="right">
-		<h4>Transportation</h4> <label>Number of trips <input type="number"
+		<h4>Transportation</h4> <label><?php
+
+		Scaffold('form.info',
+		    array(
+		        'text' => 'If the intensity or duration of supports is reported by the agency provider as a range, please enter the mean/average. If RWA is funding these supports, a definitive number (not a range) is required.',
+		        )
+		); ?>Number of trips <input type="number"
 			value="" name="enrollment-support-trans-trips" />
 	</label> <label>Rate per trip <input type="number" value="" step="any"
 			min="0" name="enrollment-support-trans-rate" />
-	</label><label>Number of weeks needed <input style="width: 150px;"
+	</label><label><?php
+
+		Scaffold('form.info',
+		    array(
+		        'text' => 'If the intensity or duration of supports is reported by the agency provider as a range, please enter the mean/average. If RWA is funding these supports, a definitive number (not a range) is required.',
+		        )
+		); ?>Number of weeks needed <input style="width: 150px;"
 			type="number" value="" step="any" min="0"
 			name="enrollment-support-trans-weeks" />
 	</label> Other justification if applicable<textarea

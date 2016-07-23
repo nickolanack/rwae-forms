@@ -343,6 +343,10 @@ span.data-participant-id {
     font-size: 10px;
 }
 
+span.data-q {
+    color: #B70A70;
+}
+
 .scheduled-item {
     padding: 5px;
 }

@@ -227,7 +227,7 @@ class Ajax
 
         $json = json_decode(UrlVar('json'));
 
-        if(key_exists('sortField', $json)&&in_array($json->sortField, array('submitDate', 'formDate'))){
+        if(key_exists('sortField', $json)&&in_array($json->sortField, array('submitDate', 'formDate', 'code'))){
             $sortField=$json->sortField;
         }
 

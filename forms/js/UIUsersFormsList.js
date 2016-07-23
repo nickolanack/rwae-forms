@@ -31,50 +31,63 @@ var UIUsersFormsList = new Class({
 });
 
 
-var sortField='submitDate';
-var sortOrder='DESC';
+var sortField = 'submitDate';
+var sortOrder = 'DESC';
 
 
-var displaySortOrder=function(element, options){
+var displaySortOrder = function(element, options) {
 
-    var list=new Element('ul', {html:'Sort Order', 'class':'sorting'});
+    var list = new Element('ul', {
+        html: 'Sort Order',
+        'class': 'sorting'
+    });
 
-    var submittedDate=new Element('li', {html:'created', 'data-sort':'submitDate'});
-    var rwaDate=new Element('li', {html:'form quarter', 'data-sort':'formDate'});
+    var submittedDate = new Element('li', {
+        html: 'created',
+        'data-sort': 'submitDate'
+    });
+    var rwaDate = new Element('li', {
+        html: 'form quarter',
+        'data-sort': 'formDate'
+    });
+    var code = new Element('li', {
+        html: 'agency',
+        'data-sort': 'code'
+    });
 
-    var buttons=[submittedDate, rwaDate];
+    var buttons = [code, submittedDate, rwaDate];
 
 
-    buttons.forEach(function(button){
+    buttons.forEach(function(button) {
 
         list.appendChild(button);
 
-        if(button.getAttribute('data-sort')===sortField){
+        if (button.getAttribute('data-sort') === sortField) {
             button.addClass('active');
-            button.addClass(sortOrder==='DESC'?'desc':'asc');
+            button.addClass(sortOrder === 'DESC' ? 'desc' : 'asc');
         }
 
-        button.addEvent('click',function(){
+        button.addEvent('click', function() {
 
-            var newSortOrder='desc';
+            var newSortOrder = 'desc';
 
-            buttons.forEach(function(otherButton){
-                if(otherButton!==button){
+            buttons.forEach(function(otherButton) {
+                if (otherButton !== button) {
                     otherButton.removeClass('active');
                     otherButton.removeClass('asc');
                     otherButton.removeClass('desc');
-                }else{
+                } else {
 
-                    if(otherButton.hasClass('desc')){
-                       
+                    if (otherButton.hasClass('desc')) {
+
 
                         otherButton.addClass('asc');
                         otherButton.removeClass('desc');
-                        newSortOrder='ASC';
-                    }else{
+                        newSortOrder = 'ASC';
+                    } else {
                         otherButton.removeClass('asc');
                         otherButton.addClass('desc');
-                        newSortOrder='DESC';
+                        newSortOrder = 'DESC';
                     }
 
                 }
@@ -83,11 +96,11 @@ var displaySortOrder=function(element, options){
 
             button.addClass('active')
 
-            var newSortField=button.getAttribute('data-sort');
+            var newSortField = button.getAttribute('data-sort');
 
-            if(newSortField!==sortField||newSortOrder!==sortOrder){
-                sortField=newSortField;
-                sortOrder=newSortOrder;
+            if (newSortField !== sortField || newSortOrder !== sortOrder) {
+                sortField = newSortField;
+                sortOrder = newSortOrder;
                 displayUsersFormsList(options);
             }
 
@@ -127,8 +140,8 @@ var displayUsersFormsList = function(options) {
     (new AjaxControlQuery(
         url,
         "list-scheduled", {
-            'sortField':sortField,
-            'sortOrder':sortOrder
+            'sortField': sortField,
+            'sortOrder': sortOrder
 
         }
     )).addEvent("success", function(response) {
@@ -136,7 +149,7 @@ var displayUsersFormsList = function(options) {
         if (response.success && response.results.length) {
 
             listContainerEl.innerHTML = "<h3>" + config.title + "</h3>"; //also clears previous content
-            
+
             displaySortOrder(listContainerEl, options);
 
 
