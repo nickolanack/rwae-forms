@@ -169,9 +169,28 @@ var displayUsersFormsList = function(options) {
                 }
             };
 
+            var prefixFn = function(str) {
+
+                var prefix = str.split('-')[0].toUpperCase();
+                if (prefix !== last) {
+                    section.appendChild(new Element("div", {
+                        "class": "timeago",
+                        html: prefix
+                    }));
+                    last = prefix;
+                }
+            };
+
+            var displayFn = {
+                submitDate: dateFn,
+                formDate: dateFn,
+                code: prefixFn
+            };
+
+
             response.results.forEach(function(data) {
 
-                dateFn(data[sortField]);
+                displayFn[sortField](data[sortField]);
 
                 var item = section.appendChild(new Element("div", {
                     "class": "scheduled-item",
