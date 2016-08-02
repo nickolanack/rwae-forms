@@ -36,7 +36,7 @@ Scaffold('user.workspace');
 
 Scaffold('list.scheduled');
 Scaffold('list.users');
-Scaffold('list.utilities');
+Scaffold('list.utilities', $params);
 
 $q        = ((int) ((date('n') - 1) / 3));
 $quarters = array(
