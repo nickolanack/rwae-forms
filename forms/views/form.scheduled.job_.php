@@ -19,19 +19,16 @@ echo $prefix;
 	name="<?php echo $prefix; ?>-community" />
 </label>
 <h4>Type of Job</h4>
-<span class="inline"><label><input type="radio"
-		value="permanent-part-time" name="<?php
+<span class="inline">
+	<label><input type="radio"
+		value="seasonal" name="<?php
 
 echo $prefix;
-?>-type" /> Permanent part-time </label> <label><input type="radio"
-		value="permanent-full-time" name="<?php echo $prefix; ?>-type" />
-		Permanent full-time </label> <label><input type="radio"
-		value="seasonal-part-time" name="<?php
-
-echo $prefix;
-?>-type" /> Seasonal part-time </label> <label><input type="radio"
-		value="seasonal-full-time" name="<?php echo $prefix; ?>-type" />
-		Seasonal full-time </label> </span>
+?>-type" /> Seasonal </label>
+	<label><input type="radio"
+		value="permanent" name="<?php echo $prefix; ?>-type" />
+		Permanent </label>
+		</span>
 <br />
 <label>Job title <input type="text" value=""
 	name="<?php
@@ -43,14 +40,15 @@ echo $prefix;
 	type="text" value=""
 	name="<?php echo $prefix; ?>-hours-weekly" />
 </label>
-<label><span id="<?php echo $prefix; ?>-help" class="help-icon"><?php 
+<label><span id="<?php echo $prefix; ?>-help" class="help-icon"><?php
+
 IncludeJSBlock('
-	 
+
 	 window.addEvent("load",function(){
 
-	 	
 
-	 	new UIPopover($("'.$prefix.'-help"), {
+
+	 	new UIPopover($("' . $prefix . '-help"), {
                     description: "the sector code should reflect the sector or industry of the business/organization and not the individual position",
                     anchor: UIPopover.AnchorTo("top")
                 });
@@ -62,7 +60,6 @@ IncludeJSBlock('
 ?>
 </span>Industry sector code <!--  <input style="width: 100px;" type="text"
 	value="" name="<?php
-
 
 echo $prefix;
 ?>-sector" />--> <select name="<?php

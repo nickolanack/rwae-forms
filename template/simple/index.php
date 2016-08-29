@@ -8,7 +8,7 @@
  */
 defined('_JEXEC') or die();
 
-include_once (dirname(dirname(__DIR__))).'/forms/php-core-app/core.php';
+include_once dirname(dirname(__DIR__)) . '/forms/php-core-app/core.php';
 Behavior('mootools');
 
 $app = JFactory::getApplication();
@@ -47,27 +47,27 @@ $doc->addStyleSheet($this->baseurl . '/templates/' . $this->template . '/css/tem
 JHtml::_('bootstrap.loadCss', false, $this->direction);
 
 // Adjusting content width
-if ($this->countModules('position-7') && $this->countModules('position-8')) {
-    $span = "span6";
-} elseif ($this->countModules('position-7') && !$this->countModules('position-8')) {
-    $span = "span9";
-} elseif (!$this->countModules('position-7') && $this->countModules('position-8')) {
-    $span = "span9";
+// if ($this->countModules('position-7') && $this->countModules('position-8')) {
+//     $span = "span6";
+// } elseif ($this->countModules('position-7') && !$this->countModules('position-8')) {
+//     $span = "span9";
+// } elseif (!$this->countModules('position-7') && $this->countModules('position-8')) {
+//     $span = "span9";
+// } else {
+
+// }
+
+$span = "span12";
+
+if (key_exists('HTTP_ACCEPT_LANGUAGE', $_SERVER)) {
+    $ln = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+    if ($ln === 'fr') {
+        $lang = &JFactory::getLanguage();
+        $lang->setLanguage('fr-FR');
+        $lang->load();
+    }
 } else {
-    $span = "span12";
-}
-
-
-
-if(key_exists('HTTP_ACCEPT_LANGUAGE', $_SERVER)){
-	$ln=substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-	if($ln==='fr'){
-		$lang =& JFactory::getLanguage();
-		$lang->setLanguage( 'fr-FR' );
-		$lang->load();
-	}
-}else{
-	$ln='en';
+    $ln = 'en';
 }
 
 ?>
@@ -124,14 +124,11 @@ if(key_exists('HTTP_ACCEPT_LANGUAGE', $_SERVER)){
 	class="site <?php
 
 echo $option . ' view-' . $view . ($layout ? ' layout-' . $layout : ' no-layout') .
-     ($task ? ' task-' . $task : ' no-task') . ($itemid ? ' itemid-' . $itemid : '') .
-     ($params->get('fluidContainer') ? ' fluid' : '');
+    ($task ? ' task-' . $task : ' no-task') . ($itemid ? ' itemid-' . $itemid : '') .
+    ($params->get('fluidContainer') ? ' fluid' : '');
 
-
-	echo ' '.($ln=substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));
-	echo ' '.JFactory::getLanguage()->getTag();
-
-
+echo ' ' . ($ln = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2));
+echo ' ' . JFactory::getLanguage()->getTag();
 
 ?>">
 
