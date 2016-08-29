@@ -127,7 +127,7 @@ class DatabaseTest extends PHPUnit_Framework_TestCase
      
         $count = 0;
 
-        echo '{"results":[' . "\n";
+        $results=array();
 
         
 
@@ -137,7 +137,7 @@ class DatabaseTest extends PHPUnit_Framework_TestCase
             }, $filter);
 
         $query = $db->lastQuery();
-        $this->fail($query.' => '.$count.' '. print_r($filter, true));
+        $this->fail($query.' => '.$count.' '. print_r($filter, true).);
 
     }
 
