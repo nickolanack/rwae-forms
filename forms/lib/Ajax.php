@@ -187,6 +187,7 @@ class Ajax
 
                 $data = get_object_vars($record);
                 $data['formData'] = json_decode($record->formData);
+                $data['formData']->{'participant-id'} = $record->code;
                 // $data['currentData'] = json_decode($record->formData); // this should reflect all changes made by
                 // addendums,
                 // and quarterlys
@@ -206,8 +207,7 @@ class Ajax
                     //return false;
                 }
             }, array(
-
-                'ORDER BY' => 'submitDate DESC',
+                'ORDER BY' => self::_jsonRequestSortOrder(),
             ));
 
         echo '],' . "\n" . ' "success":true}';
@@ -219,39 +219,22 @@ class Ajax
     {
         include_once dirname(__DIR__) . DS . 'database' . DS . 'ScheduleDatabase.php';
         $db = ScheduleDatabase::GetInstance();
-        $uid=Core::Client()->getUserId();
+        $uid = Core::Client()->getUserId();
 
+        $prefixes = array();
 
-        $sortField='submitDate';
-        $sortOrder='DESC';
+        $results = $db->getUserData($uid);
 
-        $json = json_decode(UrlVar('json'));
-
-        if(key_exists('sortField', $json)&&in_array($json->sortField, array('submitDate', 'formDate', 'code'))){
-            $sortField=$json->sortField;
+        if ($results) {
+            $prefixes = json_decode($results[0]->data)->{'rwa-prefixes'};
         }
 
-        if(key_exists('sortOrder', $json)&&in_array($json->sortOrder, array('DESC', 'ASC'))){
-            $sortOrder=$json->sortOrder;
-        }
-
-
-        $prefixes=array();
-
-        $results=$db->getUserData($uid);
-
-        if($results){
-            $prefixes=json_decode($results[0]->data)->{'rwa-prefixes'};
-        }
-
-        $filter= array(
-                array_merge(array('join'=>'OR', 'uid' => $uid), array_map(function($p){
-                    return array('field'=>'LOWER(code)','value'=>strtolower($p).'-%', 'comparator'=>'LIKE');
-                },$prefixes)),
-                'ORDER BY' => $sortField.' '.$sortOrder,
-            );
-
-
+        $filter = array(
+            array_merge(array('join' => 'OR', 'uid' => $uid), array_map(function ($p) {
+                return array('field' => 'LOWER(code)', 'value' => strtolower($p) . '-%', 'comparator' => 'LIKE');
+            }, $prefixes)),
+            'ORDER BY' => self::_jsonRequestSortOrder(),
+        );
 
         $count = 0;
 
@@ -266,6 +249,7 @@ class Ajax
 
                 $data = get_object_vars($record);
                 $data['formData'] = json_decode($record->formData);
+                $data['formData']->{'participant-id'} = $record->code;
                 // $data['currentData'] = json_decode($record->formData); // this should reflect all changes made by addendums,
                 // and quarterlys
 
@@ -296,6 +280,24 @@ class Ajax
         return;
     }
 
+    protected static function _jsonRequestSortOrder()
+    {
+        $sortField = 'submitDate';
+        $sortOrder = 'DESC';
+
+        $json = json_decode(UrlVar('json'));
+
+        if (key_exists('sortField', $json) && in_array($json->sortField, array('submitDate', 'formDate', 'code'))) {
+            $sortField = $json->sortField;
+        }
+
+        if (key_exists('sortOrder', $json) && in_array($json->sortOrder, array('DESC', 'ASC'))) {
+            $sortOrder = $json->sortOrder;
+        }
+
+        return $sortField . ' ' . $sortOrder;
+    }
+
     public static function ListAddendumsAndQuarterlies()
     {
         include_once dirname(__DIR__) . DS . 'database' . DS . 'ScheduleDatabase.php';
@@ -319,6 +321,7 @@ class Ajax
 
                 $data = get_object_vars($record);
                 $data['formData'] = json_decode($record->formData);
+                $data['formData']->{'participant-id'} = $record->code;
 
                 ob_start();
                 Scaffold('list.scheduled.item', $data, dirname(__DIR__) . DS . 'views');
@@ -349,6 +352,7 @@ class Ajax
 
                 $data = get_object_vars($record);
                 $data['formData'] = json_decode($record->formData);
+                $data['formData']->{'participant-id'} = $record->code;
 
                 ob_start();
                 Scaffold('list.scheduled.item', $data, dirname(__DIR__) . DS . 'views');
@@ -440,58 +444,55 @@ class Ajax
         /*
 
         $db->iterate('SELECT count(*), uid FROM ' . $db->table('Schedule') . ' GROUP BY uid',
-            function ($record) use (&$count, $max) {
-                if ($count > 0) {
-                    echo ", ";
-                }
+        function ($record) use (&$count, $max) {
+        if ($count > 0) {
+        echo ", ";
+        }
 
+        echo json_encode(Core::Client()->userMetadataFor($record->uid), JSON_PRETTY_PRINT);
 
-                echo json_encode(Core::Client()->userMetadataFor($record->uid), JSON_PRETTY_PRINT);
+        $count++;
+        if ($count >= $max) {
+        return false;
+        }
+        }, array(
 
-                $count++;
-                if ($count >= $max) {
-                    return false;
-                }
-            }, array(
+        'ORDER BY' => 'submitDate DESC',
+        ));
 
-                'ORDER BY' => 'submitDate DESC',
-            ));
+         */
 
-            */
-           
-           echo json_encode(Core::Client()->listUsers());
+        echo json_encode(Core::Client()->listUsers());
 
         echo ',' . "\n" . ' "success":true}';
-
-
 
         return;
     }
 
-    public static function SaveUserData(){
+    public static function SaveUserData()
+    {
         $json = json_decode(UrlVar('json'));
-     
 
-        $rwaPrefixes=$json->{'rwa-prefixes'};
-        $uid=$json->id;
-        $rwaPrefixes=str_replace(',', ' ',$rwaPrefixes);
-        $rwaPrefixes=explode(' ', $rwaPrefixes);
-        $rwaPrefixes=array_filter($rwaPrefixes, function($p){
-            $p=trim($p);
+        $rwaPrefixes = $json->{'rwa-prefixes'};
+        $uid = $json->id;
+        $rwaPrefixes = str_replace(',', ' ', $rwaPrefixes);
+        $rwaPrefixes = explode(' ', $rwaPrefixes);
+        $rwaPrefixes = array_filter($rwaPrefixes, function ($p) {
+            $p = trim($p);
             return !empty($p);
         });
 
         include_once dirname(__DIR__) . DS . 'database' . DS . 'ScheduleDatabase.php';
         $db = ScheduleDatabase::GetInstance();
         //$uid=Core::Client()->getUserId();
-        $results=$db->getUserData($uid);
+        $results = $db->getUserData($uid);
 
-        $fields=array('uid'=>$uid, 'data'=>json_encode(array('rwa-prefixes'=>array_values($rwaPrefixes)),JSON_PRETTY_PRINT));
+        $fields = array('uid' => $uid, 'data' => json_encode(array('rwa-prefixes' => array_values($rwaPrefixes)), JSON_PRETTY_PRINT));
 
-        if(! $results){
+        if (!$results) {
             $db->createUserData($fields);
-        }else{
-            $db->updateUserData(array_merge($fields, array('id'=>$results[0]->id)));
+        } else {
+            $db->updateUserData(array_merge($fields, array('id' => $results[0]->id)));
         }
 
         echo '{"success":true}';
@@ -500,24 +501,24 @@ class Ajax
 
     }
 
-     public static function GetUserData(){
-  
+    public static function GetUserData()
+    {
+
         $json = json_decode(UrlVar('json'));
-        $uid=$json->id;
+        $uid = $json->id;
 
         include_once dirname(__DIR__) . DS . 'database' . DS . 'ScheduleDatabase.php';
         $db = ScheduleDatabase::GetInstance();
         //$uid=Core::Client()->getUserId();
-        $results=$db->getUserData($uid);
+        $results = $db->getUserData($uid);
 
-        if($results){
-            $prefixes=implode(', ',json_decode($results[0]->data)->{'rwa-prefixes'});
+        if ($results) {
+            $prefixes = implode(', ', json_decode($results[0]->data)->{'rwa-prefixes'});
 
-            echo json_encode(array('success'=>true, 'data'=>array('rwa-prefixes'=>$prefixes)));
+            echo json_encode(array('success' => true, 'data' => array('rwa-prefixes' => $prefixes)));
             return;
         }
 
-    
         echo '{"success":true, data:{}}';
 
         return;
