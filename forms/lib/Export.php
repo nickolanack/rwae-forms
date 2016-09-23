@@ -9,21 +9,33 @@ class Export
         include_once dirname(__DIR__) . DS . 'database' . DS . 'ScheduleDatabase.php';
         $db = ScheduleDatabase::GetInstance();
         include_once __DIR__ . '/RWAForm.php';
-        $fieldsNames = RWAForm::GetFieldNames('scheduled');
+        $fieldsNames = array_unique(array_merge(array('id', 'code', 'submitDate', 'formDate'), RWAForm::GetFieldNames('scheduled')));
         $csv = EasyCsv::CreateCsv($fieldsNames);
         $db->iterateAllSchedules(
             function ($record) use (&$csv, $fieldsNames) {
+
 
                 $form = get_object_vars(json_decode($record->formData));
 
                 $values = array();
                 foreach ($fieldsNames as $field) {
                     if (key_exists($field, $form)) {
-                        $values[] = $form[$field];
+                        $theValue = $form[$field];
+                        if(is_object($theValue)||is_array($theValue)){
+                            $theValue=json_encode($theValue);
+                        }
+                        $values[] = $theValue;
                     } else {
                         $values[] = "";
                     }
                 }
+
+
+                $values[0]=$record->id;
+                $values[1]=$record->code;
+                $values[2]=$record->submitDate;
+                $values[3]=$record->formDate;
+
                 EasyCsv::AddRow($csv, $values);
             });
 
@@ -41,22 +53,34 @@ class Export
         $db = ScheduleDatabase::GetInstance();
 
         include_once __DIR__ . '/RWAForm.php';
-        $fieldsNames = RWAForm::GetFieldNames('addendum');
+        $fieldsNames = array_unique(array_merge(array('id', 'code', 'submitDate', 'formDate'), RWAForm::GetFieldNames('addendum')));
         $csv = EasyCsv::CreateCsv($fieldsNames);
 
         $db->iterateAllAddendums(
             function ($record) use (&$csv, $fieldsNames) {
+
+                
 
                 $form = get_object_vars(json_decode($record->formData));
 
                 $values = array();
                 foreach ($fieldsNames as $field) {
                     if (key_exists($field, $form)) {
-                        $values[] = $form[$field];
+                        $theValue = $form[$field];
+                        if(is_object($theValue)||is_array($theValue)){
+                            $theValue=json_encode($theValue);
+                        }
+                        $values[] = $theValue;
                     } else {
                         $values[] = "";
                     }
                 }
+
+                $values[0]=$record->id;
+                $values[1]=$record->code;
+                $values[2]=$record->submitDate;
+                $values[3]=$record->formDate;
+
 
                 EasyCsv::AddRow($csv, $values);
             });
@@ -74,22 +98,34 @@ class Export
         include_once dirname(__DIR__) . DS . 'database' . DS . 'ScheduleDatabase.php';
         $db = ScheduleDatabase::GetInstance();
         include_once __DIR__ . '/RWAForm.php';
-        $fieldsNames = RWAForm::GetFieldNames('quarterly');
+        $fieldsNames = array_unique(array_merge(array('id', 'code', 'submitDate', 'formDate'), RWAForm::GetFieldNames('quarterly')));
         $csv = EasyCsv::CreateCsv($fieldsNames);
 
         $db->iterateAllQuarterlys(
             function ($record) use (&$csv, $fieldsNames) {
+
+     
 
                 $form = get_object_vars(json_decode($record->formData));
 
                 $values = array();
                 foreach ($fieldsNames as $field) {
                     if (key_exists($field, $form)) {
-                        $values[] = $form[$field];
+                        $theValue = $form[$field];
+                        if(is_object($theValue)||is_array($theValue)){
+                            $theValue=json_encode($theValue);
+                        }
+                        $values[] = $theValue;
                     } else {
                         $values[] = "";
                     }
                 }
+
+
+                $values[0]=$record->id;
+                $values[1]=$record->code;
+                $values[2]=$record->submitDate;
+                $values[3]=$record->formDate;
 
                 EasyCsv::AddRow($csv, $values);
             });
