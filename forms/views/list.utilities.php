@@ -52,17 +52,29 @@ Scaffold('cpanel.button',
 
             var buttonExecute=new Element("button", {"class":"btn btn-primary", "html":"Process"});
             container.appendChild(buttonExecute);
+
+
+
+
+
             buttonExecute.addEvent("click",function(){
 
-                container.innerHTML=html;
+
+                //TODO: this is very form specific (setting stats quarter) and will limit extendability...
+                var currentQ = parseInt($("stats-quarter").value);
+
+
+
+                container.innerHTML=html.replace("value=\"8\"", "value=\""+currentQ+"\"");
                 container.appendChild(buttonExecute);
 
 
-                var processPifFn=(function(){
+                 var processPifFn=(function(){
 
                     '.file_get_contents(__DIR__ . DS . 'statistics.js').'
 
                 })();
+                
 
 
 

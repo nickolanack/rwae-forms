@@ -292,8 +292,8 @@ var displayUsersFormsList = function(options) {
                     addendum.addEvent("click", function() {
 
                         formManager.loadFormData(formManager.getForm("addendum"), Object.append(
-                            data.formData, //should load all data that matches.
-                            /*formManager.getFieldsFrom(data.formData,[
+                            //data.formData, //should load all data that matches.
+                            formManager.getFieldsFrom(data.formData,[
     
                                        "participant-first-name",
                                        "participant-id",
@@ -303,7 +303,7 @@ var displayUsersFormsList = function(options) {
                                        "agency-contact-phone",
                                        "agency-contact-email"
     
-                                       ]), */
+                                       ]), 
                             formManager.getFormDefaultData("addendum")));
                         formManager.showForm("addendum");
                         /*

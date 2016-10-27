@@ -2,9 +2,11 @@ var total = 0;
 var totalsPT = {};
 var totalsPTElements = {};
 
+var qtr = 8;
+
 var incrementTotal = function() {
 	total++;
-	$('stat-total-quarter').innerHTML = 'Total PIF\'s Q8: ' + total;
+	$('stat-total-quarter').innerHTML = 'Total PIF\'s Q' + qtr + ': ' + total;
 }
 
 
@@ -281,12 +283,47 @@ var totalSupportDollars = function(scheduled) {
 
 //initialize here.
 
+var quarterToDate = function(i) {
+
+	var y = 2014;
+	var q = 1; //0, 1, 2, 3
+
+
+
+	var quarter = ((i + q) % 4);
+
+	quarter = "" + ((quarter * 3) + 1);
+
+	var year = Math.floor(y + ((i + q) / 4));
+
+
+
+	if (quarter.length === 1) {
+		quarter = "0" + quarter;
+	}
+
+	return year + "-" + quarter;
+
+
+};
+
+
 
 return function(scheduled, addendumsQuarterlies) {
 
 
+	total = 0;
+	totalsPT = {};
+	totalsPTElements = {};
 
-	if (scheduled.formDate.indexOf('2016-04') === 0) {
+	qtr = parseInt($('stats-quarter').value);
+	$$('.q-label').forEach(function(e) {
+		e.innerHTML = qtr;
+	});
+
+
+
+	if (scheduled.formDate.indexOf(quarterToDate(qtr)) === 0) {
 
 		incrementTotal();
 
