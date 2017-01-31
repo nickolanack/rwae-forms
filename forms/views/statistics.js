@@ -85,14 +85,36 @@ var incrementTotalProvinceTerritory = function(code) {
 
 };
 
+var currentTask='';
+var addError=function(err){
+
+	$('stat-errors').appendChild(new Element('div',
+		{
+
+			html: currentTask+err
+		}
+	));
+
+}
+
+var setCurrentTask=function(str){
+	currentTask=str;
+
+}
+
 var _sumInt = function() {
 
 	var t = 0;
 	var c;
 	for (var i = 0; i < arguments.length; i++) {
 		c = parseInt(arguments[i]);
+
+		
+
 		if (!isNaN(c)) {
 			t += c;
+		}else{
+			addError('NaN conversion toInt('+arguments[i]+')');
 		}
 	}
 	return t;
@@ -106,8 +128,13 @@ var _sumFloat = function() {
 	var c;
 	for (var i = 0; i < arguments.length; i++) {
 		c = parseFloat(arguments[i]);
+
+
+
 		if (!isNaN(c)) {
 			t += c;
+		}else{
+			addError('NaN conversion toFloat('+arguments[i]+')');
 		}
 	}
 	return t;
@@ -118,9 +145,18 @@ var countHoursPerWeekWorked = function(scheduled) {
 
 	if (scheduled.formData['employed-quarter'] === 'yes') {
 
-		return _sumInt(scheduled.formData['job-1-hours-weekly'],
-			scheduled.formData['job-2-hours-weekly'],
-			scheduled.formData['job-3-hours-weekly'])
+		var t=0;
+		
+		setCurrentTask('Counting Hours: '+scheduled.code+' job-1-hours-weekly: ');
+		t+=_sumInt(scheduled.formData['job-1-hours-weekly']);
+		
+		setCurrentTask('Counting Hours: '+scheduled.code+' job-2-hours-weekly: ');
+		t+=_sumInt(scheduled.formData['job-2-hours-weekly']);
+
+		setCurrentTask('Counting Hours: '+scheduled.code+' job-3-hours-weekly: ');
+		t+=_sumInt(scheduled.formData['job-3-hours-weekly']);
+
+		return t;
 
 	}
 
@@ -264,13 +300,19 @@ var totalSupportDollars = function(scheduled) {
 
 	for (var i = 1; i < 4; i++) {
 
+		setCurrentTask('Adding job-support-' + i + '-coach-total: '+scheduled.code+': ');
+
 		if (scheduled.formData['job-support-' + i + '-external-provider-coach'] !== "yes") {
 			total += _sumFloat(scheduled.formData['job-support-' + i + '-coach-total']);
 		}
 
+		setCurrentTask('Adding job-support-' + i + '-trans-total: '+scheduled.code+': ');
+
 		if (scheduled.formData['job-support-' + i + '-external-provider-transportation'] !== "yes") {
 			total += _sumFloat(scheduled.formData['job-support-' + i + '-trans-total']);
 		}
+
+		setCurrentTask('Adding job-support-' + i + '-other-total: '+scheduled.code+': ');
 
 		if (scheduled.formData['job-support-' + i + '-external-provider-other'] !== "yes") {
 			total += _sumFloat(scheduled.formData['job-support-' + i + '-other-total']);
@@ -312,9 +354,9 @@ var quarterToDate = function(i) {
 return function(scheduled, addendumsQuarterlies) {
 
 
-	total = 0;
-	totalsPT = {};
-	totalsPTElements = {};
+	//total = 0;
+	//totalsPT = {};
+	//totalsPTElements = {};
 
 	qtr = parseInt($('stats-quarter').value);
 	$$('.q-label').forEach(function(e) {
